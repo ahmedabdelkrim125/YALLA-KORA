@@ -17,6 +17,13 @@ class TextStyles {
     color: Colors.white,
   );
 
+  static TextStyle semiBoldWhite16 = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Cairo',
+    color: Colors.white,
+  );
+
   static TextStyle mediumWhite12 = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
