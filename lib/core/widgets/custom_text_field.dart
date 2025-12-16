@@ -1,11 +1,17 @@
-import 'package:appointment_app/core/helper/responsive_extensions.dart';
-import 'package:appointment_app/core/helper/spacing.dart';
-import 'package:appointment_app/core/theme/text_styles.dart';
-import 'package:appointment_app/core/widgets/app_form_field.dart';
 import 'package:flutter/material.dart';
+import '../helper/responsive_extensions.dart';
+import '../helper/spacing.dart';
+import '../theme/text_styles.dart';
+import 'app_form_field.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.text, required this.controller, this.validator, this.isPassword = false});
+  const CustomTextField({
+    super.key,
+    required this.text,
+    required this.controller,
+    this.validator,
+    this.isPassword = false,
+  });
 
   final String text;
   final TextEditingController controller;
@@ -18,10 +24,7 @@ class CustomTextField extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-          child: Text(
-            text,
-            style: TextStyles.mediumWhite12,
-          ),
+          child: Text(text, style: TextStyles.mediumWhite12),
         ),
         verticalSpace(context, height: 5),
         AppFormField(

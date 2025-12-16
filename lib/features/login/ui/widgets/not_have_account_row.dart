@@ -1,7 +1,8 @@
-import 'package:appointment_app/core/helper/extensions.dart';
-import 'package:appointment_app/core/routing/routes.dart';
-import 'package:appointment_app/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/helper/extensions.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theme/text_styles.dart';
 
 class NotHaveAccountRow extends StatelessWidget {
   const NotHaveAccountRow({super.key});

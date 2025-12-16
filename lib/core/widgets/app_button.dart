@@ -1,17 +1,14 @@
-import 'package:appointment_app/core/theme/text_styles.dart';
-import 'package:appointment_app/core/helper/responsive_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:appointment_app/core/constants/app_colors.dart';
+
+import '../theme/app_colors.dart';
+import '../helper/responsive_extensions.dart';
+import '../theme/text_styles.dart';
 
 class AppButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const AppButton({
-    super.key,
-    required this.title,
-    required this.onPressed,
-  });
+  const AppButton({super.key, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

@@ -12,6 +12,14 @@ Yalla Kora is a Flutter-based mobile application for football enthusiasts. The a
 - **Modern UI**: Clean and intuitive user interface with custom themes
 - **Multi-language Support**: Easy localization with easy_localization package
 
+## 📸 Screenshots
+
+### Login Success
+![Login Success](screenshot/login_success.png)
+
+### Login Failure
+![Login Failure](screenshot/login_failure.png)
+
 ## 🏗️ Architecture
 
 The project follows a modular architecture with a clear separation of concerns:

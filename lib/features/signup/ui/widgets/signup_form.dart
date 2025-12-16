@@ -1,12 +1,13 @@
-import 'package:appointment_app/core/helper/helper_functions/build_snack_bar.dart';
-import 'package:appointment_app/core/helper/spacing.dart';
-import 'package:appointment_app/core/helper/validation.dart';
-import 'package:appointment_app/core/widgets/app_button.dart';
-import 'package:appointment_app/core/widgets/custom_text_field.dart';
-import 'package:appointment_app/features/signup/ui/widgets/account_type.dart';
-import 'package:appointment_app/features/signup/ui/widgets/custom_phone_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
+import 'package:yalla_kora/features/signup/ui/widgets/account_type.dart';
+import 'package:yalla_kora/features/signup/ui/widgets/custom_phone_filed.dart';
+
+import '../../../../core/helper/helper_functions/build_snack_bar.dart';
+import '../../../../core/helper/spacing.dart';
+import '../../../../core/helper/validation.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/custom_text_field.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -67,13 +68,13 @@ class _SignupFormState extends State<SignupForm> {
     }
 
     if (isFormValid && isAccountTypeValid) {
-
     } else {
       setState(() {
         autovalidateMode = AutovalidateMode.always;
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -81,7 +82,7 @@ class _SignupFormState extends State<SignupForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          AccountType(onSelected: accountTypeSelected, text: text,),
+          AccountType(onSelected: accountTypeSelected, text: text),
           verticalSpace(context, height: 23),
           CustomAppPhoneFormField(phoneController: phoneController),
           verticalSpace(context, height: 7),
@@ -117,10 +118,7 @@ class _SignupFormState extends State<SignupForm> {
             validator: AppValidator.validatePassword,
           ),
           verticalSpace(context, height: 23),
-          AppButton(
-            title: 'التالي',
-            onPressed: _handleSignup,
-          ),
+          AppButton(title: 'التالي', onPressed: _handleSignup),
         ],
       ),
     );
