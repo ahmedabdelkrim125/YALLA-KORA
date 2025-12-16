@@ -1,9 +1,10 @@
-import 'package:appointment_app/core/constants/app_colors.dart';
-import 'package:appointment_app/core/helper/spacing.dart';
-import 'package:appointment_app/features/signup/ui/widgets/have_account_row.dart';
-import 'package:appointment_app/features/signup/ui/widgets/signup_form.dart';
-import 'package:appointment_app/features/signup/ui/widgets/signup_header.dart';
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/features/signup/ui/widgets/have_account_row.dart';
+import 'package:yalla_kora/features/signup/ui/widgets/signup_form.dart';
+import 'package:yalla_kora/features/signup/ui/widgets/signup_header.dart';
+
+import '../../../core/theme/app_colors.dart';
+import '../../../core/helper/spacing.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});

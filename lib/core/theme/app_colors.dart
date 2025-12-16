@@ -6,5 +6,5 @@ class AppColors {
 
   // جديد:
   static const Color fieldBorder = Color(0xFFFFFFFF); // أبيض
-  static const Color hintColor = Color(0xFFF4F5F0);   // اللون اللي في فيجما
+  static const Color hintColor = Color(0xFFF4F5F0); // اللون اللي في فيجما
 }

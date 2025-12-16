@@ -1,7 +1,7 @@
-import 'package:appointment_app/core/constants/app_images.dart';
-import 'package:appointment_app/core/helper/responsive_extensions.dart';
-import 'package:appointment_app/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_images.dart';
+import '../../../../core/helper/responsive_extensions.dart';
+import '../../../../core/theme/text_styles.dart';
 
 class SignupHeader extends StatelessWidget {
   const SignupHeader({super.key});
@@ -11,10 +11,7 @@ class SignupHeader extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(
-            top: 33.h(context),
-            bottom: 8.h(context),
-          ),
+          padding: EdgeInsets.only(top: 33.h(context), bottom: 8.h(context)),
           child: Image.asset(Assets.logo),
         ),
         Text('إنشاء حساب', style: TextStyles.boldWhite20),

@@ -1,5 +1,5 @@
-name: appointment_app
-description: "A new Flutter project."
+name: yalla_kora
+description: "Yalla Kora Flutter application."
 publish_to: "none"
 
 version: 1.0.0+1
@@ -8,48 +8,36 @@ environment:
   sdk: ^3.8.0
 
 dependencies:
+  cupertino_icons: ^1.0.8
+  dio: ^5.9.0
+  easy_localization: ^3.0.8
   flutter:
     sdk: flutter
-
-  # UI & Icons
-  cupertino_icons: ^1.0.8 # iOS-style icons
-  flutter_svg: ^2.2.3 # Display SVG images
-  flutter_screenutil: ^5.9.3 # Responsive UI scaling
-
-  # State Management
-  flutter_bloc: ^9.1.1 # Bloc state management
-
-  # Localization
-  easy_localization: ^3.0.8 # Multi-language support
-
-  # Networking
-  dio: ^5.9.0 # HTTP client
-  pretty_dio_logger: ^1.4.0 # Logs API requests nicely
-  retrofit: ^4.9.1 # API generator wrapper for Dio
-
-  # Dependency Injection
-  get_it: ^9.0.5 # Service locator
-
-  # Date & formatting
-  intl: ^0.20.2 # Date/number formatting
-
-  # Code Annotations (needed in runtime)
-  json_annotation: ^4.9.0 # Needed for json_serializable
-  freezed_annotation: ^3.1.0 # Annotations used by Freezed
-
+  flutter_bloc: ^9.1.1
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.2.3
+  freezed_annotation: ^3.1.0
+  get_it: ^9.2.0
+  intl: ^0.20.2
+  json_annotation: ^4.9.0
   phone_form_field: ^10.0.14
+  pretty_dio_logger: ^1.4.0
+  retrofit: ^4.9.1
 
 dev_dependencies:
-  # Flutter Tools
-  flutter_lints: ^5.0.0 # Recommended lint rules
-  flutter_test:
-    sdk: flutter # Testing framework
+  # Recommended lint rules
+  build_runner: ^2.10.4
 
-  # Code Generation Tools
-  build_runner: ^2.10.4 # Runs code generators
-  json_serializable: ^6.11.1 # Generates JSON mapping code
-  retrofit_generator: ^10.1.4 # Generates Retrofit API code
-  freezed: ^3.2.3 # Generates immutable classes using Freezed
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+    # Flutter testing framework
+  # Runs code generators
+  freezed: ^3.2.3
+  # Generates immutable data classes
+  json_serializable: ^6.11.2
+  # Generates JSON serialization code (compatible with Freezed)
+  retrofit_generator: ^10.2.0
 
 flutter:
   uses-material-design: true

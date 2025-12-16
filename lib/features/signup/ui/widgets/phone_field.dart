@@ -1,18 +1,15 @@
-import 'package:appointment_app/core/constants/app_colors.dart';
-import 'package:appointment_app/core/theme/text_styles.dart';
-import 'package:appointment_app/core/helper/responsive_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
+
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/helper/responsive_extensions.dart';
+import '../../../../core/theme/text_styles.dart';
 
 class AppPhoneFormField extends StatelessWidget {
   final PhoneController? controller;
   final String? Function(PhoneNumber?)? validator;
 
-  const AppPhoneFormField({
-    super.key,
-    this.controller,
-    this.validator,
-  });
+  const AppPhoneFormField({super.key, this.controller, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +17,24 @@ class AppPhoneFormField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15.w(context)),
       child: PhoneFormField(
         controller: controller,
-        validator: validator ??
+        validator:
+            validator ??
             PhoneValidator.compose([
-              PhoneValidator.required(context, errorText: 'من فضلك أدخل رقم الهاتف'),
-              PhoneValidator.validMobile(context, errorText: 'رقم الهاتف غير صحيح'),
+              PhoneValidator.required(
+                context,
+                errorText: 'من فضلك أدخل رقم الهاتف',
+              ),
+              PhoneValidator.validMobile(
+                context,
+                errorText: 'رقم الهاتف غير صحيح',
+              ),
             ]),
         isCountrySelectionEnabled: true,
         isCountryButtonPersistent: true,
         countrySelectorNavigator: const CountrySelectorNavigator.page(),
-        style: TextStyles.mediumWhite14.copyWith(color: Colors.white), // لون النص أبيض
+        style: TextStyles.mediumWhite14.copyWith(
+          color: Colors.white,
+        ), // لون النص أبيض
         cursorColor: Colors.white, // لون المؤشر أبيض
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
@@ -56,7 +62,9 @@ class AppPhoneFormField extends StatelessWidget {
           showIsoCode: false,
           showFlag: true,
           flagSize: 28, // حجم العلم أكبر
-          textStyle: TextStyles.mediumWhite14.copyWith(color: Colors.white), // لون كود الدولة أبيض
+          textStyle: TextStyles.mediumWhite14.copyWith(
+            color: Colors.white,
+          ), // لون كود الدولة أبيض
         ),
       ),
     );

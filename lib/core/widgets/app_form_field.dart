@@ -1,7 +1,8 @@
-import 'package:appointment_app/core/constants/app_colors.dart';
-import 'package:appointment_app/core/theme/text_styles.dart';
-import 'package:appointment_app/core/helper/responsive_extensions.dart';
 import 'package:flutter/material.dart';
+
+import '../theme/app_colors.dart';
+import '../helper/responsive_extensions.dart';
+import '../theme/text_styles.dart';
 
 class AppFormField extends StatefulWidget {
   final bool isPassword;
@@ -33,7 +34,10 @@ class _AppFormFieldState extends State<AppFormField> {
         style: TextStyles.mediumWhite14,
 
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 18.h(context)),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 18.h(context),
+            horizontal: 20.w(context),
+          ),
 
           prefixIcon: widget.isPassword
               ? IconButton(
