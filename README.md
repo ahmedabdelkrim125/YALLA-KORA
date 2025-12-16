@@ -14,11 +14,14 @@ Yalla Kora is a Flutter-based mobile application for football enthusiasts. The a
 
 ## 📸 Screenshots
 
-### Login Success
-![Login Success](screenshot/login_success.png)
-
-### Login Failure
-![Login Failure](screenshot/login_failure.png)
+<div style="display: flex; gap: 10px;">
+  <div>
+    <img src="screenshot/login_success.png" alt="Login Success" width="45%">
+  </div>
+  <div>
+    <img src="screenshot/login_failure.png" alt="Login Failure" width="45%">
+  </div>
+</div>
 
 ## 🏗️ Architecture
 
