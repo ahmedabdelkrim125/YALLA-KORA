@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
+import 'package:yalla_kora/core/theme/text_styles.dart';
 
 class NavigationBarItem extends StatelessWidget {
   const NavigationBarItem({
@@ -24,8 +25,8 @@ class NavigationBarItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(label, style: TextStyle(color: Colors.white),),
-          SizedBox(width: 4.w(context),),
+          Text(label, style: TextStyles.boldWhite10,),
+          SizedBox(width: 2.w(context),),
           SvgPicture.asset(iconPath),
         ],
       ),

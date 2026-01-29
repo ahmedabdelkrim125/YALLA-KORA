@@ -18,6 +18,13 @@ class TextStyles {
     color: Colors.white,
   );
 
+  static TextStyle boldWhite10 = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Cairo',
+    color: Colors.white,
+  );
+
   static TextStyle semiBoldWhite16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
