@@ -11,6 +11,12 @@ class TextStyles {
     color: Colors.white,
   );
 
+  static TextStyle extraLight12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w200,
+    fontFamily: 'Cairo',
+  );
+
   static TextStyle boldWhite16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,

@@ -9,4 +9,6 @@ class AppColors {
   // جديد:
   static const Color fieldBorder = Color(0xFFFFFFFF); // أبيض
   static const Color hintColor = Color(0xFFF4F5F0); // اللون اللي في فيجما
+  static const Color darkGrey = Color(0xFFd9d9d9); // اللون اللي في فيجما
+  static const Color lightBlack = Color(0xFF414141); // اللون اللي في فيجما
 }

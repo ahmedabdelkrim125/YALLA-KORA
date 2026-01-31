@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/home/ui/widgets/custom_nav_bar.dart';
 
@@ -13,7 +14,13 @@ class _HomeScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light, // Android
+      statusBarBrightness: Brightness.dark, // iOS
+    ),
+    child:  Scaffold(
       body: IndexedStack(
         index: selectedIndex,
         children: [
@@ -30,6 +37,6 @@ class _HomeScreenState extends State<MainScreen> {
           selectedIndex = index;
           setState(() {});
       },),
-    );
+    ));
   }
 }
