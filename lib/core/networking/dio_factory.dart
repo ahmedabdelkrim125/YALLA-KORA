@@ -9,20 +9,19 @@ class DioFactory {
   //no object
   static Dio? dio;
   static Dio getDio() {
-  Duration timeout = const Duration(seconds: 3);
-  if (dio == null) {
-    dio = Dio(
-      BaseOptions(
-        baseUrl: ApiConstants.baseURL, // 🔥 هنا الحل
-        connectTimeout: timeout,
-        receiveTimeout: timeout,
-      ),
-    );
-    addDioInterceptor();
+    Duration timeout = const Duration(seconds: 3);
+    if (dio == null) {
+      dio = Dio(
+        BaseOptions(
+          baseUrl: ApiConstants.baseURL, // 🔥 هنا الحل
+          connectTimeout: timeout,
+          receiveTimeout: timeout,
+        ),
+      );
+      addDioInterceptor();
+    }
+    return dio!;
   }
-  return dio!;
-}
-
 
   static void addDioInterceptor() {
     dio?.interceptors.add(

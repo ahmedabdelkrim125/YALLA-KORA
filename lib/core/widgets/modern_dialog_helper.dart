@@ -226,7 +226,7 @@ class _DialogContent extends StatelessWidget {
           Text(
             message,
             style: TextStyles.regularWhite14.copyWith(
-              color: AppColors.hintColor,
+              color: AppColors.lightText,
             ),
             textAlign: TextAlign.center,
           ),
@@ -289,10 +289,7 @@ class _PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r(context)),
         ),
       ),
-      child: Text(
-        text,
-        style: TextStyles.boldDarkBackground16,
-      ),
+      child: Text(text, style: TextStyles.boldDarkBackground16),
     );
   }
 }
@@ -318,10 +315,7 @@ class _SecondaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r(context)),
         ),
       ),
-      child: Text(
-        text,
-        style: TextStyles.mediumWhite14,
-      ),
+      child: Text(text, style: TextStyles.mediumWhite14),
     );
   }
 }

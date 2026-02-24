@@ -17,6 +17,13 @@ class TextStyles {
     fontFamily: 'Cairo',
     color: Colors.white,
   );
+  static TextStyle extraLightLightText12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w200, // ExtraLight
+    fontFamily: 'Cairo',
+    color: AppColors.lightText,
+    height: 1.0,
+  );
 
   static TextStyle semiBoldWhite16 = TextStyle(
     fontSize: 16.sp,
