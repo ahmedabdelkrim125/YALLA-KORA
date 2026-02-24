@@ -16,6 +16,7 @@ class LoginRepoImpl implements LoginRepo {
       final response = await _apiService.login(loginRequestBody);
       return ApiResult.success(response);
     } catch (e) {
+      print('❌ CAUGHT: $e');
       return ApiResult.failure(ErrorHandler.handle(e));
     }
   }

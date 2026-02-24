@@ -8,6 +8,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/helper/responsive_extensions.dart';
 import '../../../core/helper/spacing.dart';
 import '../../../core/theme/text_styles.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -38,10 +39,7 @@ class LoginScreen extends StatelessWidget {
       alignment: AlignmentDirectional.centerEnd,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-        child: Text(
-          'مرحباً بعودتك',
-          style: TextStyles.boldWhite16,
-        ),
+        child: Text('مرحباً بعودتك', style: TextStyles.boldWhite16),
       ),
     );
   }
@@ -56,10 +54,7 @@ class LoginScreen extends StatelessWidget {
               vertical: 14.h(context),
               horizontal: 26.w(context),
             ),
-            child: Text(
-              'أو سجل بإستخدام',
-              style: TextStyles.mediumWhite12,
-            ),
+            child: Text('أو سجل بإستخدام', style: TextStyles.mediumWhite12),
           ),
         ),
         const SocialLoginAuthRow(),

@@ -1,0 +1,17 @@
+Yalla Kora - Football Mobile Application
+
+A comprehensive cross-platform mobile application built with Flutter for football enthusiasts. This project demonstrates advanced Flutter development skills with a clean, modular architecture following industry best practices.
+
+Key Technical Achievements:
+• Implemented a robust authentication system with email/password validation and social login integration (Google, Facebook, Apple)
+• Designed a responsive UI using flutter_screenutil that adapts seamlessly across all device sizes
+• Applied BLoC state management pattern for predictable and maintainable application state
+• Integrated RESTful API communication using the Dio HTTP client library
+• Utilized dependency injection with get_it for improved testability and maintainability
+• Implemented internationalization support for multi-language capabilities
+• Created custom reusable widgets and followed a modular folder structure for scalability
+• Incorporated modern UI/UX principles with custom themes, typography, and interactive components
+
+Technology Stack: Flutter, Dart, BLoC, Dio, flutter_screenutil, easy_localization, get_it, freezed, json_annotation
+
+This project showcases proficiency in mobile app development, state management, API integration, responsive design, and software architecture patterns. The application supports Android, iOS, Web, Windows, macOS, and Linux platforms, demonstrating cross-platform development expertise.

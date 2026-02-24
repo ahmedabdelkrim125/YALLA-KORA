@@ -14,18 +14,20 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_riverpod: ^3.2.1
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.3
   freezed_annotation: ^3.1.0
   get_it: ^9.2.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
+  liquid_glass_renderer: ^0.2.0-dev.4
   phone_form_field: ^10.0.14
+  pinput: ^6.0.1
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.9.1
 
 dev_dependencies:
-  # Recommended lint rules
   build_runner: ^2.10.4
 
   flutter_lints: ^5.0.0

@@ -5,7 +5,6 @@ class AppValidator {
       return 'البريد الإلكتروني مطلوب';
     }
 
-    // basic email pattern
     final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
     if (!emailRegex.hasMatch(value.trim())) {
@@ -28,6 +27,45 @@ class AppValidator {
     return null;
   }
 
+  /// validate name
+  static String? validateName(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'الاسم مطلوب';
+    }
+
+    if (value.trim().length < 3) {
+      return 'الاسم يجب أن يكون 3 أحرف على الأقل';
+    }
+
+    return null;
+  }
+
+  /// validate birthdate
+  static String? validateBirthdate(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'تاريخ الميلاد مطلوب';
+    }
+
+    final dateRegex = RegExp(r'^\d{4}-\d{2}-\d{2}$');
+    if (!dateRegex.hasMatch(value.trim())) {
+      return 'الصيغة يجب أن تكون YYYY-MM-DD';
+    }
+
+    try {
+      final date = DateTime.parse(value.trim());
+      final now = DateTime.now();
+      final age = now.year - date.year;
+
+      if (age < 10 || age > 100) {
+        return 'العمر يجب أن يكون بين 10 و 100 سنة';
+      }
+    } catch (e) {
+      return 'تاريخ غير صحيح';
+    }
+
+    return null;
+  }
+
   /// validate Age
   static String? validateAge(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -41,7 +79,7 @@ class AppValidator {
     return null;
   }
 
-  /// validate Age
+  /// validate City
   static String? validateCity(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'المحافظة مطلوبة';

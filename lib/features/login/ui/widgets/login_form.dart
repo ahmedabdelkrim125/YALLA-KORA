@@ -63,10 +63,7 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-          child: Text(
-            'البريد الإلكترونى',
-            style: TextStyles.mediumWhite12,
-          ),
+          child: Text('البريد الإلكترونى', style: TextStyles.mediumWhite12),
         ),
         verticalSpace(context, height: 5),
         AppFormField(
@@ -83,10 +80,7 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-          child: Text(
-            'كلمة السر',
-            style: TextStyles.mediumWhite12,
-          ),
+          child: Text('كلمة السر', style: TextStyles.mediumWhite12),
         ),
         verticalSpace(context, height: 5),
         AppFormField(

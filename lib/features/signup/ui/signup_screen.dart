@@ -5,6 +5,7 @@ import 'package:yalla_kora/features/signup/ui/widgets/signup_header.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/helper/spacing.dart';
+import 'widgets/signup_bloc_listener.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -18,12 +19,13 @@ class SignupScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             verticalSpace(context, height: 40),
-            SignupHeader(),
+            const SignupHeader(),
             verticalSpace(context, height: 5),
-            SignupForm(),
+            const SignupForm(),
             verticalSpace(context, height: 19),
-            HaveAccountRow(),
+            const HaveAccountRow(),
             verticalSpace(context, height: 52),
+            const SignupBlocListener(),
           ],
         ),
       ),

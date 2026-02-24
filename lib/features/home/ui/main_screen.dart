@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
+import 'package:yalla_kora/core/widgets/liquid_glass_nav_bar.dart';
+import 'package:yalla_kora/features/home/ui/home_screen.dart';
+
+import '../../../core/constants/app_images.dart';
+
+final navBarIndexProvider = StateProvider<int>((ref) => 0);
+
+class MainScreen extends ConsumerWidget {
+  const MainScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = ref.watch(navBarIndexProvider);
+
+    final screens = [
+      const HomeScreen(),
+      const SearchScreen(),
+      const BookingScreen(),
+      const ProfileScreen(),
+    ];
+
+    return Scaffold(
+      extendBody: true,
+      body: screens[currentIndex],
+      bottomNavigationBar: LiquidGlassNavBar(
+        currentIndex: currentIndex,
+        onTap: (index) {
+          ref.read(navBarIndexProvider.notifier).state = index;
+        },
+        items: const [
+          NavBarItem(icon: Assets.home, label: 'الرئيسية'),
+          NavBarItem(icon: Assets.search, label: 'بحث'),
+          NavBarItem(icon: Assets.booking, label: 'حجوزاتي'),
+          NavBarItem(icon: Assets.profile, label: 'حسابي'),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.deepOrange,
+      child: const Center(
+        child: Text(
+          'البحث',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+class BookingScreen extends StatelessWidget {
+  const BookingScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue,
+      child: const Center(
+        child: Text(
+          'حجوزاتي',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+      child: const Center(
+        child: Text(
+          'الملف الشخصي',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
+      ),
+    );
+  }
+}

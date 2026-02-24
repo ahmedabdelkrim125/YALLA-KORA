@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phone_form_field/phone_form_field.dart';
+import 'package:yalla_kora/features/signup/data/model/signup_request_body.dart';
+import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import 'package:yalla_kora/features/signup/ui/widgets/account_type.dart';
 import 'package:yalla_kora/features/signup/ui/widgets/custom_phone_filed.dart';
 
@@ -27,6 +30,9 @@ class _SignupFormState extends State<SignupForm> {
   late final TextEditingController passwordController;
   late final TextEditingController confirmPasswordController;
 
+  String selectedGender = '';
+  String selectedAccountType = 'اختر نوع الحساب';
+
   @override
   void initState() {
     phoneController = PhoneController(initialValue: PhoneNumber.parse('+20'));
@@ -49,15 +55,26 @@ class _SignupFormState extends State<SignupForm> {
     super.dispose();
   }
 
-  String text = 'اختر نوع الحساب';
   void accountTypeSelected(String result) {
-    text = result;
+    selectedAccountType = result;
+    selectedGender = result == 'لاعب' ? 'male' : 'owner';
     setState(() {});
+  }
+
+  String _calculateBirthdate() {
+    if (ageController.text.trim().isEmpty) return '';
+
+    final age = int.tryParse(ageController.text.trim());
+    if (age == null) return '';
+
+    final now = DateTime.now();
+    final birthYear = now.year - age;
+    return '$birthYear-01-01';
   }
 
   void _handleSignup() {
     final isFormValid = _key.currentState!.validate();
-    final isAccountTypeValid = text != 'اختر نوع الحساب';
+    final isAccountTypeValid = selectedAccountType != 'اختر نوع الحساب';
 
     if (!isAccountTypeValid) {
       buildSnackBar(
@@ -65,9 +82,29 @@ class _SignupFormState extends State<SignupForm> {
         text: 'من فضلك اختر نوع الحساب',
         color: Colors.red,
       );
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      buildSnackBar(
+        context: context,
+        text: 'كلمة المرور غير متطابقة',
+        color: Colors.red,
+      );
+      return;
     }
 
     if (isFormValid && isAccountTypeValid) {
+      final signupRequestBody = SignupRequestBody(
+        phone: phoneController.value.international,
+        email: emailController.text.trim(),
+        name: cityController.text.trim(),
+        gender: selectedGender,
+        birthdate: _calculateBirthdate(),
+        password: passwordController.text.trim(),
+      );
+
+      context.read<SignupCubit>().emitSignupStates(signupRequestBody);
     } else {
       setState(() {
         autovalidateMode = AutovalidateMode.always;
@@ -82,7 +119,10 @@ class _SignupFormState extends State<SignupForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          AccountType(onSelected: accountTypeSelected, text: text),
+          AccountType(
+            onSelected: accountTypeSelected,
+            text: selectedAccountType,
+          ),
           verticalSpace(context, height: 23),
           CustomAppPhoneFormField(phoneController: phoneController),
           verticalSpace(context, height: 7),

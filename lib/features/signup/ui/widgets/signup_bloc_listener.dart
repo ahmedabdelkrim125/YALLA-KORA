@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
-import 'package:yalla_kora/features/login/logic/login_state.dart';
+import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import '../../../../core/helper/extensions.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/modern_dialog_helper.dart';
-import '../../logic/login_cubit.dart';
 
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+class SignupBlocListener extends StatelessWidget {
+  const SignupBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<SignupCubit, SignupState>(
       listenWhen: (previous, current) =>
-          current is Loading || current is Success || current is Error,
+          current is SignupLoading ||
+          current is SignupSuccess ||
+          current is SignupError,
       listener: (context, state) {
-        state.whenOrNull(
+        state.when(
+          initial: () {},
           loading: () {
             showDialog(
               context: context,
@@ -26,30 +28,31 @@ class LoginBlocListener extends StatelessWidget {
               ),
             );
           },
-          success: (loginResponse) {
+          success: (signupResponse) {
             Navigator.of(context).pop();
 
             ModernDialog.showSuccess(
               context: context,
-              title: 'أهلاً بعودتك',
-              message: 'تم تسجيل الدخول بنجاح.',
-              buttonText: 'استمرار',
+              title: 'تم إنشاء الحساب',
+              message: 'تم التسجيل بنجاح. سيتم إرسال رمز التحقق إلى هاتفك.',
+              buttonText: 'التالي',
               onPressed: () {
-                context.pushNamed(Routes.mainScreen);
+                context.pushNamed(
+                  Routes.otpScreen,
+                  arguments: signupResponse.userId,
+                );
               },
             );
           },
-          failure: (message) {
+          error: (errorHandler) {
             Navigator.of(context).pop();
 
             ModernDialog.showError(
               context: context,
-              title: 'فشل تسجيل الدخول',
-              message: message ?? 'حصل خطأ ما، حاول مرة أخرى.',
+              title: 'فشل التسجيل',
+              message: errorHandler.apiErrorModel.message,
               buttonText: 'إعادة المحاولة',
-              onPressed: () {
-                context.pop();
-              },
+              onPressed: () {},
             );
           },
         );
