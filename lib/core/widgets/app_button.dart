@@ -14,7 +14,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 327.w(context),
-      height: 45.h(context),
+      height: 50.h(context),
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: AppColors.primaryGreen,
@@ -25,7 +25,7 @@ class AppButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           title,
-          style: TextStyles.boldDarkBackground16,
+          style: TextStyles.boldDarkBackground18,
           textAlign: TextAlign.center,
         ),
       ),

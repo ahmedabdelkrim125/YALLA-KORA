@@ -289,7 +289,7 @@ class _PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r(context)),
         ),
       ),
-      child: Text(text, style: TextStyles.boldDarkBackground16),
+      child: Text(text, style: TextStyles.boldDarkBackground18),
     );
   }
 }

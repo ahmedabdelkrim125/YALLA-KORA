@@ -53,8 +53,8 @@ class TextStyles {
     color: AppColors.primaryGreen,
   );
 
-  static TextStyle boldDarkBackground16 = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle boldDarkBackground18 = TextStyle(
+    fontSize: 18.sp,
     fontWeight: FontWeight.w700,
     fontFamily: 'Cairo',
     color: AppColors.darkBackground,
