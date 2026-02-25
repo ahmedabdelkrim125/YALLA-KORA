@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart'; // ✅ أضف الـ import
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
 
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
@@ -20,7 +20,7 @@ class YallaKora extends StatelessWidget {
             theme: ThemeData(fontFamily: 'Cairo'),
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: Routes.loginScreen,
+            initialRoute: Routes.onBoardingScreen,
           ),
         );
       },

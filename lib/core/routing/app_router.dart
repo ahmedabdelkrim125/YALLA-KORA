@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
+import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import '../../features/OTP/ui/otp_screen.dart';
 import '../../features/home/ui/main_screen.dart';
@@ -13,6 +14,9 @@ import '../../features/signup/ui/signup_screen.dart';
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+       case Routes.onBoardingScreen:
+                return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+
       case Routes.loginScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
