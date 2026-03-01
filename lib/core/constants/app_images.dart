@@ -8,6 +8,8 @@ class Assets {
   static const String appleIcon = 'assets/SVG/fontisto_apple.svg';
   static const String facebookIcon = 'assets/SVG/logos_facebook.svg';
   static const String googleIcon = 'assets/SVG/theme_google.svg';
+  static const String logosvg = 'assets/SVG/logo.svg';
+  static const String football = 'assets/SVG/football.svg';
 
   // 🔥 Navigation Icons
   static const String home = 'assets/images/home.png';

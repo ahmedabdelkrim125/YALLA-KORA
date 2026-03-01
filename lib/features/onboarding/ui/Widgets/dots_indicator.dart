@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/widgets.dart';
 import '../../../../core/helper/responsive_extensions.dart';
 import '../../../../core/theme/app_colors.dart';

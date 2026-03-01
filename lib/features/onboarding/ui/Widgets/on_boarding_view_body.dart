@@ -8,7 +8,6 @@ import '../../../../core/widgets/app_button.dart';
 import '../../logic/on_boarding_cubit.dart';
 import '../../logic/on_boarding_state.dart';
 import '../../model/on_boarding_model.dart';
-
 import 'dots_indicator.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
