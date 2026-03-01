@@ -81,12 +81,26 @@ class TextStyles {
     color: AppColors.darkBackground,
     height: 1.0,
   );
+  static TextStyle boldFieldBorder32 = TextStyle(
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Cairo',
+    color: AppColors.fieldBorder,
+    height: 1.0,
+  );
 
   static TextStyle regularWhite14 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     fontFamily: 'Cairo',
     color: Colors.white,
+    height: 1.0,
+  );
+  static TextStyle regularSlateGray12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Cairo',
+    color: AppColors.slateGray,
     height: 1.0,
   );
 

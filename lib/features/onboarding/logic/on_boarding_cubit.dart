@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/features/onboarding/logic/on_boarding_state.dart';
 
-
 class OnBoardingCubit extends Cubit<OnBoardingState> {
   OnBoardingCubit() : super(const OnBoardingState());
 

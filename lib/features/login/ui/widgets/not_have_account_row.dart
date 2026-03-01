@@ -14,7 +14,7 @@ class NotHaveAccountRow extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            context.pushNamed(Routes.signupScreen);
+            context.pushNamed(Routes.roleSelectionScreen);
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
