@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/login/ui/widgets/login_bloc_listener.dart';
-
 import '../../../../core/helper/responsive_extensions.dart';
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/helper/validation.dart';
@@ -18,6 +17,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final LoginCubit cubit;
 
   @override
@@ -36,7 +36,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: cubit.formKey,
+      key: _formKey,
       child: Column(
         children: [
           _buildEmailField(context),
@@ -46,7 +46,7 @@ class _LoginFormState extends State<LoginForm> {
           AppButton(
             title: 'التالي',
             onPressed: () {
-              if (cubit.formKey.currentState!.validate()) {
+              if (_formKey.currentState!.validate()) {
                 cubit.emitLoginStates();
               }
             },
@@ -63,7 +63,10 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-          child: Text('البريد الإلكترونى', style: TextStyles.mediumWhite12),
+          child: Text(
+            'رقم الهاتف او البريد الالكتروني',
+            style: TextStyles.mediumWhite12,
+          ),
         ),
         verticalSpace(context, height: 5),
         AppFormField(
@@ -80,7 +83,7 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-          child: Text('كلمة السر', style: TextStyles.mediumWhite12),
+          child: Text('الرقم السري', style: TextStyles.mediumWhite12),
         ),
         verticalSpace(context, height: 5),
         AppFormField(

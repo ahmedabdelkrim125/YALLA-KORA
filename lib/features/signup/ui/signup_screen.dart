@@ -7,7 +7,9 @@ import '../../../core/helper/spacing.dart';
 import 'widgets/signup_bloc_listener.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  final String accountRole;
+
+  const SignupScreen({super.key, required this.accountRole});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class SignupScreen extends StatelessWidget {
             verticalSpace(context, height: 40),
             const SignupHeader(),
             verticalSpace(context, height: 5),
-            const SignupForm(),
+            SignupForm(accountRole: accountRole),
             verticalSpace(context, height: 19),
             const HaveAccountRow(),
             verticalSpace(context, height: 52),

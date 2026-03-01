@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/helper/extensions.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/theme/text_styles.dart';
 
 class HaveAccountRow extends StatelessWidget {
@@ -13,7 +12,7 @@ class HaveAccountRow extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            context.pop();
+            Navigator.pushReplacementNamed(context, Routes.loginScreen);
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,

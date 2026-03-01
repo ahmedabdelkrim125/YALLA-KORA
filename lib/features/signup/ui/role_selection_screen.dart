@@ -5,6 +5,7 @@ import 'package:yalla_kora/features/signup/ui/widgets/signup_header.dart';
 import 'package:yalla_kora/features/signup/ui/widgets_role/role_card.dart';
 import '../../../core/helper/responsive_extensions.dart';
 import '../../../core/helper/spacing.dart';
+import '../../../core/routing/routes.dart';
 import '../../../core/theme/app_colors.dart';
 
 class RoleSelectionScreen extends StatefulWidget {
@@ -64,7 +65,14 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
                 subtitle: 'عايز أحجز ملعب أو انضم لتقسيمة.',
                 icon: Assets.football,
                 isSelected: _selectedRole == 0,
-                onTap: () => setState(() => _selectedRole = 0),
+                onTap: () {
+                  setState(() => _selectedRole = 0);
+                  Navigator.pushNamed(
+                    context,
+                    Routes.signupScreen,
+                    arguments: 'player',
+                  );
+                },
               ),
               RoleCard(
                 index: 1,
@@ -72,7 +80,14 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
                 subtitle: 'عايز أضيف ملعبي و ادير حجوزاتي.',
                 icon: Assets.football,
                 isSelected: _selectedRole == 1,
-                onTap: () => setState(() => _selectedRole = 1),
+                onTap: () {
+                  setState(() => _selectedRole = 1);
+                  Navigator.pushNamed(
+                    context,
+                    Routes.signupScreen,
+                    arguments: 'owner',
+                  );
+                },
               ),
             ],
           ),
