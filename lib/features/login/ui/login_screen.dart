@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
       alignment: AlignmentDirectional.centerEnd,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
-        child: Text('مرحباً بعودتك', style: TextStyles.boldWhite16),
+        child: Text('اهلاً يا عالمي', style: TextStyles.boldWhite16),
       ),
     );
   }
