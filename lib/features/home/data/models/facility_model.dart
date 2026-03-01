@@ -1,3 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'facility_model.g.dart';
+
+@JsonSerializable()
 class FacilityModel {
   final String id;
   final String name;
@@ -19,17 +24,8 @@ class FacilityModel {
     required this.imageUrl,
   });
 
-  factory FacilityModel.fromJson(Map<String, dynamic> json) {
-    return FacilityModel(
-      id: json['id'].toString(),
-      name: json['name'] ?? '',
-      address: json['address'] ?? '',
-      pricePerHour: (json['price_per_hour'] as num).toDouble(),
-      isAvailable: json['is_available'] ?? false,
-      rating: (json['rating'] as num).toDouble(),
-      reviewsCount: json['reviews_count'] ?? 0,
-      imageUrl: json['image_url'] ?? '',
-    );
-  }
+  factory FacilityModel.fromJson(Map<String, dynamic> json) =>
+      _$FacilityModelFromJson(json);
 
+  Map<String, dynamic> toJson() => _$FacilityModelToJson(this);
 }

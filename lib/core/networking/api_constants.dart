@@ -1,6 +1,8 @@
 class ApiConstants {
   static const String baseURL = 'http://10.0.2.2:3000/api/';
   static const String login = 'auth/login';
+  static const String nearFacilities = '/api/facilities/nearby';
+  static const String bestFacilities = '/api/facilities';
 }
 
 class ApiErrors {
