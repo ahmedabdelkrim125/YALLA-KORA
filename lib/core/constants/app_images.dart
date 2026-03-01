@@ -14,4 +14,15 @@ class Assets {
   static const String search = 'assets/images/seach.png';
   static const String booking = 'assets/images/field.png';
   static const String profile = 'assets/images/user.png';
+
+  static const String handshakeIcon = 'assets/SVG/handshake.svg';
+  static const String locationIcon = 'assets/SVG/location.svg';
+  static const String nearLocationIcon = 'assets/SVG/near_location.svg';
+  static const String timeIcon = 'assets/SVG/time.svg';
+  static const String notificationsIcon = 'assets/SVG/notifications.svg';
+  static const String peopleGreenIcon = 'assets/SVG/people_green.svg';
+  static const String peopleYellowIcon = 'assets/SVG/people_yellow.svg';
+  static const String peopleRedIcon = 'assets/SVG/people_red.svg';
+
+  static const String facility6 = 'assets/images/facility6.jpg';
 }
