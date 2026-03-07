@@ -18,20 +18,22 @@ class FieldCard extends StatelessWidget {
     return Container(
       width: 213,
       decoration: BoxDecoration(
-          color: AppColors.card2,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Color(0x0fffffff))
+        color: AppColors.card2,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Color(0x0fffffff)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FieldImage(
-            imagePath: field.image,
-            badge: field.badge,
-          ),
+          FieldImage(imagePath: field.image, badge: field.badge),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 6, left: 12, right: 12, bottom: 12),
+              padding: const EdgeInsets.only(
+                top: 6,
+                left: 12,
+                right: 12,
+                bottom: 12,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -43,11 +45,8 @@ class FieldCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                                field.name,
-                                style: TextStyles.boldWhite12
-                            ),
-                            const SizedBox(height: 16,),
+                            Text(field.name, style: TextStyles.boldWhite12),
+                            const SizedBox(height: 16),
                             Text(
                               '📍 ${field.location}',
                               style: TextStyles.boldWhite10.copyWith(
@@ -62,9 +61,19 @@ class FieldCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(field.price, style: TextStyles.semiBoldWhite10.copyWith(color: AppColors.orangeColor),),
-                          const SizedBox(height: 16,),
-                          Text(field.availability, style: TextStyles.mediumWhite8.copyWith(color: AppColors.orangeColor),),
+                          Text(
+                            field.price,
+                            style: TextStyles.semiBoldWhite10.copyWith(
+                              color: AppColors.orangeColor,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            field.availability,
+                            style: TextStyles.mediumWhite8.copyWith(
+                              color: AppColors.orangeColor,
+                            ),
+                          ),
                         ],
                       ),
                     ],

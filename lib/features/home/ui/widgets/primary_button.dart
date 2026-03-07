@@ -9,8 +9,7 @@ class PrimaryButton extends StatelessWidget {
   final String label;
   final VoidCallback? onTap;
 
-  const
-  PrimaryButton({super.key, required this.label, this.onTap});
+  const PrimaryButton({super.key, required this.label, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +21,13 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor: AppColors.primaryGreen,
           foregroundColor: Colors.black,
           padding: const EdgeInsets.symmetric(vertical: 8),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           elevation: 0,
         ),
-        child: Text(label, style: TextStyles.boldWhite12.copyWith(color: Colors.black)),
+        child: Text(
+          label,
+          style: TextStyles.boldWhite12.copyWith(color: Colors.black),
+        ),
       ),
     );
   }

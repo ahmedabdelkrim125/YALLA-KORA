@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {
-
   const UserAvatar({super.key});
 
   @override
@@ -19,7 +18,7 @@ class UserAvatar extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: const EdgeInsets.only(top: 6.0),
-        child: Icon(Icons.person_rounded, size: 44, color: Colors.white,),
+        child: Icon(Icons.person_rounded, size: 44, color: Colors.white),
       ),
     );
   }

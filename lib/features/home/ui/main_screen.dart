@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:yalla_kora/core/widgets/liquid_glass_nav_bar.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
-
 import '../../../core/constants/app_images.dart';
 
 final navBarIndexProvider = StateProvider<int>((ref) => 0);
@@ -22,19 +21,30 @@ class MainScreen extends ConsumerWidget {
       const ProfileScreen(),
     ];
 
+    // final navBarHeight = 62.0 + 10.0 * 2 + MediaQuery.of(context).padding.bottom;
+
     return Scaffold(
-      extendBody: true,
-      body: screens[currentIndex],
-      bottomNavigationBar: LiquidGlassNavBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          ref.read(navBarIndexProvider.notifier).state = index;
-        },
-        items: const [
-          NavBarItem(icon: Assets.home, label: 'الرئيسية'),
-          NavBarItem(icon: Assets.search, label: 'بحث'),
-          NavBarItem(icon: Assets.booking, label: 'حجوزاتي'),
-          NavBarItem(icon: Assets.profile, label: 'حسابي'),
+      body: Stack(
+        children: [
+          Positioned.fill(child: screens[currentIndex]),
+
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: MediaQuery.of(context).padding.bottom,
+            child: LiquidGlassNavBar(
+              currentIndex: currentIndex,
+              onTap: (index) {
+                ref.read(navBarIndexProvider.notifier).state = index;
+              },
+              items: const [
+                NavBarItem(icon: Assets.home, label: 'الرئيسية'),
+                NavBarItem(icon: Assets.search, label: 'بحث'),
+                NavBarItem(icon: Assets.booking, label: 'حجوزاتي'),
+                NavBarItem(icon: Assets.profile, label: 'حسابي'),
+              ],
+            ),
+          ),
         ],
       ),
     );

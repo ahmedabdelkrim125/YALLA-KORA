@@ -19,7 +19,7 @@ class BookButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         elevation: 0,
       ),
-      child:  Text(
+      child: Text(
         'احجز مكانك',
         style: TextStyles.boldWhite12.copyWith(color: Colors.black),
       ),

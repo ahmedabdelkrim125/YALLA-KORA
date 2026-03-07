@@ -89,11 +89,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ارتفاع الناف بار (62) + البادينج فوق وتحت (10*2) + مسافة الـ system navigation
+    final navBarBottomPadding =
+        62.0 + 10.0 * 2 + MediaQuery.of(context).padding.bottom;
+
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: AppColors.darkBackground,
-        body: SafeArea(
+      child: Container(
+        // ✅ بدل Scaffold — عشان الـ Scaffold في MainScreen هو الأساس
+        color: AppColors.darkBackground,
+        child: SafeArea(
+          // ✅ bottom: false عشان الناف بار هو اللي بيتحكم في الـ bottom space
+          bottom: false,
           child: Column(
             children: [
               const AppHeader(
@@ -116,7 +123,8 @@ class HomeScreen extends StatelessWidget {
                         iconPath: Assets.handshakeIcon,
                       ),
                       MatchesList(matches: _matches),
-                      const SizedBox(height: 16),
+                      // ✅ بادينج في الأسفل عشان المحتوى ميتغطاش بالناف بار
+                      SizedBox(height: navBarBottomPadding),
                     ],
                   ),
                 ),

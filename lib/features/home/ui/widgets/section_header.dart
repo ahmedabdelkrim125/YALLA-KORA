@@ -9,11 +9,7 @@ class SectionHeader extends StatelessWidget {
   final String title;
   final String iconPath;
 
-  const SectionHeader({
-    super.key,
-    required this.title,
-    required this.iconPath,
-  });
+  const SectionHeader({super.key, required this.title, required this.iconPath});
 
   @override
   Widget build(BuildContext context) {
