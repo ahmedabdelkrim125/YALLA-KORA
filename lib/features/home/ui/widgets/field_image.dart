@@ -8,12 +8,7 @@ class FieldImage extends StatelessWidget {
   final String imagePath;
   final String badge;
 
-
-  const FieldImage({
-    super.key,
-    required this.imagePath,
-    required this.badge,
-  });
+  const FieldImage({super.key, required this.imagePath, required this.badge});
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +19,9 @@ class FieldImage extends StatelessWidget {
           SizedBox(
             height: 106,
             width: double.infinity,
-            child: Image.asset(imagePath, fit: BoxFit.cover,),
+            child: Image.asset(imagePath, fit: BoxFit.cover),
           ),
-          Positioned(
-            top: 8,
-            right: 8,
-            child: BadgeChip(label: badge),
-          ),
+          Positioned(top: 8, right: 8, child: BadgeChip(label: badge)),
         ],
       ),
     );

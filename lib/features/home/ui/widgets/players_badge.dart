@@ -14,18 +14,26 @@ class PlayersBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isRed   = count <= 4;
-    final dotColor = isRed ? count <= 2? AppColors.red: AppColors.yellow: AppColors.primaryGreen;
-    final icon = isRed ? count <= 2? Assets.peopleRedIcon: Assets.peopleYellowIcon: Assets.peopleGreenIcon;
+    final isRed = count <= 4;
+    final dotColor = isRed
+        ? count <= 2
+              ? AppColors.red
+              : AppColors.yellow
+        : AppColors.primaryGreen;
+    final icon = isRed
+        ? count <= 2
+              ? Assets.peopleRedIcon
+              : Assets.peopleYellowIcon
+        : Assets.peopleGreenIcon;
 
-    final bgColor  = dotColor.withOpacity(0.15);
+    final bgColor = dotColor.withOpacity(0.15);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: bgColor)
+        color: bgColor,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: bgColor),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

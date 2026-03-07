@@ -18,21 +18,21 @@ class MatchesList extends StatelessWidget {
       shrinkWrap: true,
       padding: EdgeInsets.symmetric(horizontal: 20),
       physics: NeverScrollableScrollPhysics(),
-      separatorBuilder: (_,_) =>  SizedBox(height: 16,),
-      itemBuilder: (context, i){
+      separatorBuilder: (_, _) => SizedBox(height: 16),
+      itemBuilder: (context, i) {
         return IntrinsicHeight(
           child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                color: AppColors.cardBg,
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Row(
-                children: [
-                  Expanded(child: MatchRow(match: matches[i])),
-                  MatchCardStripe(),
-                ],
-              )
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: AppColors.cardBg,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Row(
+              children: [
+                Expanded(child: MatchRow(match: matches[i])),
+                MatchCardStripe(),
+              ],
+            ),
           ),
         );
       },

@@ -9,11 +9,11 @@ class DioFactory {
   //no object
   static Dio? dio;
   static Dio getDio() {
-    Duration timeout = const Duration(seconds: 3);
+    Duration timeout = const Duration(seconds: 15);
     if (dio == null) {
       dio = Dio(
         BaseOptions(
-          baseUrl: ApiConstants.baseURL, // 🔥 هنا الحل
+          baseUrl: ApiConstants.baseURL,
           connectTimeout: timeout,
           receiveTimeout: timeout,
         ),

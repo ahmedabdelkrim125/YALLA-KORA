@@ -10,11 +10,7 @@ class AppHeader extends StatelessWidget {
   final String greeting;
   final String userName;
 
-  const AppHeader({
-    super.key,
-    required this.greeting,
-    required this.userName,
-  });
+  const AppHeader({super.key, required this.greeting, required this.userName});
 
   @override
   Widget build(BuildContext context) {
