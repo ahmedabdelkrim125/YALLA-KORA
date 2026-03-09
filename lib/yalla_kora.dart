@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yalla_kora/core/theme/app_colors.dart';
 
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
@@ -17,10 +18,13 @@ class YallaKora extends StatelessWidget {
       builder: (context, child) {
         return ProviderScope(
           child: MaterialApp(
-            theme: ThemeData(fontFamily: 'Cairo'),
+            theme: ThemeData(
+              fontFamily: 'Cairo',
+              scaffoldBackgroundColor: AppColors.darkBackground,
+            ),
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: Routes.onBoardingScreen,
+            initialRoute: Routes.facilityDetails,
           ),
         );
       },

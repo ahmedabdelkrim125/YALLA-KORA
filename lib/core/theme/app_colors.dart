@@ -21,4 +21,6 @@ class AppColors {
   static const Color yellow = Color(0xFFFDC700);
   static const Color muted = Color(0xFF99A1AF);
   static const Color red = Color(0xFFE74C3C);
+
+  static const Color grey = Color(0xFF88889A);
 }
