@@ -45,7 +45,7 @@ class LoginBlocListener extends StatelessWidget {
             ModernDialog.showError(
               context: context,
               title: 'فشل تسجيل الدخول',
-              message: message ?? 'حصل خطأ ما، حاول مرة أخرى.',
+              message: message,
               buttonText: 'إعادة المحاولة',
               onPressed: () {
                 context.pop();

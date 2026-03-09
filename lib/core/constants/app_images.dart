@@ -4,6 +4,7 @@ class Assets {
   static const String onboarding1 = 'assets/images/onboarding_1.png';
   static const String onboarding2 = 'assets/images/onboarding_2.png';
   static const String onboarding3 = 'assets/images/onboarding_3.png';
+  static const String facility6 = 'assets/images/facility6.jpg';
 
   static const String appleIcon = 'assets/SVG/fontisto_apple.svg';
   static const String facebookIcon = 'assets/SVG/logos_facebook.svg';
@@ -25,6 +26,10 @@ class Assets {
   static const String peopleGreenIcon = 'assets/SVG/people_green.svg';
   static const String peopleYellowIcon = 'assets/SVG/people_yellow.svg';
   static const String peopleRedIcon = 'assets/SVG/people_red.svg';
-
-  static const String facility6 = 'assets/images/facility6.jpg';
+  static const String frameIcon_1 = 'assets/SVG/Frame.svg';
+  static const String frameIcon_2 = 'assets/SVG/Frame2.svg';
+  static const String no = 'assets/SVG/No.svg';
+  static const String viewIcon = 'assets/SVG/View_Icon.svg';
+  static const String refreshIcon = 'assets/SVG/refreshIcon.svg';
+  static const String starIcon = 'assets/SVG/starIcon.svg';
 }
