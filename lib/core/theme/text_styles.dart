@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'app_colors.dart';
 
 class TextStyles {
@@ -17,9 +16,10 @@ class TextStyles {
     fontFamily: 'Cairo',
     color: Colors.white,
   );
+
   static TextStyle extraLightLightText12 = TextStyle(
     fontSize: 12.sp,
-    fontWeight: FontWeight.w200, // ExtraLight
+    fontWeight: FontWeight.w200,
     fontFamily: 'Cairo',
     color: AppColors.lightText,
     height: 1.0,
@@ -81,6 +81,7 @@ class TextStyles {
     color: AppColors.darkBackground,
     height: 1.0,
   );
+
   static TextStyle boldFieldBorder32 = TextStyle(
     fontSize: 32.sp,
     fontWeight: FontWeight.w700,
@@ -96,6 +97,7 @@ class TextStyles {
     color: Colors.white,
     height: 1.0,
   );
+
   static TextStyle regularSlateGray12 = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
@@ -125,6 +127,7 @@ class TextStyles {
     fontFamily: 'Cairo',
     color: Colors.white,
   );
+
   static TextStyle boldWhite12 = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w700,
@@ -157,8 +160,83 @@ class TextStyles {
   static TextStyle regularGrey12 = regularWhite12.copyWith(
     color: AppColors.muted,
   );
+
   static TextStyle regularGrey10 = regularWhite12.copyWith(
     fontSize: 10,
     color: AppColors.muted,
+  );
+
+  static TextStyle extraBoldDark14 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w800,
+    fontFamily: 'Cairo',
+    color: AppColors.darkText,
+    height: 1.5,
+    letterSpacing: 0.2,
+  );
+
+  static TextStyle extraBoldGrey14 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w800,
+    fontFamily: 'Cairo',
+    color: AppColors.grey88,
+    height: 1.5,
+    letterSpacing: 0.2,
+  );
+
+  static TextStyle regularPrimaryGreen12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Cairo',
+    color: AppColors.primaryGreen,
+    height: 1.50,
+  );
+
+  static TextStyle regularMuted13 = TextStyle(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Cairo',
+    color: AppColors.muted,
+    height: 1.50,
+  );
+
+  static TextStyle regularMuted12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Cairo',
+    color: AppColors.muted,
+    height: 1.50,
+  );
+
+  static TextStyle semiBoldDark12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Cairo',
+    color: AppColors.darkText,
+    height: 1.75,
+  );
+
+  static TextStyle semiBoldCancelRed12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Cairo',
+    color: AppColors.cancelRed,
+    height: 1.75,
+  );
+
+  static TextStyle semiBoldPrimaryGreen12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Cairo',
+    color: AppColors.primaryGreen,
+    height: 1.75,
+  );
+
+  static TextStyle semiBoldRatingOrange12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Cairo',
+    color: AppColors.ratingOrange,
+    height: 1.75,
   );
 }
