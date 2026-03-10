@@ -58,6 +58,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
+import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
@@ -108,6 +109,9 @@ class AppRouter {
 
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      case Routes.facilityDetails:
+        return MaterialPageRoute(builder: (_) => const FacilityDetails());
 
       default:
         return MaterialPageRoute(
