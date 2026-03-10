@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/features/home/ui/widgets/fields_carousel.dart';
-import 'package:yalla_kora/features/home/ui/widgets/home_header.dart';
 import 'package:yalla_kora/features/home/ui/widgets/matches_list.dart';
 import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
-
 import '../../../core/theme/app_colors.dart' show AppColors;
+import '../../../core/widgets/user_header/user_header.dart';
 
-// ─────────────────────────────────────────
-//  MODELS
-// ─────────────────────────────────────────
 class FieldModel {
   final String name, price, location, availability, badge, image;
   const FieldModel({
@@ -33,9 +29,6 @@ class MatchModel {
   });
 }
 
-// ─────────────────────────────────────────
-//  HOME SCREEN
-// ─────────────────────────────────────────
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -89,48 +82,41 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ارتفاع الناف بار (62) + البادينج فوق وتحت (10*2) + مسافة الـ system navigation
     final navBarBottomPadding =
         62.0 + 10.0 * 2 + MediaQuery.of(context).padding.bottom;
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Container(
-        // ✅ بدل Scaffold — عشان الـ Scaffold في MainScreen هو الأساس
-        color: AppColors.darkBackground,
-        child: SafeArea(
-          // ✅ bottom: false عشان الناف بار هو اللي بيتحكم في الـ bottom space
-          bottom: false,
-          child: Column(
-            children: [
-              const AppHeader(
-                greeting: 'أهلاً بك عالمي,',
-                userName: 'عمر إيهاب',
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SectionHeader(
-                        title: 'ملاعب قريبة منك',
-                        iconPath: Assets.nearLocationIcon,
-                      ),
-                      FieldsCarousel(fields: _fields),
-                      const SectionHeader(
-                        title: 'كمل التقسيمة',
-                        iconPath: Assets.handshakeIcon,
-                      ),
-                      MatchesList(matches: _matches),
-                      // ✅ بادينج في الأسفل عشان المحتوى ميتغطاش بالناف بار
-                      SizedBox(height: navBarBottomPadding),
-                    ],
-                  ),
+    return Container(
+      color: AppColors.darkBackground,
+      child: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            const UserHeader(
+              greeting: 'أهلاً بك عالمي,',
+              userName: 'عمر إيهاب',
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                // physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SectionHeader(
+                      title: 'ملاعب قريبة منك',
+                      iconPath: Assets.nearLocationIcon,
+                    ),
+                    FieldsCarousel(fields: _fields),
+                    const SectionHeader(
+                      title: 'كمل التقسيمة',
+                      iconPath: Assets.handshakeIcon,
+                    ),
+                    MatchesList(matches: _matches),
+                    SizedBox(height: navBarBottomPadding),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

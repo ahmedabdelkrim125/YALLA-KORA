@@ -33,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
       failure: (error) {
         // print('❌ ERROR: ${error.apiErrorModel.message}');
         // print('❌ EXCEPTION: $error');
-        emit(LoginState.failure(erro: error.apiErrorModel.message ?? ''));
+        emit(LoginState.failure(erro: error.apiErrorModel.message));
       },
     );
   }
