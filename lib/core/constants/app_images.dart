@@ -26,5 +26,11 @@ class Assets {
   static const String peopleYellowIcon = 'assets/SVG/people_yellow.svg';
   static const String peopleRedIcon = 'assets/SVG/people_red.svg';
 
+  static const String clothingRoom = 'assets/SVG/clothing_room.svg';
+  static const String coffee = 'assets/SVG/coffee.svg';
+  static const String football2 = 'assets/SVG/football2.svg';
+  static const String locationGreen = 'assets/SVG/location_green.svg';
+  static const String artificialTurf = 'assets/SVG/Frame.svg';
   static const String facility6 = 'assets/images/facility6.jpg';
+  static const String mapImage = 'assets/images/map_image.png';
 }
