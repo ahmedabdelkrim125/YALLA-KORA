@@ -5,6 +5,7 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/core/widgets/app_button.dart';
 
 class FacilityDetails extends StatelessWidget {
   const FacilityDetails({super.key});
@@ -12,46 +13,48 @@ class FacilityDetails extends StatelessWidget {
   static const _days = [
     DayModel(name: 'سبت',  number: 02, isSelected: false),
     DayModel(name: 'أحد',  number: 03, isSelected: false),
-    DayModel(name: 'الإث', number: 04, isSelected: false),
-    DayModel(name: 'ثلاث', number: 05, isSelected: false),
-    DayModel(name: 'أرب',  number: 06, isSelected: true),
-    DayModel(name: 'خمس',  number: 07, isSelected: false),
+    DayModel(name: 'اثنين', number: 04, isSelected: false),
+    DayModel(name: 'ثلاثاء', number: 05, isSelected: false),
+    DayModel(name: 'اربع',  number: 06, isSelected: true),
+    DayModel(name: 'خميس',  number: 07, isSelected: false),
   ];
 
   static const _slots = [
-    TimeSlotModel(time: 'ص7:00'),
-    TimeSlotModel(time: 'ص9:00'),
-    TimeSlotModel(time: 'ص1:00'),
-    TimeSlotModel(time: 'م3:00', isSelected: true),
-    TimeSlotModel(time: 'م2:00'),
-    TimeSlotModel(time: 'م5:00'),
+    TimeSlotModel(time: '7:00م'),
+    TimeSlotModel(time: '9:00م'),
+    TimeSlotModel(time: '1:00ص'),
+    TimeSlotModel(time: '3:00م'),
+    TimeSlotModel(time: '2:00م'),
+    TimeSlotModel(time: '5:00م'),
   ];
   @override
   Widget build(BuildContext context) {
-    
+
     return Scaffold(
-      body:  Directionality(
+      body: Directionality(
         textDirection: TextDirection.rtl,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              FieldHeroImage(),
+        child: Column(
+          children: [
+            FieldHeroImage(),
+            verticalSpace(context, height: 20),
 
-              // ── Field info ──
-              verticalSpace(context, height: 20),
-              FieldInfoSection(
-                name: 'ملاعب الكابيتانو',
-                rating: 4.8,
-                reviewCount: 1251,
-                price: 300,
-                isOpen: true,
+            FieldInfoSection(
+              name: 'ملاعب الكابيتانو',
+              rating: 4.8,
+              reviewCount: 1251,
+              price: 300,
+              isOpen: true,
+            ),
+
+            verticalSpace(context, height: 28),
+
+            Expanded(
+              child: FieldTabBar(
+                days: _days,
+                slots: _slots,
               ),
-
-              // ── Tab bar ──
-              verticalSpace(context, height: 28),
-              FieldTabBar(days: _days, slots: _slots,),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -297,36 +300,51 @@ class FieldTabBar extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
-            height: 200, // لازم تحدد ارتفاع
+          Expanded(
             child: TabBarView(
               children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      // ── Month header + calendar ──
-                      SizedBox(height: 20),
-                      CalendarStrip(
-                        month: 'فبراير 2026',
-                        days: days,
-                      ),
-
-                      // ── Available times ──
-                      SizedBox(height: 20),
-                      AvailableTimesSection(slots: slots),
-
-                      // ── Bottom padding for FAB ──
-                      SizedBox(height: 100),
-
-                      // ── Sticky booking bar ──
-                      BookingBottomBar(price: 300),
-                    ],
-                  ),
-                ),
-                Expanded(child: Icon(Icons.hail_outlined)),
+                // todo add details page
+                AvailableBookings(days: days, slots: slots),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class AvailableBookings extends StatelessWidget {
+  const AvailableBookings({
+    super.key,
+    required this.days,
+    required this.slots,
+  });
+
+  final List<DayModel> days;
+  final List<TimeSlotModel> slots;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // ── Month header + calendar ──
+          verticalSpace(context, height: 20),
+          CalendarStrip(
+            month: 'فبراير 2026',
+            days: days,
+          ),
+
+          // ── Available times ──
+          verticalSpace(context, height: 20),
+          AvailableTimesSection(slots: slots),
+
+          verticalSpace(context, height: 24),
+
+          // ── Sticky booking bar ──
+          BookingBottomBar(price: 300),
+          verticalSpace(context, height: 60),
         ],
       ),
     );
@@ -364,13 +382,13 @@ class CalendarStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16.h(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Month header + arrows
           CalendarMonthHeader(month: month),
-          const SizedBox(height: 14),
+          verticalSpace(context, height: 8),
           // Day cells
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -391,11 +409,11 @@ class CalendarMonthHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CalendarNavArrow(icon: Icons.chevron_left_rounded),
+        Text(month, style: TextStyles.boldWhite18),
         const Spacer(),
-        Text(month, style: TextStyles.mediumWhite12),
-        const Spacer(),
-        const CalendarNavArrow(icon: Icons.chevron_right_rounded),
+        const CalendarNavArrow(icon: Icons.chevron_left_rounded, color: AppColors.muted,),
+        horizontalSpace(context, width: 8),
+        const CalendarNavArrow(icon: Icons.chevron_right_rounded, color: Colors.white,),
       ],
     );
   }
@@ -404,18 +422,12 @@ class CalendarMonthHeader extends StatelessWidget {
 // ── Calendar nav arrow ────────────────────────────────
 class CalendarNavArrow extends StatelessWidget {
   final IconData icon;
-  const CalendarNavArrow({super.key, required this.icon});
+  final Color color;
+  const CalendarNavArrow({super.key, required this.icon, required this.color});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 30, height: 30,
-      decoration: BoxDecoration(
-        color: AppColors.card2,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Icon(icon, color: AppColors.muted, size: 18),
-    );
+    return Icon(icon, color: color, size: 20);
   }
 }
 
@@ -426,36 +438,29 @@ class DayCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      width: 46,
-      padding: const EdgeInsets.symmetric(vertical: 10),
+    return Container(
+      width: 50, height: 75,
       decoration: BoxDecoration(
-        color: day.isSelected ? AppColors.lightGray : AppColors.darkGreen,
-        borderRadius: BorderRadius.circular(12),
-        border: day.isSelected
-            ? null
-            : Border.all(color: AppColors.darkGreen, width: 1),
+        color: AppColors.card2,
+        borderRadius: BorderRadius.circular(20.r(context)),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             day.name,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: day.isSelected ? Colors.black : AppColors.muted,
-              fontFamily: 'Cairo',
-            ),
+            style: TextStyles.mediumWhite12,
           ),
-          const SizedBox(height: 4),
-          Text(
-            day.number.toString().padLeft(2, '0'),
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w900,
-              color: day.isSelected ? Colors.black : Colors.white,
-              fontFamily: 'Cairo',
+          verticalSpace(context, height: 4),
+          Container(
+            padding: context.responsivePadding(horizontal: 4, vertical: 2),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.r(context)),
+              color: AppColors.cardBg2,
+            ),
+            child: Text(
+              day.number.toString().padLeft(2, '0'),
+              style: TextStyles.semiBoldWhite18,
             ),
           ),
         ],
@@ -474,28 +479,29 @@ class AvailableTimesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header
-          Row(
-            children: [
-              Container(
-                width: 4, height: 16,
-                decoration: BoxDecoration(
-                  color: AppColors.slateGray,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text('6 أوقات متاحة', style: TextStyles.mediumWhite12),
-            ],
-          ),
-          const SizedBox(height: 14),
-          // Time slots grid
-          TimeSlotsGrid(slots: slots),
-        ],
+      padding: context.responsivePadding(horizontal: 16),
+      child: Container(
+        padding: context.responsivePadding(top: 12, left: 12, right: 12, bottom: 20),
+        decoration: BoxDecoration(
+          color: AppColors.card2,
+          borderRadius: BorderRadius.circular(16.r(context)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('الأوقات المتاحة', style: TextStyles.boldWhite14),
+                Text('6 أوقات متاحة', style: TextStyles.regularWhite12.copyWith(color: AppColors.grey)),
+              ],
+            ),
+            verticalSpace(context, height: 12),
+            // Time slots grid
+            TimeSlotsGrid(slots: slots),
+          ],
+        ),
       ),
     );
   }
@@ -508,17 +514,12 @@ class TimeSlotsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 2.4,
+    return Center(
+      child: Wrap(
+        spacing: 19,
+        runSpacing: 12,
+        children: List.generate(slots.length, (i)=>TimeSlotChip(slot: slots[i])),
       ),
-      itemCount: slots.length,
-      itemBuilder: (_, i) => TimeSlotChip(slot: slots[i]),
     );
   }
 }
@@ -530,25 +531,19 @@ class TimeSlotChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
+    return Container(
+      width: 90.w(context), height: 50.h(context),
       decoration: BoxDecoration(
-        color: slot.isSelected ? AppColors.slateGray.withOpacity(0.15) : AppColors.slateGray,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(14.r(context)),
         border: Border.all(
-          color: slot.isSelected ? AppColors.slateGray : AppColors.slateGray,
-          width: slot.isSelected ? 1.5 : 1,
+          color: Colors.white.withOpacity(0.1),
+          width: 0.8,
         ),
       ),
       child: Center(
         child: Text(
           slot.time,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-            color: slot.isSelected ? AppColors.slateGray : Colors.white,
-            fontFamily: 'Cairo',
-          ),
+          style: TextStyles.boldWhite14,
         ),
       ),
     );
@@ -564,82 +559,36 @@ class BookingBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.cardBg,
-        border: const Border(top: BorderSide(color: AppColors.slateGray)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.4),
-            blurRadius: 16,
-            offset: const Offset(0, -4),
-          ),
-        ],
-      ),
-      padding: EdgeInsets.fromLTRB(
-        16, 14, 16,
-        MediaQuery.of(context).padding.bottom + 14,
-      ),
+    return Padding(
+      padding: context.responsivePadding(horizontal: 16.w(context)),
       child: Row(
         children: [
-          // Price info
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '$price ج ',
-                        style: TextStyles.mediumWhite12.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      TextSpan(
-                        text: '/ الساعة',
-                        style: TextStyles.mediumWhite12,
-                      ),
-                    ],
-                  ),
+          Expanded(flex:3,child: AppButton(title: 'حجز الملعب', onPressed: () {  },)),
+          horizontalSpace(context, width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '$price ج ',
+                      style: TextStyles.boldWhite20,
+                    ),
+                    TextSpan(
+                      text: '/ الساعة',
+                      style: TextStyles.mediumWhite12.copyWith(color: AppColors.muted),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 2),
-                Text('احجز حسب الوقت المختار', style: TextStyles.mediumWhite12),
-              ],
-            ),
+              ),
+              Text('السعر حسب الوقت المختار', style: TextStyles.regularGrey10),
+            ],
           ),
           // Book button
-          const BookFieldButton(),
         ],
-      ),
-    );
-  }
-}
-
-// ── Book field button ─────────────────────────────────
-class BookFieldButton extends StatelessWidget {
-  const BookFieldButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.slateGray,
-        foregroundColor: Colors.black,
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        elevation: 0,
-      ),
-      child: const Text(
-        'احجز الملعب',
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w900,
-          fontFamily: 'Cairo',
-        ),
       ),
     );
   }

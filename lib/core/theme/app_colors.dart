@@ -18,6 +18,7 @@ class AppColors {
   static const Color darkGreen = Color(0xFF008041);
   static const Color cardBg = Color(0xFF1E1E1E);
   static const Color card2 = Color(0xFF191A2F);
+  static const Color cardBg2 = Color(0xFF2D3053);
   static const Color yellow = Color(0xFFFDC700);
   static const Color muted = Color(0xFF99A1AF);
   static const Color red = Color(0xFFE74C3C);
