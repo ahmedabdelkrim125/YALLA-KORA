@@ -24,7 +24,7 @@ class YallaKora extends StatelessWidget {
             ),
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: Routes.facilityDetails,
+            initialRoute: Routes.onBoardingScreen,
           ),
         );
       },
