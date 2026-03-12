@@ -47,4 +47,6 @@ class Assets {
   static const String cash = 'assets/SVG/cash.svg';
   static const String wallet = 'assets/SVG/Wallet.svg';
   static const String ticket = 'assets/SVG/Ticket.svg';
+  static const String download = 'assets/SVG/Download.svg';
+  static const String share = 'assets/SVG/Share2.svg';
 }

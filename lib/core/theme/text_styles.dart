@@ -182,6 +182,15 @@ class TextStyles {
     letterSpacing: 0.2,
   );
 
+ static TextStyle extraBoldWhite24 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w800,
+    fontFamily: 'Cairo',
+    color: Colors.white,
+    height: 1.5,
+    letterSpacing: 0.2,
+  );
+
   static TextStyle extraBoldGrey14 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w800,
