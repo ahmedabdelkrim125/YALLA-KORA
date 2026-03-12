@@ -1,9 +1,9 @@
-// ─────────────────────────────────────────
-//  BOOK BUTTON  (compact — match rows)
-// ─────────────────────────────────────────
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+
+import '../../../../core/helper/extensions.dart';
+import '../../../../core/routing/routes.dart';
 
 class BookButton extends StatelessWidget {
   const BookButton({super.key});
@@ -11,7 +11,9 @@ class BookButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        context.pushNamed(Routes.matchDetailsScreen);
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryGreen,
         foregroundColor: Colors.black,

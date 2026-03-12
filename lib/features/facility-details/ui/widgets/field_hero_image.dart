@@ -1,6 +1,3 @@
-// ══════════════════════════════════════════════════════
-//  HERO IMAGE
-// ══════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/extensions.dart';
