@@ -8,4 +8,5 @@ class Routes {
   static const String otpScreen = '/otpScreen';
   static const String mainScreen = '/mainScreen';
   static const String facilityDetails = '/facilityDetails';
+  static const String bookingConfirmation = '/bookingConfirmation';
 }

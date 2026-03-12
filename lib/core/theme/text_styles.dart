@@ -207,6 +207,14 @@ class TextStyles {
     height: 1.50,
   );
 
+ static TextStyle regularMuted14 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Cairo',
+    color: AppColors.muted,
+    height: 1.50,
+  );
+
   static TextStyle regularMuted12 = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,

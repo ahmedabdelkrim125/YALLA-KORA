@@ -58,6 +58,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
+import 'package:yalla_kora/features/booking_confirmation/ui/booking_confirmation_screen.dart';
 import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
@@ -112,6 +113,9 @@ class AppRouter {
 
       case Routes.facilityDetails:
         return MaterialPageRoute(builder: (_) => const FacilityDetails());
+
+      case Routes.bookingConfirmation:
+      return MaterialPageRoute(builder: (_) => const BookingConfirmationScreen());
 
       default:
         return MaterialPageRoute(
