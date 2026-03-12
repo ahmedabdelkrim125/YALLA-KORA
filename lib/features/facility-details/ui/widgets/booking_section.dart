@@ -2,8 +2,10 @@
 //  BOOKING BOTTOM BAR
 // ══════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/core/helper/extensions.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
+import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
@@ -19,7 +21,11 @@ class BookingBottomBar extends StatelessWidget {
       padding: context.responsivePadding(horizontal: 16.w(context)),
       child: Row(
         children: [
-          Expanded(flex:3,child: AppButton(title: 'حجز الملعب', onPressed: () {  },)),
+          Expanded(
+            flex: 3,
+            child: AppButton(title: 'حجز الملعب',
+                onPressed: () => context.pushNamed(Routes.bookingConfirmation)),
+          ),
           horizontalSpace(context, width: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
