@@ -82,6 +82,14 @@ class TextStyles {
     height: 1.0,
   );
 
+    static TextStyle boldDarkBackground12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Cairo',
+    color: AppColors.darkBackground,
+    height: 1.0,
+  );
+
   static TextStyle boldFieldBorder32 = TextStyle(
     fontSize: 32.sp,
     fontWeight: FontWeight.w700,
