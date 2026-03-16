@@ -1,24 +1,26 @@
+// ─────────────────────────────────────────
+//  Staduim List
+// ─────────────────────────────────────────
 import 'package:flutter/material.dart';
-import 'package:yalla_kora/core/helper/responsive_extensions.dart';
-import 'package:yalla_kora/core/helper/spacing.dart';
-import 'stadium_card.dart';
+import 'package:yalla_kora/features/home/ui/home_screen.dart';
+import 'package:yalla_kora/features/search/ui/widgets/stadium_card.dart';
 
 class StadiumsList extends StatelessWidget {
-  const StadiumsList({super.key});
+  final List<FieldModel> fields;
+
+  const StadiumsList({super.key, required this.fields});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200.h(context), 
+      height: 240,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        padding: const EdgeInsets.symmetric(horizontal: 16), 
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         physics: const BouncingScrollPhysics(),
-        separatorBuilder: (context, index) => horizontalSpace(context, width: 12),
-        itemBuilder: (context, index) {
-          return const StadiumCard();
-        },
+        itemCount: fields.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 14),
+        itemBuilder: (context, i) => StadiumCard(field: fields[i]),
       ),
     );
   }

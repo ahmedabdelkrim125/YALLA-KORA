@@ -20,7 +20,7 @@ class YallaKora extends StatelessWidget {
             theme: ThemeData(fontFamily: 'Cairo'),
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: Routes.onBoardingScreen,
+            initialRoute: Routes.mainScreen,
           ),
         );
       },

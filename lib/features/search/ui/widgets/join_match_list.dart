@@ -9,13 +9,14 @@ class JoinMatchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 230.h, 
+      height: 230.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: 5,
-        padding: EdgeInsets.symmetric(horizontal: 16.w), 
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         physics: const BouncingScrollPhysics(),
-        separatorBuilder: (context, index) => horizontalSpace(context, width: 12),
+        separatorBuilder: (context, index) =>
+            horizontalSpace(context, width: 12),
         itemBuilder: (context, index) {
           return const JoinMatchCard();
         },
@@ -23,6 +24,3 @@ class JoinMatchList extends StatelessWidget {
     );
   }
 }
-
-
-

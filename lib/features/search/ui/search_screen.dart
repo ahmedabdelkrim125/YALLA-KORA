@@ -20,45 +20,48 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.darkBackground,
-      body: SafeArea(
-        child: Column(
-          children: [
-            UserHeader(greeting: "أهلاً يا عالمي،", userName: "عمر إيهاب"),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w(context)),
-              child: Column(
-                children: [
-                  verticalSpace(context, height: 10),
-                  const SearchFieldWithFilter(),
-                  verticalSpace(context, height: 24),
-
-                  SearchActionButtons(
-                    selectedIndex: selectedIndex,
-                    onTabChanged: (index) {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                  ),
-                  verticalSpace(context, height: 24),
-                ],
-              ),
-            ),
-
-            Expanded(
-              child: Padding(
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: AppColors.darkBackground,
+        body: SafeArea(
+          child: Column(
+            children: [
+              UserHeader(greeting: "أهلاً يا عالمي،", userName: "عمر إيهاب"),
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w(context)),
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: selectedIndex == 0
-                      ? const BookingBody(key: ValueKey(0))
-                      : const JoinMatchBody(key: ValueKey(1)),
+                child: Column(
+                  children: [
+                    verticalSpace(context, height: 10),
+                    const SearchFieldWithFilter(),
+                    verticalSpace(context, height: 24),
+
+                    SearchActionButtons(
+                      selectedIndex: selectedIndex,
+                      onTabChanged: (index) {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                    ),
+                    verticalSpace(context, height: 24),
+                  ],
                 ),
               ),
-            ),
-          ],
+
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w(context)),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    child: selectedIndex == 0
+                        ? const BookingBody(key: ValueKey(0))
+                        : const JoinMatchBody(key: ValueKey(1)),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
 
 class ExploreAreasList extends StatelessWidget {
   const ExploreAreasList({super.key});
@@ -13,20 +14,19 @@ class ExploreAreasList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            const Icon(Icons.location_on, color: AppColors.primaryGreen, size: 20),
-            horizontalSpace(context, width: 4),
-            Text("استكشف المناطق", style: TextStyles.boldWhite16),
-          ],
+        const SectionHeader(
+          title: "استكشف المناطق",
+          iconPath: Assets.nearLocationIcon,
         ),
+
         verticalSpace(context, height: 16),
         SizedBox(
           height: 100.h(context),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: 5,
-            separatorBuilder: (context, index) => horizontalSpace(context, width: 16),
+            separatorBuilder: (context, index) =>
+                horizontalSpace(context, width: 16),
             itemBuilder: (context, index) => _buildAreaItem(context, "التجمع"),
           ),
         ),

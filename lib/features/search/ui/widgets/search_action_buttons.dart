@@ -19,14 +19,14 @@ class SearchActionButtons extends StatelessWidget {
       children: [
         ActionButtonItem(
           title: "حجز ملعب",
-          icon: Assets.football,
+          icon: Assets.staduimicon,
           isSelected: selectedIndex == 0,
           onTap: () => onTabChanged(0),
         ),
         horizontalSpace(context, width: 12),
         ActionButtonItem(
           title: "انضم لتقسيمة",
-          icon: Assets.handshakeIcon,
+          icon: Assets.handshake,
           isSelected: selectedIndex == 1,
           onTap: () => onTabChanged(1),
         ),
