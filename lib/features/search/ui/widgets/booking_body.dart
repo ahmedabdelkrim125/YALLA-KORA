@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
+import 'package:yalla_kora/features/home/ui/widgets/fields_carousel.dart';
 import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
-import 'package:yalla_kora/features/search/ui/widgets/stadiums_list.dart';
 import 'explore_areas_list.dart';
 import 'field_type_selector.dart';
 
@@ -55,7 +55,7 @@ class BookingBody extends StatelessWidget {
             iconPath: Assets.nighticon,
           ),
           verticalSpace(context, height: 16),
-          StadiumsList(fields: _fields),
+          FieldsCarousel(fields: _fields),
 
           verticalSpace(context, height: 32),
 
@@ -64,7 +64,7 @@ class BookingBody extends StatelessWidget {
             iconPath: Assets.popular,
           ),
           verticalSpace(context, height: 16),
-          StadiumsList(fields: _fields),
+          FieldsCarousel(fields: _fields),
 
           verticalSpace(context, height: 40),
         ],

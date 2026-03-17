@@ -4,8 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/extensions.dart';
-import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
+import 'package:yalla_kora/core/widgets/cards/field_hero_circle_button.dart';
 
 class FieldHeroImage extends StatelessWidget {
   const FieldHeroImage({super.key});
@@ -29,37 +29,14 @@ class FieldHeroImage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    HeroCircleButton(icon: Icons.arrow_back_ios, onPressed: () => context.pop(),),
-                    HeroCircleButton(icon: Icons.favorite_border_rounded, color: AppColors.slateGray, onPressed: () {  },),
+                    FieldHeroCircleButton(icon: Icons.arrow_back_ios, onPressed: () => context.pop(),),
+                    FieldHeroCircleButton(icon: Icons.favorite_border_rounded, color: AppColors.slateGray, onPressed: () {  },),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// ── Hero circle button ────────────────────────────────
-class HeroCircleButton extends StatelessWidget {
-  final IconData icon;
-  final Color? color;
-  final VoidCallback onPressed;
-  const HeroCircleButton({super.key, required this.icon, this.color, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        width: 40.w(context), height: 40.h(context),
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.45),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(icon, color: color ?? Colors.white, size: 20),
       ),
     );
   }

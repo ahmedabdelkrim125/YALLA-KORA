@@ -17,6 +17,7 @@ class ExploreAreasList extends StatelessWidget {
         const SectionHeader(
           title: "استكشف المناطق",
           iconPath: Assets.nearLocationIcon,
+          isViewAll: false,
         ),
 
         verticalSpace(context, height: 16),
