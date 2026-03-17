@@ -58,10 +58,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
+import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
-import 'package:yalla_kora/features/search/ui/search_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import '../../features/OTP/ui/otp_screen.dart';
 import '../../features/home/ui/main_screen.dart';
@@ -110,8 +110,8 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
-      case Routes.searchScreen:
-        return MaterialPageRoute(builder: (_) => const SearchScreen());
+      case Routes.facilityDetails:
+        return MaterialPageRoute(builder: (_) => const FacilityDetails());
 
       default:
         return MaterialPageRoute(
