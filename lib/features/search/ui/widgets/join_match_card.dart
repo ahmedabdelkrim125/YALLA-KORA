@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/core/widgets/cards/field_hero_circle_button.dart';
 import 'package:yalla_kora/features/home/ui/widgets/badge_chip.dart';
 
 class JoinMatchCard extends StatelessWidget {
@@ -38,10 +39,13 @@ class JoinMatchCard extends StatelessWidget {
               Positioned(
                 top: 8,
                 left: 8,
-                child: Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
-                  size: 18.r,
+                child: Transform.scale(
+                  scale: 0.8,
+                  child: FieldHeroCircleButton(
+                    icon: Icons.favorite_border_rounded,
+                    color: AppColors.slateGray,
+                    onPressed: () {},
+                  ),
                 ),
               ),
               Positioned(
@@ -51,21 +55,30 @@ class JoinMatchCard extends StatelessWidget {
                   "النهاردة 10:30 م",
                   style: TextStyles.boldWhite14.copyWith(
                     fontSize: 10.sp,
-                    color: AppColors.orangeColor,
+                    color: AppColors.timecolor,
                   ),
                 ),
               ),
               Positioned(
-                bottom: 4,
-                left: 8,
-                child: Row(
-                  children: [
-                    Text(
-                      "4.8",
-                      style: TextStyles.boldWhite14.copyWith(fontSize: 10.sp),
-                    ),
-                    Icon(Icons.star, color: Colors.amber, size: 10.r),
-                  ],
+                bottom: 8.h,
+                left: 8.w,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.star, color: AppColors.timecolor, size: 12.r),
+                      horizontalSpace(context, width: 4),
+                      Text(
+                        "4.8",
+                        style: TextStyles.boldWhite14.copyWith(fontSize: 10.sp),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -88,6 +101,7 @@ class JoinMatchCard extends StatelessWidget {
                           '📍 ${"مدينة نصر"}',
                           style: TextStyles.regularGrey12.copyWith(
                             fontSize: 9.sp,
+                            color: AppColors.transparentGreen,
                           ),
                         ),
                         horizontalSpace(context, width: 2),
@@ -129,35 +143,31 @@ class JoinMatchCard extends StatelessWidget {
                 verticalSpace(context, height: 8),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   textDirection: TextDirection.rtl,
                   children: [
                     Text(
                       "50 ج / فرد",
-                      style: TextStyles.mediumprimaryGreen12.copyWith(
-                        color: Colors.amber,
-                        fontSize: 9.sp,
+                      style: TextStyles.regularGrey12.copyWith(fontSize: 9.sp),
+                    ),
+                    horizontalSpace(context, width: 8),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 6.h),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryGreen,
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "انضم الآن",
+                            style: TextStyles.boldDarkBackground18.copyWith(
+                              fontSize: 11.sp,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
-                ),
-                verticalSpace(context, height: 8),
-
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 6.h),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryGreen,
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "انضم الآن",
-                      style: TextStyles.boldDarkBackground18.copyWith(
-                        fontSize: 11.sp,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
