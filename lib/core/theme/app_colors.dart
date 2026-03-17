@@ -19,6 +19,7 @@ class AppColors {
   static const Color yellow = Color(0xFFFDC700);
   static const Color muted = Color(0xFF99A1AF);
   static const Color red = Color(0xFFE74C3C);
+  static const Color red2 = Color(0xFFFF3B30);
 
   static const Color grey = Color(0xFF88889A);
   static const Color cancelRed = Color(0xFFFB2C36);
