@@ -19,12 +19,11 @@ class ExploreAreasList extends StatelessWidget {
           iconPath: Assets.nearLocationIcon,
           isViewAll: false,
         ),
-
-        verticalSpace(context, height: 16),
         SizedBox(
           height: 100.h(context),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
+            padding: context.responsivePadding(horizontal: 20),
             itemCount: 5,
             separatorBuilder: (context, index) =>
                 horizontalSpace(context, width: 16),

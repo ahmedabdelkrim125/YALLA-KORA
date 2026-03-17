@@ -45,16 +45,15 @@ class BookingBody extends StatelessWidget {
         children: [
           const ExploreAreasList(),
 
-          verticalSpace(context, height: 24),
+          verticalSpace(context, height: 6),
           const FieldTypeSelector(),
 
-          verticalSpace(context, height: 32),
+          verticalSpace(context, height: 16),
 
           const SectionHeader(
             title: "متاح النهاردة بليل ",
             iconPath: Assets.nighticon,
           ),
-          verticalSpace(context, height: 16),
           FieldsCarousel(fields: _fields),
 
           verticalSpace(context, height: 32),

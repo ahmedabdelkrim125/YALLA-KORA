@@ -21,7 +21,7 @@ class ActionButtonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color bg = isSelected ? AppColors.primaryGreen : AppColors.card2;
+    final Color? bg = isSelected ? AppColors.primaryGreen : null;
     final Color contentColor = isSelected ? AppColors.darkBackground : AppColors.primaryGreen;
 
     return Expanded(
@@ -29,11 +29,10 @@ class ActionButtonItem extends StatelessWidget {
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
-          height: 48.h(context),
+          padding: context.responsivePadding(vertical: 8),
           decoration: BoxDecoration(
             color: bg,
             borderRadius: BorderRadius.circular(12.r(context)),
-            border: !isSelected ? Border.all(color: AppColors.primaryGreen, width: 1) : null,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +45,6 @@ class ActionButtonItem extends StatelessWidget {
               SvgPicture.asset(
                 icon,
                 width: 20.w(context),
-                colorFilter: ColorFilter.mode(contentColor, BlendMode.srcIn),
               ),
             ],
           ),

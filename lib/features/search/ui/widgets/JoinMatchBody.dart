@@ -16,15 +16,14 @@ class JoinMatchBody extends StatelessWidget {
       child: Column(
         children: [
           const ExploreAreasList(),
-          verticalSpace(context, height: 24),
+          verticalSpace(context, height: 6),
           const FieldTypeSelector(),
-          verticalSpace(context, height: 32),
+          verticalSpace(context, height: 16),
 
           const SectionHeader(
             title: "كَمّل التقسيمة ",
             iconPath: Assets.handshakeIcon,
           ),
-          verticalSpace(context, height: 16),
 
           const JoinMatchList(),
 

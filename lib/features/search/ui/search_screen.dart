@@ -44,20 +44,17 @@ class _SearchScreenState extends State<SearchScreen> {
                         });
                       },
                     ),
-                    verticalSpace(context, height: 24),
+                    verticalSpace(context, height: 6),
                   ],
                 ),
               ),
 
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w(context)),
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    child: selectedIndex == 0
-                        ? const BookingBody(key: ValueKey(0))
-                        : const JoinMatchBody(key: ValueKey(1)),
-                  ),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: selectedIndex == 0
+                      ? const BookingBody()
+                      : const JoinMatchBody(),
                 ),
               ),
             ],
