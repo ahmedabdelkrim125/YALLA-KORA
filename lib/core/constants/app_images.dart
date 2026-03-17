@@ -49,4 +49,12 @@ class Assets {
   static const String ticket = 'assets/SVG/Ticket.svg';
   static const String download = 'assets/SVG/Download.svg';
   static const String share = 'assets/SVG/Share2.svg';
+
+  static const String player = 'assets/images/player.jpg';
+  static const String headphones = 'assets/SVG/Headphones.svg';
+  static const String logOut = 'assets/SVG/LogOut.svg';
+  static const String trash = 'assets/SVG/Trash2.svg';
+  static const String user = 'assets/SVG/User.svg';
+  static const String chevronLeft = 'assets/SVG/ChevronLeft.svg';
+  static const String plus = 'assets/SVG/Plus.svg';
 }
