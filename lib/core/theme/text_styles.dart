@@ -10,6 +10,20 @@ class TextStyles {
     color: Colors.white,
   );
 
+  static TextStyle boldWhite24 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Cairo',
+    color: Colors.white,
+  );
+
+  static TextStyle boldWhite28 = TextStyle(
+    fontSize: 28.sp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Cairo',
+    color: Colors.white,
+  );
+
   static TextStyle boldWhite16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,

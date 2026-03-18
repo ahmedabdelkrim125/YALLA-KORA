@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/widgets/liquid_glass_nav_bar.dart';
+import 'package:yalla_kora/features/account/ui/account_screen.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/search/ui/search_screen.dart';
 import '../../my_bookings/ui/my_bookings_screen.dart';
@@ -20,7 +21,7 @@ class MainScreen extends ConsumerWidget {
       const HomeScreen(),
       const SearchScreen(), 
       const MyBookingsScreen(),
-      const ProfileScreen(), 
+      const AccountScreen(),
     ];
 
     return Scaffold(
