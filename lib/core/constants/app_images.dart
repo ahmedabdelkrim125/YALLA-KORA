@@ -43,4 +43,14 @@ class Assets {
   static const String locationGreen = 'assets/SVG/location_green.svg';
   static const String artificialTurf = 'assets/SVG/artificial_turf.svg';
   static const String mapImage = 'assets/images/map_image.png';
+
+  static const String timeGrey = 'assets/SVG/time_grey.svg';
+  static const String gender = 'assets/SVG/gender.svg';
+  static const String calendar = 'assets/SVG/Calendar.svg';
+  static const String smartphone = 'assets/SVG/Smartphone.svg';
+  static const String cash = 'assets/SVG/cash.svg';
+  static const String wallet = 'assets/SVG/Wallet.svg';
+  static const String ticket = 'assets/SVG/Ticket.svg';
+  static const String download = 'assets/SVG/Download.svg';
+  static const String share = 'assets/SVG/Share2.svg';
 }
