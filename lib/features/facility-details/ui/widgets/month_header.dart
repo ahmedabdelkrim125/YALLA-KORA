@@ -15,9 +15,15 @@ class CalendarMonthHeader extends StatelessWidget {
       children: [
         Text(month, style: TextStyles.boldWhite18),
         const Spacer(),
-        const CalendarNavArrow(icon: Icons.chevron_left_rounded, color: AppColors.muted,),
+        const CalendarNavArrow(
+          icon: Icons.chevron_left_rounded,
+          color: AppColors.muted,
+        ),
         horizontalSpace(context, width: 8),
-        const CalendarNavArrow(icon: Icons.chevron_right_rounded, color: Colors.white,),
+        const CalendarNavArrow(
+          icon: Icons.chevron_right_rounded,
+          color: Colors.white,
+        ),
       ],
     );
   }

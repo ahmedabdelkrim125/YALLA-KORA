@@ -10,6 +10,7 @@ import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import '../../features/OTP/ui/otp_screen.dart';
 import '../../features/home/ui/main_screen.dart';
+import '../../features/match_details_and_checkout/ui/checkout_screen.dart';
 import '../../features/match_details_and_checkout/ui/match_details_screen.dart';
 import '../../features/signup/ui/role_selection_screen.dart';
 import 'routes.dart';
@@ -57,12 +58,16 @@ class AppRouter {
       case Routes.facilityDetails:
         return MaterialPageRoute(builder: (_) => const FacilityDetails());
       case Routes.bookingConfirmation:
-        return MaterialPageRoute(builder: (_) => const BookingConfirmationScreen());
+        return MaterialPageRoute(
+          builder: (_) => const BookingConfirmationScreen(),
+        );
       case Routes.successBooking:
         return MaterialPageRoute(builder: (_) => const SuccessBookingScreen());
 
-         case Routes.matchDetailsScreen:
+      case Routes.matchDetailsScreen:
         return MaterialPageRoute(builder: (_) => const MatchDetailsScreen());
+      case Routes.checkoutScreen:
+        return MaterialPageRoute(builder: (_) => const CheckoutScreen());
 
       default:
         return MaterialPageRoute(

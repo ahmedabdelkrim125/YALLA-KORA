@@ -21,9 +21,12 @@ class FieldsCarousel extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: fields.length,
         separatorBuilder: (_, __) => const SizedBox(width: 14),
-        itemBuilder: (context, i) => GestureDetector(onTap:(){
-          Navigator.pushNamed(context, Routes.facilityDetails);
-        },child: FieldCard(field: fields[i])),
+        itemBuilder: (context, i) => GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, Routes.facilityDetails);
+          },
+          child: FieldCard(field: fields[i]),
+        ),
       ),
     );
   }

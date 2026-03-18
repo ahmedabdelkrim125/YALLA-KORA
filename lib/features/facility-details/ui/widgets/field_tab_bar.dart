@@ -36,7 +36,7 @@ class FieldTabBar extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                FacilityDetailsTab(address: 'الف مسكن', city: 'القاهرة',),
+                FacilityDetailsTab(address: 'الف مسكن', city: 'القاهرة'),
                 AvailableBookings(days: days, slots: slots),
               ],
             ),

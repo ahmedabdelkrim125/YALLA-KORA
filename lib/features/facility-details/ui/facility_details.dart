@@ -8,12 +8,12 @@ class FacilityDetails extends StatelessWidget {
   const FacilityDetails({super.key});
 
   static const _days = [
-    DayModel(name: 'سبت',  number: 02, isSelected: false),
-    DayModel(name: 'أحد',  number: 03, isSelected: false),
+    DayModel(name: 'سبت', number: 02, isSelected: false),
+    DayModel(name: 'أحد', number: 03, isSelected: false),
     DayModel(name: 'اثنين', number: 04, isSelected: false),
     DayModel(name: 'ثلاثاء', number: 05, isSelected: false),
-    DayModel(name: 'اربع',  number: 06, isSelected: true),
-    DayModel(name: 'خميس',  number: 07, isSelected: false),
+    DayModel(name: 'اربع', number: 06, isSelected: true),
+    DayModel(name: 'خميس', number: 07, isSelected: false),
   ];
 
   static const _slots = [
@@ -26,7 +26,6 @@ class FacilityDetails extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Directionality(
         textDirection: TextDirection.rtl,
@@ -34,7 +33,6 @@ class FacilityDetails extends StatelessWidget {
           children: [
             FieldHeroImage(),
             verticalSpace(context, height: 20),
-
             FieldInfoSection(
               name: 'ملاعب الكابيتانو',
               rating: 4.8,
@@ -46,10 +44,7 @@ class FacilityDetails extends StatelessWidget {
             verticalSpace(context, height: 28),
 
             Expanded(
-              child: FieldTabBar(
-                days: _days,
-                slots: _slots,
-              ),
+              child: FieldTabBar(days: _days, slots: _slots),
             ),
           ],
         ),
@@ -63,13 +58,17 @@ class FacilityDetails extends StatelessWidget {
 // ══════════════════════════════════════════════════════
 class DayModel {
   final String name;
-  final int    number;
-  final bool   isSelected;
-  const DayModel({required this.name, required this.number, required this.isSelected});
+  final int number;
+  final bool isSelected;
+  const DayModel({
+    required this.name,
+    required this.number,
+    required this.isSelected,
+  });
 }
 
 class TimeSlotModel {
   final String time;
-  final bool   isSelected;
+  final bool isSelected;
   const TimeSlotModel({required this.time, this.isSelected = false});
 }

@@ -12,13 +12,17 @@ import 'package:yalla_kora/core/theme/text_styles.dart';
 class FieldInfoSection extends StatelessWidget {
   final String name;
   final double rating;
-  final int    reviewCount;
-  final int    price;
-  final bool   isOpen;
+  final int reviewCount;
+  final int price;
+  final bool isOpen;
 
   const FieldInfoSection({
-    super.key, required this.name, required this.rating,
-    required this.reviewCount, required this.price, required this.isOpen,
+    super.key,
+    required this.name,
+    required this.rating,
+    required this.reviewCount,
+    required this.price,
+    required this.isOpen,
   });
 
   @override
@@ -59,16 +63,19 @@ class OpenStatusBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.card2,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(width: 0.8, color: Colors.white.withOpacity(0.05))
+        color: AppColors.card2,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(width: 0.8, color: Colors.white.withOpacity(0.05)),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 4.h(context), horizontal: 2.w(context)),
+        padding: EdgeInsets.symmetric(
+          vertical: 4.h(context),
+          horizontal: 2.w(context),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(Assets.timeIcon, color: AppColors.primaryGreen,),
+            SvgPicture.asset(Assets.timeIcon, color: AppColors.primaryGreen),
             horizontalSpace(context, width: 4),
             Text(
               isOpen ? 'مفتوح 24 ساعة' : 'مغلق',
@@ -84,7 +91,7 @@ class OpenStatusBadge extends StatelessWidget {
 // ── Rating row ────────────────────────────────────────
 class RatingRow extends StatelessWidget {
   final double rating;
-  final int    reviewCount;
+  final int reviewCount;
   const RatingRow({super.key, required this.rating, required this.reviewCount});
 
   @override
@@ -98,16 +105,17 @@ class RatingRow extends StatelessWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text:rating.toStringAsFixed(1),
+                text: rating.toStringAsFixed(1),
                 style: TextStyles.boldWhite14,
               ),
               TextSpan(text: ' '),
               TextSpan(
-                  text: '($reviewCountتقييم)',
-                  style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey)
+                text: '($reviewCountتقييم)',
+                style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey),
               ),
             ],
-          ),),
+          ),
+        ),
       ],
     );
   }
@@ -123,13 +131,10 @@ class FieldPriceTag extends StatelessWidget {
     return RichText(
       text: TextSpan(
         children: [
+          TextSpan(text: '$price ج', style: TextStyles.boldWhite20),
           TextSpan(
-            text: '$price ج',
-            style: TextStyles.boldWhite20,
-          ),
-          TextSpan(
-              text:'/ الساعة',
-              style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey)
+            text: '/ الساعة',
+            style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey),
           ),
         ],
       ),

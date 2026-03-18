@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-
 import '../../../../core/helper/extensions.dart';
 import '../../../../core/routing/routes.dart';
 

@@ -30,9 +30,7 @@ class FacilityFeaturesSection extends StatelessWidget {
           Wrap(
             spacing: 4,
             runSpacing: 8,
-            children: features
-                .map((f) => FeatureChip(feature: f))
-                .toList(),
+            children: features.map((f) => FeatureChip(feature: f)).toList(),
           ),
         ],
       ),
@@ -53,10 +51,7 @@ class FeatureChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.card2,
         borderRadius: BorderRadius.circular(8.r(context)),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 0.8,
-        ),
+        border: Border.all(color: Colors.white.withOpacity(0.1), width: 0.8),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -66,7 +61,7 @@ class FeatureChip extends StatelessWidget {
             style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey),
           ),
           horizontalSpace(context, width: 4),
-          SvgPicture.asset(feature.icon,),
+          SvgPicture.asset(feature.icon),
         ],
       ),
     );
