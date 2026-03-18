@@ -8,8 +8,9 @@ import 'package:yalla_kora/core/theme/text_styles.dart';
 class SectionHeader extends StatelessWidget {
   final String title;
   final String iconPath;
+  final bool isViewAll;
 
-  const SectionHeader({super.key, required this.title, required this.iconPath});
+  const SectionHeader({super.key, required this.title, required this.iconPath, this.isViewAll = true});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class SectionHeader extends StatelessWidget {
           const SizedBox(width: 8),
           SvgPicture.asset(iconPath),
           const Spacer(),
-          Text('عرض الكل', style: TextStyles.regularWhite12),
+          isViewAll ? Text('عرض الكل', style: TextStyles.regularWhite12) : const SizedBox(),
         ],
       ),
     );

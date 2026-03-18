@@ -11,6 +11,10 @@ class Assets {
   static const String googleIcon = 'assets/SVG/theme_google.svg';
   static const String logosvg = 'assets/SVG/logo.svg';
   static const String football = 'assets/SVG/football.svg';
+  static const String nighticon = 'assets/SVG/nighticon.svg';
+  static const String popular = 'assets/SVG/popular.svg';
+  static const String staduimicon = 'assets/SVG/staduimicon.svg';
+  static const String handshake= 'assets/SVG/handshake.svg';
 
   // 🔥 Navigation Icons
   static const String home = 'assets/images/home.png';

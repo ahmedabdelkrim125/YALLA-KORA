@@ -85,38 +85,41 @@ class HomeScreen extends StatelessWidget {
     final navBarBottomPadding =
         62.0 + 10.0 * 2 + MediaQuery.of(context).padding.bottom;
 
-    return Container(
-      color: AppColors.darkBackground,
-      child: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            const UserHeader(
-              greeting: 'أهلاً بك عالمي,',
-              userName: 'عمر إيهاب',
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                // physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SectionHeader(
-                      title: 'ملاعب قريبة منك',
-                      iconPath: Assets.nearLocationIcon,
-                    ),
-                    FieldsCarousel(fields: _fields),
-                    const SectionHeader(
-                      title: 'كمل التقسيمة',
-                      iconPath: Assets.handshakeIcon,
-                    ),
-                    MatchesList(matches: _matches),
-                    SizedBox(height: navBarBottomPadding),
-                  ],
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Container(
+        color: AppColors.darkBackground,
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              const UserHeader(
+                greeting: 'أهلاً بك عالمي,',
+                userName: 'عمر إيهاب',
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  // physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SectionHeader(
+                        title: 'ملاعب قريبة منك',
+                        iconPath: Assets.nearLocationIcon,
+                      ),
+                      FieldsCarousel(fields: _fields),
+                      const SectionHeader(
+                        title: 'كمل التقسيمة',
+                        iconPath: Assets.handshakeIcon,
+                      ),
+                      MatchesList(matches: _matches),
+                      SizedBox(height: navBarBottomPadding),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -103,6 +103,14 @@ class TextStyles {
     height: 1.0,
   );
 
+    static TextStyle boldDarkBackground12 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Cairo',
+    color: AppColors.darkBackground,
+    height: 1.0,
+  );
+
   static TextStyle boldFieldBorder32 = TextStyle(
     fontSize: 32.sp,
     fontWeight: FontWeight.w700,
@@ -179,6 +187,10 @@ class TextStyles {
   );
 
   static TextStyle regularGrey12 = regularWhite12.copyWith(
+    color: AppColors.muted,
+  );
+static TextStyle regularGrey8 = regularWhite12.copyWith(
+    fontSize: 8.sp,
     color: AppColors.muted,
   );
 

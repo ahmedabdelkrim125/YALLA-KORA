@@ -12,6 +12,7 @@ class AppColors {
   static const Color orangeColor = Color(0xFFFEA100);
   static const Color ratingOrange = Color(0xFFFEA000);
   static const Color leftStripe = Color(0xFFFEC700);
+  static const Color timeColor = Color(0xFFFDC700);
   static const Color darkGreen = Color(0xFF008041);
   static const Color cardBg = Color(0xFF1E1E1E);
   static const Color card2 = Color(0xFF191A2F);
@@ -22,6 +23,8 @@ class AppColors {
   static const Color red2 = Color(0xFFFF3B30);
 
   static const Color grey = Color(0xFF88889A);
+  static const Color gray2 = Color(0xFFB8C2D4);
+
   static const Color cancelRed = Color(0xFFFB2C36);
   static const Color darkText = Color(0xFF060F06);
   static const Color grey88 = Color(0xFF888888);
