@@ -175,6 +175,10 @@ class TextStyles {
   static TextStyle regularGrey12 = regularWhite12.copyWith(
     color: AppColors.muted,
   );
+static TextStyle regularGrey8 = regularWhite12.copyWith(
+    fontSize: 8.sp,
+    color: AppColors.muted,
+  );
 
   static TextStyle regularGrey10 = regularWhite12.copyWith(
     fontSize: 10,
