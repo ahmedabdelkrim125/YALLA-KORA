@@ -2,14 +2,14 @@
 //  FIELD CARD
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/core/models/football-field-model/football_field_model.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/home/ui/widgets/field_image.dart';
 import 'package:yalla_kora/features/home/ui/widgets/primary_button.dart';
 
 class FieldCard extends StatelessWidget {
-  final FieldModel field;
+  final FootballFieldModel field;
 
   const FieldCard({super.key, required this.field});
 

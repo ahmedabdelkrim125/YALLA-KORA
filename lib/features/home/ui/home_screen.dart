@@ -1,39 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import 'package:yalla_kora/features/home/ui/widgets/fields_carousel.dart';
 import 'package:yalla_kora/features/home/ui/widgets/matches_list.dart';
 import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
+import '../../../core/models/football-field-model/football_field_model.dart' show FootballFieldModel;
 import '../../../core/theme/app_colors.dart' show AppColors;
 import '../../../core/widgets/user_header/user_header.dart';
-
-class FieldModel {
-  final String name, price, location, availability, badge, image;
-  const FieldModel({
-    required this.name,
-    required this.price,
-    required this.location,
-    required this.availability,
-    required this.badge,
-    required this.image,
-  });
-}
-
-class MatchModel {
-  final String time, venue, sharePrice;
-  final int playersNeeded;
-  const MatchModel({
-    required this.time,
-    required this.venue,
-    required this.playersNeeded,
-    required this.sharePrice,
-  });
-}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static const _fields = [
-    FieldModel(
+    FootballFieldModel(
       name: 'ملعب الهدف',
       price: '300 ج / الساعة',
       location: 'مدينة نصر',
@@ -41,7 +20,7 @@ class HomeScreen extends StatelessWidget {
       badge: 'خماسي',
       image: Assets.facility6,
     ),
-    FieldModel(
+    FootballFieldModel(
       name: 'ملعب النهضة',
       price: '350 ج / الساعة',
       location: 'مدينة نصر',
@@ -49,7 +28,7 @@ class HomeScreen extends StatelessWidget {
       badge: 'خماسي',
       image: Assets.facility6,
     ),
-    FieldModel(
+    FootballFieldModel(
       name: 'ملعب الأبطال',
       price: '280 ج / الساعة',
       location: 'العباسية',

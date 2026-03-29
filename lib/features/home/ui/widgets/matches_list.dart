@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
-import 'package:yalla_kora/features/home/ui/home_screen.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import 'package:yalla_kora/features/home/ui/widgets/match_row.dart';
 
 class MatchesList extends StatelessWidget {

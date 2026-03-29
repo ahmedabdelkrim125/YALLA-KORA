@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
-import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/home/ui/widgets/fields_carousel.dart';
 import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
+import '../../../../core/models/football-field-model/football_field_model.dart' show FootballFieldModel;
 import 'explore_areas_list.dart';
 import 'field_type_selector.dart';
 
 class BookingBody extends StatelessWidget {
   const BookingBody({super.key});
   static const _fields = [
-    FieldModel(
+    FootballFieldModel(
       name: 'ملعب الهدف',
       price: '300 ج / الساعة',
       location: 'مدينة نصر',
@@ -18,7 +18,7 @@ class BookingBody extends StatelessWidget {
       badge: 'خماسي',
       image: Assets.facility6,
     ),
-    FieldModel(
+    FootballFieldModel(
       name: 'ملعب النهضة',
       price: '350 ج / الساعة',
       location: 'مدينة نصر',
@@ -26,7 +26,7 @@ class BookingBody extends StatelessWidget {
       badge: 'خماسي',
       image: Assets.facility6,
     ),
-    FieldModel(
+    FootballFieldModel(
       name: 'ملعب الأبطال',
       price: '280 ج / الساعة',
       location: 'العباسية',

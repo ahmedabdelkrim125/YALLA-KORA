@@ -2,12 +2,12 @@
 //  FIELDS CAROUSEL
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/core/models/football-field-model/football_field_model.dart';
 import 'package:yalla_kora/core/routing/routes.dart';
-import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/core/widgets/cards/field_card.dart';
 
 class FieldsCarousel extends StatelessWidget {
-  final List<FieldModel> fields;
+  final List<FootballFieldModel> fields;
 
   const FieldsCarousel({super.key, required this.fields});
 

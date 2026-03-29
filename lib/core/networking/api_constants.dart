@@ -5,6 +5,8 @@ class ApiConstants {
   static const String login = 'auth/login';
   static const String register = 'auth/register';
   static const String verifyOtp = 'auth/verify-otp';
+  static const String eventMatches = 'matches/event'; // todo : change this to the correct endpoint
+  static const String nearFacilities = 'facilities/near'; // todo : change this to the correct endpoint
 }
 
 class ApiErrors {

@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/features/home/ui/home_screen.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import 'package:yalla_kora/features/home/ui/widgets/book_button.dart';
 import 'package:yalla_kora/features/home/ui/widgets/icon_text_row.dart';
 import 'package:yalla_kora/features/home/ui/widgets/players_badge.dart';
