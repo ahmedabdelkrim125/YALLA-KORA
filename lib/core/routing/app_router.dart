@@ -61,6 +61,8 @@ import 'package:yalla_kora/core/di/dependency_injection.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/booking_confirmation_screen.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/success_booking_screen.dart';
 import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
+import 'package:yalla_kora/features/home/logic/event_matches/event_matches_cubit.dart';
+import 'package:yalla_kora/features/home/logic/near_facilities/near_facilities_cubit.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
@@ -107,7 +109,15 @@ class AppRouter {
         );
 
       case Routes.mainScreen:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<NearFacilitiesCubit>()..emitNearFacilitiesStates()),
+            BlocProvider(create: (_) => getIt<EventMatchesCubit>()..emitEventMatchesStates()),
+          ],
+            child: MainScreen(),
+          )
+        );
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.facilityDetails:
