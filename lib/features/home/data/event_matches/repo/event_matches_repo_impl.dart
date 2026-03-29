@@ -15,7 +15,7 @@ class EventMatchesRepoImpl extends EventMatchesRepo{
       return ApiResult.success(response);
     }
      catch (e) {
-      return Future.value(ApiResult.failure(ErrorHandler.handle(e)));
+       return ApiResult.failure(ErrorHandler.handle(e));
     }
   }
 }

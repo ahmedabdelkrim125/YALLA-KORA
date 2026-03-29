@@ -55,13 +55,13 @@ extension NearFacilitiesStatePatterns on NearFacilitiesState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( NearFacilitiesLoading value)?  loading,TResult Function( NearFacilitiesSuccess value)?  success,TResult Function( NearFacilitiesFailure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( NearFacilitiesLoading value)?  loading,TResult Function( NearFacilitiesSuccess value)?  success,TResult Function( NearFacilitiesError value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case NearFacilitiesLoading() when loading != null:
 return loading(_that);case NearFacilitiesSuccess() when success != null:
-return success(_that);case NearFacilitiesFailure() when failure != null:
+return success(_that);case NearFacilitiesError() when failure != null:
 return failure(_that);case _:
   return orElse();
 
@@ -80,13 +80,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( NearFacilitiesLoading value)  loading,required TResult Function( NearFacilitiesSuccess value)  success,required TResult Function( NearFacilitiesFailure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( NearFacilitiesLoading value)  loading,required TResult Function( NearFacilitiesSuccess value)  success,required TResult Function( NearFacilitiesError value)  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case NearFacilitiesLoading():
 return loading(_that);case NearFacilitiesSuccess():
-return success(_that);case NearFacilitiesFailure():
+return success(_that);case NearFacilitiesError():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -104,13 +104,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( NearFacilitiesLoading value)?  loading,TResult? Function( NearFacilitiesSuccess value)?  success,TResult? Function( NearFacilitiesFailure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( NearFacilitiesLoading value)?  loading,TResult? Function( NearFacilitiesSuccess value)?  success,TResult? Function( NearFacilitiesError value)?  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case NearFacilitiesLoading() when loading != null:
 return loading(_that);case NearFacilitiesSuccess() when success != null:
-return success(_that);case NearFacilitiesFailure() when failure != null:
+return success(_that);case NearFacilitiesError() when failure != null:
 return failure(_that);case _:
   return null;
 
@@ -133,7 +133,7 @@ switch (_that) {
 case _Initial() when initial != null:
 return initial();case NearFacilitiesLoading() when loading != null:
 return loading();case NearFacilitiesSuccess() when success != null:
-return success(_that.data);case NearFacilitiesFailure() when failure != null:
+return success(_that.data);case NearFacilitiesError() when failure != null:
 return failure(_that.error);case _:
   return orElse();
 
@@ -157,7 +157,7 @@ switch (_that) {
 case _Initial():
 return initial();case NearFacilitiesLoading():
 return loading();case NearFacilitiesSuccess():
-return success(_that.data);case NearFacilitiesFailure():
+return success(_that.data);case NearFacilitiesError():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
@@ -180,7 +180,7 @@ switch (_that) {
 case _Initial() when initial != null:
 return initial();case NearFacilitiesLoading() when loading != null:
 return loading();case NearFacilitiesSuccess() when success != null:
-return success(_that.data);case NearFacilitiesFailure() when failure != null:
+return success(_that.data);case NearFacilitiesError() when failure != null:
 return failure(_that.error);case _:
   return null;
 
@@ -328,8 +328,8 @@ as List<FootballFieldModel>,
 /// @nodoc
 
 
-class NearFacilitiesFailure implements NearFacilitiesState {
-  const NearFacilitiesFailure(this.error);
+class NearFacilitiesError implements NearFacilitiesState {
+  const NearFacilitiesError(this.error);
   
 
  final  ErrorHandler error;
@@ -338,13 +338,13 @@ class NearFacilitiesFailure implements NearFacilitiesState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NearFacilitiesFailureCopyWith<NearFacilitiesFailure> get copyWith => _$NearFacilitiesFailureCopyWithImpl<NearFacilitiesFailure>(this, _$identity);
+$NearFacilitiesErrorCopyWith<NearFacilitiesError> get copyWith => _$NearFacilitiesErrorCopyWithImpl<NearFacilitiesError>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NearFacilitiesFailure&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NearFacilitiesError&&(identical(other.error, error) || other.error == error));
 }
 
 
@@ -360,8 +360,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $NearFacilitiesFailureCopyWith<$Res> implements $NearFacilitiesStateCopyWith<$Res> {
-  factory $NearFacilitiesFailureCopyWith(NearFacilitiesFailure value, $Res Function(NearFacilitiesFailure) _then) = _$NearFacilitiesFailureCopyWithImpl;
+abstract mixin class $NearFacilitiesErrorCopyWith<$Res> implements $NearFacilitiesStateCopyWith<$Res> {
+  factory $NearFacilitiesErrorCopyWith(NearFacilitiesError value, $Res Function(NearFacilitiesError) _then) = _$NearFacilitiesErrorCopyWithImpl;
 @useResult
 $Res call({
  ErrorHandler error
@@ -372,17 +372,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$NearFacilitiesFailureCopyWithImpl<$Res>
-    implements $NearFacilitiesFailureCopyWith<$Res> {
-  _$NearFacilitiesFailureCopyWithImpl(this._self, this._then);
+class _$NearFacilitiesErrorCopyWithImpl<$Res>
+    implements $NearFacilitiesErrorCopyWith<$Res> {
+  _$NearFacilitiesErrorCopyWithImpl(this._self, this._then);
 
-  final NearFacilitiesFailure _self;
-  final $Res Function(NearFacilitiesFailure) _then;
+  final NearFacilitiesError _self;
+  final $Res Function(NearFacilitiesError) _then;
 
 /// Create a copy of NearFacilitiesState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
-  return _then(NearFacilitiesFailure(
+  return _then(NearFacilitiesError(
 null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorHandler,
   ));

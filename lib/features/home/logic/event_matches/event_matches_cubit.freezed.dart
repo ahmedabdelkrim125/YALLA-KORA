@@ -55,13 +55,13 @@ extension EventMatchesStatePatterns on EventMatchesState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( EventMatchesLoading value)?  loading,TResult Function( EventMatchesSuccess value)?  success,TResult Function( EventMatchesFailure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( EventMatchesLoading value)?  loading,TResult Function( EventMatchesSuccess value)?  success,TResult Function( EventMatchesError value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case EventMatchesLoading() when loading != null:
 return loading(_that);case EventMatchesSuccess() when success != null:
-return success(_that);case EventMatchesFailure() when failure != null:
+return success(_that);case EventMatchesError() when failure != null:
 return failure(_that);case _:
   return orElse();
 
@@ -80,13 +80,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( EventMatchesLoading value)  loading,required TResult Function( EventMatchesSuccess value)  success,required TResult Function( EventMatchesFailure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( EventMatchesLoading value)  loading,required TResult Function( EventMatchesSuccess value)  success,required TResult Function( EventMatchesError value)  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case EventMatchesLoading():
 return loading(_that);case EventMatchesSuccess():
-return success(_that);case EventMatchesFailure():
+return success(_that);case EventMatchesError():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -104,13 +104,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( EventMatchesLoading value)?  loading,TResult? Function( EventMatchesSuccess value)?  success,TResult? Function( EventMatchesFailure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( EventMatchesLoading value)?  loading,TResult? Function( EventMatchesSuccess value)?  success,TResult? Function( EventMatchesError value)?  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case EventMatchesLoading() when loading != null:
 return loading(_that);case EventMatchesSuccess() when success != null:
-return success(_that);case EventMatchesFailure() when failure != null:
+return success(_that);case EventMatchesError() when failure != null:
 return failure(_that);case _:
   return null;
 
@@ -133,7 +133,7 @@ switch (_that) {
 case _Initial() when initial != null:
 return initial();case EventMatchesLoading() when loading != null:
 return loading();case EventMatchesSuccess() when success != null:
-return success(_that.data);case EventMatchesFailure() when failure != null:
+return success(_that.data);case EventMatchesError() when failure != null:
 return failure(_that.error);case _:
   return orElse();
 
@@ -157,7 +157,7 @@ switch (_that) {
 case _Initial():
 return initial();case EventMatchesLoading():
 return loading();case EventMatchesSuccess():
-return success(_that.data);case EventMatchesFailure():
+return success(_that.data);case EventMatchesError():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
@@ -180,7 +180,7 @@ switch (_that) {
 case _Initial() when initial != null:
 return initial();case EventMatchesLoading() when loading != null:
 return loading();case EventMatchesSuccess() when success != null:
-return success(_that.data);case EventMatchesFailure() when failure != null:
+return success(_that.data);case EventMatchesError() when failure != null:
 return failure(_that.error);case _:
   return null;
 
@@ -328,8 +328,8 @@ as List<MatchModel>,
 /// @nodoc
 
 
-class EventMatchesFailure implements EventMatchesState {
-  const EventMatchesFailure(this.error);
+class EventMatchesError implements EventMatchesState {
+  const EventMatchesError(this.error);
   
 
  final  ErrorHandler error;
@@ -338,13 +338,13 @@ class EventMatchesFailure implements EventMatchesState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$EventMatchesFailureCopyWith<EventMatchesFailure> get copyWith => _$EventMatchesFailureCopyWithImpl<EventMatchesFailure>(this, _$identity);
+$EventMatchesErrorCopyWith<EventMatchesError> get copyWith => _$EventMatchesErrorCopyWithImpl<EventMatchesError>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventMatchesFailure&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventMatchesError&&(identical(other.error, error) || other.error == error));
 }
 
 
@@ -360,8 +360,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $EventMatchesFailureCopyWith<$Res> implements $EventMatchesStateCopyWith<$Res> {
-  factory $EventMatchesFailureCopyWith(EventMatchesFailure value, $Res Function(EventMatchesFailure) _then) = _$EventMatchesFailureCopyWithImpl;
+abstract mixin class $EventMatchesErrorCopyWith<$Res> implements $EventMatchesStateCopyWith<$Res> {
+  factory $EventMatchesErrorCopyWith(EventMatchesError value, $Res Function(EventMatchesError) _then) = _$EventMatchesErrorCopyWithImpl;
 @useResult
 $Res call({
  ErrorHandler error
@@ -372,17 +372,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$EventMatchesFailureCopyWithImpl<$Res>
-    implements $EventMatchesFailureCopyWith<$Res> {
-  _$EventMatchesFailureCopyWithImpl(this._self, this._then);
+class _$EventMatchesErrorCopyWithImpl<$Res>
+    implements $EventMatchesErrorCopyWith<$Res> {
+  _$EventMatchesErrorCopyWithImpl(this._self, this._then);
 
-  final EventMatchesFailure _self;
-  final $Res Function(EventMatchesFailure) _then;
+  final EventMatchesError _self;
+  final $Res Function(EventMatchesError) _then;
 
 /// Create a copy of EventMatchesState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
-  return _then(EventMatchesFailure(
+  return _then(EventMatchesError(
 null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorHandler,
   ));
