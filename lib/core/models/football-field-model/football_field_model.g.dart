@@ -15,3 +15,13 @@ FootballFieldModel _$FootballFieldModelFromJson(Map<String, dynamic> json) =>
       badge: json['badge'] as String,
       image: json['image'] as String,
     );
+
+Map<String, dynamic> _$FootballFieldModelToJson(FootballFieldModel instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'price': instance.price,
+      'location': instance.location,
+      'availability': instance.availability,
+      'badge': instance.badge,
+      'image': instance.image,
+    };

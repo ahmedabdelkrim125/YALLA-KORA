@@ -10,7 +10,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(LoginState.initial());
 
   // Controllers
-  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
   // Form Key
@@ -21,7 +21,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     final response = await _loginRepo.login(
       LoginRequestBody(
-        email: emailController.text,
+        phone: phoneController.text,
         password: passwordController.text,
       ),
     );
