@@ -14,6 +14,13 @@ class LoginCubit extends Cubit<LoginState> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
+  @override
+  Future<void> close() {
+    phoneController.dispose();
+    passwordController.dispose();
+    return super.close();
+  }
+
   // Form Key
   final formKey = GlobalKey<FormState>();
 

@@ -29,8 +29,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   void dispose() {
-    cubit.phoneController.dispose();
-    cubit.passwordController.dispose();
+    // cubit.phoneController.dispose();
+    // cubit.passwordController.dispose();
     super.dispose();
   }
 
