@@ -67,6 +67,7 @@ import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
+import 'package:yalla_kora/features/splash/ui/splash_screen.dart';
 import '../../features/OTP/ui/otp_screen.dart';
 import '../../features/home/ui/main_screen.dart';
 import '../../features/signup/ui/role_selection_screen.dart';
@@ -77,6 +78,9 @@ import '../../features/signup/ui/signup_screen.dart';
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+
       case Routes.onBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
 
