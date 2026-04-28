@@ -34,7 +34,15 @@ class LoginCubit extends Cubit<LoginState> {
         final user = loginResponse.data.user;
 
         await StorageService.saveAuthToken(token);
-        await StorageService.saveUserInfo(id: user.id, name: user.name, phone: user.phone, role: user.role);
+        await StorageService.saveUserInfo(id: user.id,
+          name: user.name,
+          phone: user.phone,
+          role: user.role,
+          governorate:user.governorate,
+          matchNotifications: user.matchNotifications,
+          matchesPlayed: user.matchesPlayed,
+          walletBalance: user.walletBalance
+        );
 
         emit(LoginState.success(loginResponse));
       },

@@ -39,7 +39,7 @@ class SignupBlocListener extends StatelessWidget {
               onPressed: () {
                 context.pushNamed(
                   Routes.otpScreen,
-                  arguments: signupResponse.userId,
+                  arguments: signupResponse.data.user.id,
                 );
               },
             );

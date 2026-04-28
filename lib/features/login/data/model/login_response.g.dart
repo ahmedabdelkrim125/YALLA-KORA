@@ -35,6 +35,12 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
   name: json['name'] as String,
   role: json['role'] as String,
   phone: json['phone'] as String,
+  age: (json['age'] as num?)?.toInt(),
+  fieldName: json['field_name'] as String?,
+  governorate: json['governorate'] as String,
+  matchesPlayed: (json['matches_played'] as num).toInt(),
+  matchNotifications: json['match_notifications'] as bool,
+  walletBalance: (json['wallet_balance'] as num).toInt(),
 );
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
@@ -42,4 +48,10 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
   'name': instance.name,
   'role': instance.role,
   'phone': instance.phone,
+  'age': instance.age,
+  'field_name': instance.fieldName,
+  'governorate': instance.governorate,
+  'matches_played': instance.matchesPlayed,
+  'match_notifications': instance.matchNotifications,
+  'wallet_balance': instance.walletBalance,
 };

@@ -35,7 +35,7 @@ class LoginBlocListener extends StatelessWidget {
               message: 'تم تسجيل الدخول بنجاح.',
               buttonText: 'استمرار',
               onPressed: () {
-                context.pushNamed(Routes.mainScreen);
+                context.pushNamedAndRemoveUntil(Routes.mainScreen, predicate: (route) => false);
               },
             );
           },
