@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
-import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/core/helper/responsive_extensions.dart';
+import 'package:yalla_kora/features/splash/ui/widgets/center_content.dart';
+import 'package:yalla_kora/features/splash/ui/widgets/green_glow_bottom.dart';
+import 'package:yalla_kora/features/splash/ui/widgets/green_glow_top.dart';
+import 'package:yalla_kora/features/splash/ui/widgets/loading_indicator.dart';
 import '../../../core/helper/extensions.dart';
 import '../../../core/service/storage_service.dart';
 
@@ -82,97 +82,10 @@ class _SplashScreenState extends State<SplashScreen>
       backgroundColor: AppColors.darkBackground,
       body: Stack(
         children: [
-          // ── Green glow top ──────────────────────────
-          Positioned(
-            top: -80.h(context),
-            left: -60.w(context),
-            child: Container(
-              width: 250.w(context),
-              height: 250.h(context),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primaryGreen.withOpacity(0.08),
-              ),
-            ),
-          ),
-
-          // ── Green glow bottom ───────────────────────
-          Positioned(
-            bottom: -60.h(context),
-            right: -40.w(context),
-            child: Container(
-              width: 200.w(context),
-              height: 200.h(context),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primaryGreen.withOpacity(0.06),
-              ),
-            ),
-          ),
-
-          // ── Center content ──────────────────────────
-          Center(
-            child: FadeTransition(
-              opacity: _fadeAnim,
-              child: ScaleTransition(
-                scale: _scaleAnim,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Logo
-                    SvgPicture.asset(
-                      Assets.logosvg,
-                      width: 120.w(context),
-                      height: 120.h(context),
-                    ),
-
-                    SizedBox(height: 20.h(context)),
-
-                    // App name
-                    Text(
-                      'يلا كورة',
-                      style: TextStyles.boldWhite28,
-                    ),
-
-                    SizedBox(height: 8.h(context)),
-
-                    // Tagline
-                    Text(
-                      'احجز ملعبك في ثوانٍ',
-                      style: TextStyles.regularMuted14,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          // ── Loading indicator bottom ─────────────────
-          Positioned(
-            bottom: 60.h(context),
-            left: 0,
-            right: 0,
-            child: FadeTransition(
-              opacity: _fadeAnim,
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 24.w(context),
-                    height: 24.h(context),
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: AppColors.primaryGreen,
-                    ),
-                  ),
-                  SizedBox(height: 12.h(context)),
-                  Text(
-                    'جاري التحميل...',
-                    style: TextStyles.regularGrey12,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          GreenGlowTop(),
+          GreenGlowBottom(),
+          CenterContent(fadeAnim: _fadeAnim, scaleAnim: _scaleAnim),
+          LoadingIndicator(fadeAnim: _fadeAnim),
         ],
       ),
     );
