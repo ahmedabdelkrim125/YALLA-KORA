@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
+import 'package:yalla_kora/core/service/storage_service.dart';
+import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/user_header/notification_bt.dart';
 import 'package:yalla_kora/core/widgets/user_header/user_avatar.dart';
@@ -7,9 +10,8 @@ import '../../helper/spacing.dart';
 
 class UserHeader extends StatelessWidget {
   final String greeting;
-  final String userName;
 
-  const UserHeader({super.key, required this.greeting, required this.userName});
+  const UserHeader({super.key, required this.greeting});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,24 @@ class UserHeader extends StatelessWidget {
                 children: [
                   Text(greeting, style: TextStyles.regularGrey12),
                   verticalSpace(context, height: 2),
-                  Text(userName, style: TextStyles.boldWhite18),
+                  FutureBuilder<String?>(
+                    future: StorageService.getUserName(),
+                    builder: (context, snapshot){
+                      if(snapshot.connectionState == ConnectionState.waiting){
+                        return Skeletonizer(
+                          effect: ShimmerEffect(
+                            baseColor: AppColors.cardBg2,
+                            highlightColor: AppColors.primaryGreen,
+                            duration: const Duration(seconds: 1),
+                          ),
+                          child: Text('xxxxx xxxxx', style: TextStyles.boldWhite18),
+                        );
+                      }
+                      if(snapshot.hasError || snapshot.data == null){
+                        return Text('لاعب', style: TextStyles.boldWhite18);
+                      }
+                      return Text(snapshot.data!, style: TextStyles.boldWhite18);
+                  }),
                 ],
               ),
             ),

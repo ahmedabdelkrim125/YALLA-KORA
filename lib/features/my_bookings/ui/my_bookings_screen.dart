@@ -17,7 +17,6 @@ class MyBookingsScreen extends StatelessWidget {
             children: [
               const UserHeader(
                 greeting: 'أهلاً بك عالمي,',
-                userName: 'عمر إيهاب',
               ),
               verticalSpace(context, height: 20),
               const BookingToggleTabs(),

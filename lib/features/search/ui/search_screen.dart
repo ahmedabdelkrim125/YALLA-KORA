@@ -27,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              UserHeader(greeting: "أهلاً يا عالمي،", userName: "عمر إيهاب"),
+              UserHeader(greeting: "أهلاً يك عالمي،"),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w(context)),
                 child: Column(
