@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/login/ui/widgets/login_bloc_listener.dart';
@@ -28,8 +29,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   void dispose() {
-    cubit.emailController.dispose();
-    cubit.passwordController.dispose();
+    // cubit.phoneController.dispose();
+    // cubit.passwordController.dispose();
     super.dispose();
   }
 
@@ -39,7 +40,7 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
-          _buildEmailField(context),
+          _buildPhoneField(context),
           verticalSpace(context, height: 10),
           _buildPasswordField(context),
           verticalSpace(context, height: 14),
@@ -57,21 +58,27 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  Widget _buildEmailField(BuildContext context) {
+  Widget _buildPhoneField(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 23.w(context)),
           child: Text(
-            'رقم الهاتف او البريد الالكتروني',
+            'رقم الهاتف',
             style: TextStyles.mediumWhite12,
           ),
         ),
         verticalSpace(context, height: 5),
         AppFormField(
-          controller: cubit.emailController,
-          validator: AppValidator.validateEmail,
+          controller: cubit.phoneController,
+          validator: AppValidator.validatePhone,
+          textHint: '010xxxxxxxx',
+          keyboardType: TextInputType.phone,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(11),
+          ],
         ),
       ],
     );

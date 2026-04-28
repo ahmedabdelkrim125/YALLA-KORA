@@ -28,7 +28,7 @@ class _SignupFormState extends State<SignupForm> {
   late final TextEditingController nameController;
   late final TextEditingController ageController;
   late final TextEditingController stadiumNameController;
-  late final TextEditingController cityController;
+  late final TextEditingController governorateController;
   late final TextEditingController passwordController;
   late final TextEditingController confirmPasswordController;
 
@@ -40,7 +40,7 @@ class _SignupFormState extends State<SignupForm> {
     nameController = TextEditingController();
     ageController = TextEditingController();
     stadiumNameController = TextEditingController();
-    cityController = TextEditingController();
+    governorateController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     super.initState();
@@ -52,7 +52,7 @@ class _SignupFormState extends State<SignupForm> {
     nameController.dispose();
     ageController.dispose();
     stadiumNameController.dispose();
-    cityController.dispose();
+    governorateController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
@@ -81,11 +81,12 @@ class _SignupFormState extends State<SignupForm> {
 
     if (isFormValid) {
       final signupRequestBody = SignupRequestBody(
-        phone: phoneController.value.international,
-        email: '',
+        phone: '0${phoneController.value.nsn}',
         name: nameController.text.trim(),
-        gender: isPlayer ? 'male' : 'owner',
-        birthdate: isPlayer ? _calculateBirthdate() : '',
+        governorate: governorateController.text.trim(),
+        age: isPlayer ? ageController.text.trim() : null,
+        fieldName: isPlayer ? null : stadiumNameController.text.trim(),
+        role: isPlayer ? 'player' : 'owner',
         password: passwordController.text.trim(),
       );
 
@@ -127,7 +128,7 @@ class _SignupFormState extends State<SignupForm> {
           verticalSpace(context, height: 7),
           CustomTextField(
             text: 'المحافظة',
-            controller: cityController,
+            controller: governorateController,
             validator: AppValidator.validateCity,
           ),
           verticalSpace(context, height: 7),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../theme/app_colors.dart';
 import '../helper/responsive_extensions.dart';
@@ -8,12 +9,17 @@ class AppFormField extends StatefulWidget {
   final bool isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final String? textHint;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   const AppFormField({
     super.key,
     this.isPassword = false,
     this.controller,
     this.validator,
+    this.keyboardType,
+    this.inputFormatters, this.textHint,
   });
 
   @override
@@ -33,7 +39,13 @@ class _AppFormFieldState extends State<AppFormField> {
         obscureText: widget.isPassword ? _obscure : false,
         style: TextStyles.mediumWhite14,
 
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
+
         decoration: InputDecoration(
+          hintText: widget.textHint,
+          hintStyle: TextStyles.regularSlateGray12,
+
           contentPadding: EdgeInsets.symmetric(
             vertical: 18.h(context),
             horizontal: 20.w(context),

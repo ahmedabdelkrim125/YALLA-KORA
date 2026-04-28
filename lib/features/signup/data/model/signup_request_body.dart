@@ -2,22 +2,24 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'signup_request_body.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class SignupRequestBody {
   final String phone;
-  final String email;
   final String name;
-  final String gender;
-  final String birthdate;
+  final String role;
+  final String? age;
+  @JsonKey(name: 'field_name')
+  final String? fieldName;
+  final String governorate;
   final String password;
 
   SignupRequestBody({
     required this.phone,
-    required this.email,
     required this.name,
-    required this.gender,
-    required this.birthdate,
-    required this.password,
+    this.age,
+    this.fieldName,
+    required this.governorate,
+    required this.password, required this.role,
   });
 
   factory SignupRequestBody.fromJson(Map<String, dynamic> json) =>

@@ -9,19 +9,21 @@ part of 'signup_request_body.dart';
 SignupRequestBody _$SignupRequestBodyFromJson(Map<String, dynamic> json) =>
     SignupRequestBody(
       phone: json['phone'] as String,
-      email: json['email'] as String,
       name: json['name'] as String,
-      gender: json['gender'] as String,
-      birthdate: json['birthdate'] as String,
+      age: json['age'] as String?,
+      fieldName: json['field_name'] as String?,
+      governorate: json['governorate'] as String,
       password: json['password'] as String,
+      role: json['role'] as String,
     );
 
 Map<String, dynamic> _$SignupRequestBodyToJson(SignupRequestBody instance) =>
     <String, dynamic>{
       'phone': instance.phone,
-      'email': instance.email,
       'name': instance.name,
-      'gender': instance.gender,
-      'birthdate': instance.birthdate,
+      'role': instance.role,
+      'age': ?instance.age,
+      'field_name': ?instance.fieldName,
+      'governorate': instance.governorate,
       'password': instance.password,
     };

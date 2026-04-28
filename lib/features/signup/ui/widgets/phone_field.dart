@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 import '../../../../core/theme/app_colors.dart';
@@ -29,14 +30,20 @@ class AppPhoneFormField extends StatelessWidget {
                 errorText: 'رقم الهاتف غير صحيح',
               ),
             ]),
-        isCountrySelectionEnabled: true,
+        isCountrySelectionEnabled: false,
         isCountryButtonPersistent: true,
         countrySelectorNavigator: const CountrySelectorNavigator.page(),
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(11),
+        ],
+        keyboardType: TextInputType.phone,
         style: TextStyles.mediumWhite14.copyWith(
           color: Colors.white,
         ), // لون النص أبيض
         cursorColor: Colors.white, // لون المؤشر أبيض
         decoration: InputDecoration(
+          hintText: '10xxxxxxxx',
           contentPadding: EdgeInsets.symmetric(
             vertical: 18.h(context),
             horizontal: 12.w(context),

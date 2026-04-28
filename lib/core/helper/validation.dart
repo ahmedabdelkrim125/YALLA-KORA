@@ -87,4 +87,21 @@ class AppValidator {
 
     return null;
   }
+
+  /// validate Phone
+  static String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'رقم الهاتف مطلوب';
+    }
+
+    if (value.length < 11) {
+      return 'رقم الهاتف يجب أن يكون 11 رقم';
+    }
+
+    if (!value.startsWith('01')) {
+      return 'رقم الهاتف غير صحيح';
+    }
+
+    return null;
+  }
 }

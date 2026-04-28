@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
             children: [
               const UserHeader(
                 greeting: 'أهلاً بك عالمي,',
-                userName: 'عمر إيهاب',
               ),
               Expanded(
                 child: SingleChildScrollView(

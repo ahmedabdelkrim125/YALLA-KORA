@@ -12,3 +12,11 @@ MatchModel _$MatchModelFromJson(Map<String, dynamic> json) => MatchModel(
   playersNeeded: (json['playersNeeded'] as num).toInt(),
   sharePrice: json['sharePrice'] as String,
 );
+
+Map<String, dynamic> _$MatchModelToJson(MatchModel instance) =>
+    <String, dynamic>{
+      'time': instance.time,
+      'venue': instance.venue,
+      'sharePrice': instance.sharePrice,
+      'playersNeeded': instance.playersNeeded,
+    };
