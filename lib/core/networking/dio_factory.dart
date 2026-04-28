@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:yalla_kora/core/networking/api_constants.dart';
 
+import '../service/storage_service.dart';
+
 class DioFactory {
   //** */ =>> This class is implemented using the Singleton Pattern <<= ** //
 
@@ -24,6 +26,17 @@ class DioFactory {
   }
 
   static void addDioInterceptor() {
+    dio?.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = await StorageService.getAuthToken();
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          handler.next(options);
+        },
+      ),
+    );
     dio?.interceptors.add(
       PrettyDioLogger(
         requestBody: true,
