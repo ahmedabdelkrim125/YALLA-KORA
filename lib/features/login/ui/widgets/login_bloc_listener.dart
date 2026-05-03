@@ -27,7 +27,7 @@ class LoginBlocListener extends StatelessWidget {
             );
           },
           success: (loginResponse) {
-            Navigator.of(context).pop();
+            context.pop(); // Close the loading dialog
 
             ModernDialog.showSuccess(
               context: context,
@@ -40,7 +40,7 @@ class LoginBlocListener extends StatelessWidget {
             );
           },
           failure: (message) {
-            Navigator.of(context).pop();
+            //context.pop(); // Close the loading dialog
 
             ModernDialog.showError(
               context: context,
