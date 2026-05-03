@@ -58,17 +58,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
+import 'package:yalla_kora/core/models/football-field-model/football_field_model.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/booking_confirmation_screen.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/success_booking_screen.dart';
 import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
 import 'package:yalla_kora/features/home/logic/event_matches/event_matches_cubit.dart';
 import 'package:yalla_kora/features/home/logic/near_facilities/near_facilities_cubit.dart';
 import 'package:yalla_kora/features/home/ui/home_screen.dart';
+import 'package:yalla_kora/features/home/ui/view_all_fields_screen.dart';
+import 'package:yalla_kora/features/home/ui/view_all_matches_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import 'package:yalla_kora/features/splash/ui/splash_screen.dart';
 import '../../features/OTP/ui/otp_screen.dart';
+import '../../features/home/data/event_matches/models/match_model.dart';
 import '../../features/home/ui/main_screen.dart';
 import '../../features/signup/ui/role_selection_screen.dart';
 import 'routes.dart';
@@ -124,6 +128,20 @@ class AppRouter {
         );
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      case Routes.viewAllFieldsScreen:
+        return MaterialPageRoute(
+          builder: (_) => ViewAllFieldsScreen(
+            fields: settings.arguments as List<FootballFieldModel>,
+          )
+        );
+      case Routes.viewAllMatchesScreen:
+        return MaterialPageRoute(
+          builder: (_) => ViewAllMatchesScreen(
+            matches: settings.arguments as List<MatchModel>,
+          )
+        );
+
       case Routes.facilityDetails:
         return MaterialPageRoute(builder: (_) => const FacilityDetails());
       case Routes.bookingConfirmation:

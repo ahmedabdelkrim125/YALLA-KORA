@@ -7,6 +7,8 @@ class Routes {
   static const String roleSelectionScreen = '/roleSelectionScreen';
   static const String otpScreen = '/otpScreen';
   static const String mainScreen = '/mainScreen';
+  static const String viewAllFieldsScreen = '/viewAllFieldsScreen';
+  static const String viewAllMatchesScreen = '/viewAllMatchesScreen';
   static const String facilityDetails = '/facilityDetails';
   static const String bookingConfirmation = '/bookingConfirmation';
   static const String successBooking = '/successBooking';

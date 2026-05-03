@@ -52,7 +52,7 @@ class _FieldsCarouselSkeleton extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: fields.length,
             separatorBuilder: (_, __) => const SizedBox(width: 14),
-            itemBuilder: (context, i) => FieldCard(field: fields[i])),
+            itemBuilder: (context, i) => FieldCard(field: fields[i], isHorizontal: true),),
         ),
     );
   }

@@ -9,8 +9,8 @@ class SectionHeader extends StatelessWidget {
   final String title;
   final String iconPath;
   final bool isViewAll;
-
-  const SectionHeader({super.key, required this.title, required this.iconPath, this.isViewAll = true});
+  final VoidCallback? onViewAllTap;
+  const SectionHeader({super.key, required this.title, required this.iconPath, this.isViewAll = true, this.onViewAllTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,11 @@ class SectionHeader extends StatelessWidget {
           const SizedBox(width: 8),
           SvgPicture.asset(iconPath),
           const Spacer(),
-          isViewAll ? Text('عرض الكل', style: TextStyles.regularWhite12) : const SizedBox(),
+          isViewAll ?
+            GestureDetector(
+            onTap: onViewAllTap,
+            child: Text('عرض الكل', style: TextStyles.regularWhite12))
+          : const SizedBox(),
         ],
       ),
     );
