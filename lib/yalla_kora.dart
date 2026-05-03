@@ -21,6 +21,10 @@ class YallaKora extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'Cairo',
               scaffoldBackgroundColor: AppColors.darkBackground,
+              appBarTheme: const AppBarTheme(
+                backgroundColor: AppColors.darkBackground,
+                elevation: 0,
+              ),
             ),
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.generateRoute,

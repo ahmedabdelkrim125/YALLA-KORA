@@ -6,6 +6,8 @@ import 'package:yalla_kora/core/models/football-field-model/football_field_model
 import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/core/widgets/cards/field_card.dart';
 
+import '../../../../core/helper/extensions.dart';
+
 class FieldsCarousel extends StatelessWidget {
   final List<FootballFieldModel> fields;
 
@@ -22,8 +24,8 @@ class FieldsCarousel extends StatelessWidget {
         itemCount: fields.length,
         separatorBuilder: (_, __) => const SizedBox(width: 14),
         itemBuilder: (context, i) => GestureDetector(onTap:(){
-          Navigator.pushNamed(context, Routes.facilityDetails);
-        },child: FieldCard(field: fields[i])),
+          context.pushNamed(Routes.facilityDetails);
+        },child: FieldCard(field: fields[i], isHorizontal: true,)),
       ),
     );
   }
