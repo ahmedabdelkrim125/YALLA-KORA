@@ -16,7 +16,7 @@ class ModernDialog {
     String? secondaryButtonText,
     VoidCallback? onPrimaryPressed,
     VoidCallback? onSecondaryPressed,
-    bool barrierDismissible = true,
+    bool barrierDismissible = false,
   }) {
     return showDialog(
       context: context,
