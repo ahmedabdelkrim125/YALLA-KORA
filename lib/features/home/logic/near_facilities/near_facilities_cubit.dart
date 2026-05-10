@@ -14,16 +14,19 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
   final NearFacilitiesRepo _nearFacilitiesRepo;
   NearFacilitiesCubit(this._nearFacilitiesRepo) : super(NearFacilitiesState.initial());
 
-  List<FieldModel> fields = [];
   int page = 1;
 
   void emitNearFacilitiesStates() async {
+    final currentFields = state.maybeWhen(
+        success:(data) => data,
+        orElse: ()=> <FieldModel>[]);
+
     emit(const NearFacilitiesState.loading());
     final response = await _nearFacilitiesRepo.getNearFields(pageNum: page);
     response.when(
       success: (apiResponse) {
-        fields.addAll(apiResponse.data.fields);
-        emit(NearFacilitiesState.success(fields));
+        final allFields = [...currentFields, ...apiResponse.data.fields];
+        emit(NearFacilitiesState.success(allFields));
         page++;
       },
       failure: (errorHandler) {

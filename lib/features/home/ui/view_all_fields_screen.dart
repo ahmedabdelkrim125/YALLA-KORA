@@ -24,7 +24,7 @@ class ViewAllFieldsScreen extends StatelessWidget {
           separatorBuilder: (context, i)=> SizedBox(height: 14.h(context),),
           itemBuilder: (context, i) => GestureDetector(
             onTap:(){
-              context.pushNamed(Routes.facilityDetails);
+              context.pushNamed(Routes.facilityDetails, arguments: fields[i]);
             }, child: FieldCard(field: fields[i])),
           ),
       ),

@@ -5,6 +5,8 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/widgets/error_widget.dart';
 import 'package:yalla_kora/features/home/logic/near_facilities/near_facilities_cubit.dart';
 import 'package:yalla_kora/features/home/ui/widgets/fields_carousel.dart';
+import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
+import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/dummy_data.dart';
 import '../../../../core/widgets/cards/field_card.dart';
 import '../../data/near_facilities/model/field_model.dart';
@@ -38,22 +40,30 @@ class _FieldsCarouselSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 240,
-        child: Skeletonizer(
-          effect: ShimmerEffect(
-            baseColor: AppColors.cardBg2,
-            highlightColor: AppColors.primaryGreen,
-            duration: const Duration(seconds: 1),
-          ),
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: fields.length > 5 ? 5 : fields.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 14),
-            itemBuilder: (context, i) => FieldCard(field: fields[i], isHorizontal: true),),
+    return Column(
+      children: [
+        SectionHeader(
+          title: 'ملاعب قريبة منك',
+          iconPath: Assets.nearLocationIcon,
         ),
+        SizedBox(
+          height: 240,
+            child: Skeletonizer(
+              effect: ShimmerEffect(
+                baseColor: AppColors.cardBg2,
+                highlightColor: AppColors.primaryGreen,
+                duration: const Duration(seconds: 1),
+              ),
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: fields.length > 5 ? 5 : fields.length,
+                separatorBuilder: (_, __) => const SizedBox(width: 14),
+                itemBuilder: (context, i) => FieldCard(field: fields[i], isHorizontal: true),),
+            ),
+        ),
+      ],
     );
   }
 }

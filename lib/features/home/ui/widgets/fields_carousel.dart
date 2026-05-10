@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/routing/routes.dart';
+import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/cards/field_card.dart';
 import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
 
@@ -24,7 +25,12 @@ class FieldsCarousel extends StatelessWidget {
           iconPath: Assets.nearLocationIcon,
           onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: fields),
         ),
-        SizedBox(
+        fields.isEmpty ?
+        SizedBox(height: 240,
+          child: Center(child: Text(
+              'لا يوجد ملاعب حتي الان...', style: TextStyles.boldWhite20,
+              overflow: TextOverflow.ellipsis,)),)
+        :SizedBox(
           height: 240,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
