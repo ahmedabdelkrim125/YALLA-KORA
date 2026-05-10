@@ -18,10 +18,16 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
 
   void emitNearFacilitiesStates() async {
     final currentFields = state.maybeWhen(
-        success:(data) => data,
+        success:(data, isLoadingMore, hasError, errorHandler) => data,
         orElse: ()=> <FieldModel>[]);
 
-    emit(const NearFacilitiesState.loading());
+    if (currentFields.isNotEmpty) {
+      // emit loading more
+      emit(NearFacilitiesState.success(currentFields, isLoadingMore: true));
+    } else {
+      emit(const NearFacilitiesState.loading());
+    }
+
     final response = await _nearFacilitiesRepo.getNearFields(pageNum: page);
     response.when(
       success: (apiResponse) {
@@ -30,9 +36,24 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
         page++;
       },
       failure: (errorHandler) {
-        emit(NearFacilitiesState.failure(errorHandler));
+        if (currentFields.isNotEmpty) {
+          // footer error
+          emit(NearFacilitiesState.success(
+            currentFields,
+            hasError: true,
+            errorHandler: errorHandler,
+          ));
+        } else {
+          emit(NearFacilitiesState.failure(errorHandler));
+        }
       },
     );
+  }
+
+  // assign initial fields of page 1 (that i got it in home) to the state of new cubit
+  void loadInitialFields(List<FieldModel> initFields) async {
+    page = 2;
+    emit(NearFacilitiesState.success(initFields));
   }
 
   // dummy function to simulate api call

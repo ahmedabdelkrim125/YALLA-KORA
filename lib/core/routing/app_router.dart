@@ -131,9 +131,10 @@ class AppRouter {
 
       case Routes.viewAllFieldsScreen:
         return MaterialPageRoute(
-          builder: (_) => ViewAllFieldsScreen(
-            fields: settings.arguments as List<FieldModel>,
-          )
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<NearFacilitiesCubit>()..loadInitialFields(settings.arguments as List<FieldModel>),
+            child: ViewAllFieldsScreen(),
+          ),
         );
       case Routes.viewAllMatchesScreen:
         return MaterialPageRoute(
