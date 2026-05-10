@@ -14,11 +14,12 @@ class FieldInfoSection extends StatelessWidget {
   final double rating;
   final int    reviewCount;
   final int    price;
-  final bool   isOpen;
+  final String   openTime;
+  final String   closeTime;
 
   const FieldInfoSection({
     super.key, required this.name, required this.rating,
-    required this.reviewCount, required this.price, required this.isOpen,
+    required this.reviewCount, required this.price, required this.openTime, required this.closeTime,
   });
 
   @override
@@ -39,7 +40,7 @@ class FieldInfoSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              OpenStatusBadge(isOpen: isOpen),
+              OpenStatusBadge(openTime: openTime, closeTime: closeTime,),
               RatingRow(rating: rating, reviewCount: reviewCount),
             ],
           ),
@@ -52,8 +53,9 @@ class FieldInfoSection extends StatelessWidget {
 
 // ── Open status badge ─────────────────────────────────
 class OpenStatusBadge extends StatelessWidget {
-  final bool isOpen;
-  const OpenStatusBadge({super.key, required this.isOpen});
+  final String   openTime;
+  final String   closeTime;
+  const OpenStatusBadge({super.key, required this.openTime, required this.closeTime});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +72,7 @@ class OpenStatusBadge extends StatelessWidget {
           children: [
             SvgPicture.asset(Assets.timeIcon, color: AppColors.primaryGreen,),
             horizontalSpace(context, width: 4),
-            Text(
-              isOpen ? 'مفتوح 24 ساعة' : 'مغلق',
+            Text('مفتوح من ${openTime.substring(0,2)} الي ${closeTime.substring(0,2)} ',
               style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey),
             ),
           ],
@@ -103,7 +104,7 @@ class RatingRow extends StatelessWidget {
               ),
               TextSpan(text: ' '),
               TextSpan(
-                  text: '($reviewCountتقييم)',
+                  text: '($reviewCount تقييم)',
                   style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey)
               ),
             ],

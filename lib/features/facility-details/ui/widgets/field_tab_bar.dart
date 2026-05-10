@@ -7,10 +7,12 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/available_booking_section.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/facility_details_tab.dart';
+import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.dart';
 
 class FieldTabBar extends StatelessWidget {
-  const FieldTabBar({super.key, required this.days, required this.slots});
+  const FieldTabBar({super.key, required this.days, required this.slots, required this.field});
 
+  final FieldModel field;
   final List<DayModel> days;
   final List<TimeSlotModel> slots;
   @override
@@ -36,7 +38,7 @@ class FieldTabBar extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                FacilityDetailsTab(address: 'الف مسكن', city: 'القاهرة',),
+                FacilityDetailsTab(field: field),
                 AvailableBookings(days: days, slots: slots),
               ],
             ),

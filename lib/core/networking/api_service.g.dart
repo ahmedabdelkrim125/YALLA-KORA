@@ -105,30 +105,31 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<FootballFieldModel>> getNearFacilities() async {
+  Future<ApiResponseModel<FieldsResponse>> getNearFacilities({
+    int? page,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<FootballFieldModel>>(
+    final _options = _setStreamType<ApiResponseModel<FieldsResponse>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'facilities/near',
+            'fields',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<FootballFieldModel> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiResponseModel<FieldsResponse> _value;
     try {
-      _value = _result.data!
-          .map(
-            (dynamic i) =>
-                FootballFieldModel.fromJson(i as Map<String, dynamic>),
-          )
-          .toList();
+      _value = ApiResponseModel<FieldsResponse>.fromJson(
+        _result.data!,
+        (json) => FieldsResponse.fromJson(json as Map<String, dynamic>),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, _result);
       rethrow;

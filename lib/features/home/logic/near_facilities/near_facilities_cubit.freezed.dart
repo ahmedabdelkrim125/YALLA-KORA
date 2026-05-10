@@ -128,7 +128,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<FootballFieldModel> data)?  success,TResult Function( ErrorHandler error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<FieldModel> data)?  success,TResult Function( ErrorHandler error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case NearFacilitiesLoading() when loading != null:
@@ -152,7 +152,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<FootballFieldModel> data)  success,required TResult Function( ErrorHandler error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<FieldModel> data)  success,required TResult Function( ErrorHandler error)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case NearFacilitiesLoading():
@@ -175,7 +175,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<FootballFieldModel> data)?  success,TResult? Function( ErrorHandler error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<FieldModel> data)?  success,TResult? Function( ErrorHandler error)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case NearFacilitiesLoading() when loading != null:
@@ -257,11 +257,11 @@ String toString() {
 
 
 class NearFacilitiesSuccess implements NearFacilitiesState {
-  const NearFacilitiesSuccess(final  List<FootballFieldModel> data): _data = data;
+  const NearFacilitiesSuccess(final  List<FieldModel> data): _data = data;
   
 
- final  List<FootballFieldModel> _data;
- List<FootballFieldModel> get data {
+ final  List<FieldModel> _data;
+ List<FieldModel> get data {
   if (_data is EqualUnmodifiableListView) return _data;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_data);
@@ -298,7 +298,7 @@ abstract mixin class $NearFacilitiesSuccessCopyWith<$Res> implements $NearFacili
   factory $NearFacilitiesSuccessCopyWith(NearFacilitiesSuccess value, $Res Function(NearFacilitiesSuccess) _then) = _$NearFacilitiesSuccessCopyWithImpl;
 @useResult
 $Res call({
- List<FootballFieldModel> data
+ List<FieldModel> data
 });
 
 
@@ -318,7 +318,7 @@ class _$NearFacilitiesSuccessCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? data = null,}) {
   return _then(NearFacilitiesSuccess(
 null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<FootballFieldModel>,
+as List<FieldModel>,
   ));
 }
 

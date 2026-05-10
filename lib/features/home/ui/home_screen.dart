@@ -34,11 +34,6 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       SectionHeader(
-                        title: 'ملاعب قريبة منك',
-                        iconPath: Assets.nearLocationIcon,
-                        onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: dummyFields),
-                      ),
                       NearFacilitiesSection(),
                       SectionHeader(
                         title: 'كمل التقسيمة',

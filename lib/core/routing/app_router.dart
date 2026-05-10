@@ -58,7 +58,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
-import 'package:yalla_kora/core/models/football-field-model/football_field_model.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/booking_confirmation_screen.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/success_booking_screen.dart';
 import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
@@ -73,6 +72,7 @@ import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import 'package:yalla_kora/features/splash/ui/splash_screen.dart';
 import '../../features/OTP/ui/otp_screen.dart';
 import '../../features/home/data/event_matches/models/match_model.dart';
+import '../../features/home/data/near_facilities/model/field_model.dart';
 import '../../features/home/ui/main_screen.dart';
 import '../../features/signup/ui/role_selection_screen.dart';
 import 'routes.dart';
@@ -132,7 +132,7 @@ class AppRouter {
       case Routes.viewAllFieldsScreen:
         return MaterialPageRoute(
           builder: (_) => ViewAllFieldsScreen(
-            fields: settings.arguments as List<FootballFieldModel>,
+            fields: settings.arguments as List<FieldModel>,
           )
         );
       case Routes.viewAllMatchesScreen:
@@ -143,7 +143,7 @@ class AppRouter {
         );
 
       case Routes.facilityDetails:
-        return MaterialPageRoute(builder: (_) => const FacilityDetails());
+        return MaterialPageRoute(builder: (_) => FacilityDetails(field: settings.arguments as FieldModel,));
       case Routes.bookingConfirmation:
         return MaterialPageRoute(builder: (_) => const BookingConfirmationScreen());
       case Routes.successBooking:
