@@ -6,6 +6,7 @@ abstract class NearFacilitiesState with _$NearFacilitiesState {
   const factory NearFacilitiesState.loading() = NearFacilitiesLoading;
   const factory NearFacilitiesState.success(
     List<FieldModel> data, {
+    @Default(0) int totalFields,
     @Default(false) bool isLoadingMore,  // في loading؟
     @Default(false) bool hasError,       // في error؟
     ErrorHandler? errorHandler,          // رسالة الـ error

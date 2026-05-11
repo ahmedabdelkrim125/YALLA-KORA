@@ -22,21 +22,25 @@ class ViewAllFieldsScreen extends StatelessWidget {
         body: BlocBuilder<NearFacilitiesCubit, NearFacilitiesState>(
           builder: (context, state) {
             final currFields = state.maybeWhen(
-              success: (data, _, __, ___) => data,
+              success: (data, _, __, ___, ____) => data,
               orElse: () => <FieldModel>[]
             );
             final isLoadingMore = state.maybeWhen(
-              success: (_, isLoadingMore, __, ___) => isLoadingMore,
+              success: (_, ____, isLoadingMore, __, ___) => isLoadingMore,
               orElse: () => false,
             );
             final hasError = state.maybeWhen(
-              success: (_, __, hasError, ___) => hasError,
+              success: (_, ____, __, hasError, ___) => hasError,
               orElse: () => false,
             );
             final errorMessage = state.maybeWhen(
-              success: (_, __, ___, errorHandler) =>
+              success: (_, ____, __, ___, errorHandler) =>
               errorHandler?.apiErrorModel.message,
               orElse: () => null,
+            );
+            final totalFields = state.maybeWhen(
+              success: (data, total, __, ___, ____) => total,
+                orElse: () => 0
             );
 
             return ListView.separated(
@@ -45,8 +49,9 @@ class ViewAllFieldsScreen extends StatelessWidget {
               itemCount: currFields.length + 1, // +1 for footer
               separatorBuilder: (context, i) => SizedBox(height: 14.h(context),),
               itemBuilder: (context, i) {
+                print(totalFields);
                 if (i == currFields.length) {
-                  if (currFields.length < 10) return const SizedBox.shrink();
+                  if (currFields.length >= totalFields) return const SizedBox.shrink();
                   return LoadMoreFooter(
                       isLoading: isLoadingMore,
                       isError: hasError,

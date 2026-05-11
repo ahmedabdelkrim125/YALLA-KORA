@@ -18,7 +18,7 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
 
   void emitNearFacilitiesStates() async {
     final currentFields = state.maybeWhen(
-        success:(data, isLoadingMore, hasError, errorHandler) => data,
+        success:(data, total, isLoadingMore, hasError, errorHandler) => data,
         orElse: ()=> <FieldModel>[]);
 
     if (currentFields.isNotEmpty) {
@@ -32,7 +32,10 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
     response.when(
       success: (apiResponse) {
         final allFields = [...currentFields, ...apiResponse.data.fields];
-        emit(NearFacilitiesState.success(allFields));
+        emit(NearFacilitiesState.success(
+          allFields,
+          totalFields: apiResponse.data.pagination.total
+        ));
         page++;
       },
       failure: (errorHandler) {
@@ -51,9 +54,9 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
   }
 
   // assign initial fields of page 1 (that i got it in home) to the state of new cubit
-  void loadInitialFields(List<FieldModel> initFields) async {
+  void loadInitialFields({required List<FieldModel> initFields, required int totalFields}) async {
     page = 2;
-    emit(NearFacilitiesState.success(initFields));
+    emit(NearFacilitiesState.success(initFields, totalFields: totalFields));
   }
 
   // dummy function to simulate api call

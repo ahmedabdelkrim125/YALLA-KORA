@@ -130,9 +130,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case Routes.viewAllFieldsScreen:
+        final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => getIt<NearFacilitiesCubit>()..loadInitialFields(settings.arguments as List<FieldModel>),
+            create: (context) =>
+            getIt<NearFacilitiesCubit>()..loadInitialFields(
+              initFields: args['fields'] as List<FieldModel>,
+              totalFields: args['total'] as int
+            ),
             child: ViewAllFieldsScreen(),
           ),
         );

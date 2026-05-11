@@ -13,8 +13,8 @@ import '../../data/near_facilities/model/field_model.dart';
 
 class FieldsCarousel extends StatelessWidget {
   final List<FieldModel> fields;
-
-  const FieldsCarousel({super.key, required this.fields});
+  final int total;
+  const FieldsCarousel({super.key, required this.fields, required this.total});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,11 @@ class FieldsCarousel extends StatelessWidget {
         SectionHeader(
           title: 'ملاعب قريبة منك',
           iconPath: Assets.nearLocationIcon,
-          onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: fields),
+          onViewAllTap: () =>
+            context.pushNamed(Routes.viewAllFieldsScreen, arguments: {
+              'fields': fields,
+              'total': total,
+            }),
         ),
         fields.isEmpty ?
         SizedBox(height: 240,

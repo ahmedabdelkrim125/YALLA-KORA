@@ -21,7 +21,8 @@ class NearFacilitiesSection extends StatelessWidget {
         return state.when(
           initial: () => const SizedBox.shrink(),
           loading: () => _FieldsCarouselSkeleton(fields: dummyFields,),
-          success: (fields, isLoadingMore, hasError, errorHandler) => FieldsCarousel(fields: fields),
+          success: (fields, total, isLoadingMore, hasError, errorHandler) =>
+              FieldsCarousel(fields: fields, total: total),
           failure: (error) => CustomErrorWidget(
             message: error.apiErrorModel.message,
             onRetry: () => context

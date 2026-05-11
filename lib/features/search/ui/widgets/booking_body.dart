@@ -31,7 +31,7 @@ class BookingBody extends StatelessWidget {
             iconPath: Assets.nighticon,
             onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: dummyFields)
           ),
-          FieldsCarousel(fields: dummyFields),
+          FieldsCarousel(fields: dummyFields, total: dummyFields.length,),
 
           verticalSpace(context, height: 32),
 
@@ -41,7 +41,7 @@ class BookingBody extends StatelessWidget {
             onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: dummyFields)
           ),
           verticalSpace(context, height: 16),
-          FieldsCarousel(fields: dummyFields),
+          FieldsCarousel(fields: dummyFields, total: dummyFields.length,),
 
           verticalSpace(context, height: 40),
         ],
