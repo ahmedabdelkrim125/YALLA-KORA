@@ -28,5 +28,9 @@ abstract class ApiService {
 
   //Near Facilities//
   @GET(ApiConstants.nearFacilities)
-  Future<ApiResponseModel<FieldsResponse>> getNearFacilities({@Query("page") int? page});
+  Future<ApiResponseModel<FieldsResponse>> getNearFacilities({
+    @Query("page") int? page,
+    @Query("lat") double? lat,
+    @Query("lng") double? lng,
+  });
 }

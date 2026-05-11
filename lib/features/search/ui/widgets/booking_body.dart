@@ -29,7 +29,10 @@ class BookingBody extends StatelessWidget {
           SectionHeader(
             title: "متاح النهاردة بليل ",
             iconPath: Assets.nighticon,
-            onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: dummyFields)
+            onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: {
+              'fields': dummyFields,
+              'total': dummyFields.length,
+            })
           ),
           FieldsCarousel(fields: dummyFields, total: dummyFields.length,),
 
@@ -38,7 +41,10 @@ class BookingBody extends StatelessWidget {
           SectionHeader(
             title: "الأكثر حجزاً هذا الأسبوع",
             iconPath: Assets.popular,
-            onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: dummyFields)
+            onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: {
+              'fields': dummyFields,
+              'total': dummyFields.length,
+            })
           ),
           verticalSpace(context, height: 16),
           FieldsCarousel(fields: dummyFields, total: dummyFields.length,),

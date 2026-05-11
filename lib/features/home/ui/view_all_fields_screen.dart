@@ -49,7 +49,6 @@ class ViewAllFieldsScreen extends StatelessWidget {
               itemCount: currFields.length + 1, // +1 for footer
               separatorBuilder: (context, i) => SizedBox(height: 14.h(context),),
               itemBuilder: (context, i) {
-                print(totalFields);
                 if (i == currFields.length) {
                   if (currFields.length >= totalFields) return const SizedBox.shrink();
                   return LoadMoreFooter(

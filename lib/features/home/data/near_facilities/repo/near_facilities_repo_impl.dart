@@ -11,9 +11,13 @@ class NearFacilitiesRepoImpl extends NearFacilitiesRepo{
   NearFacilitiesRepoImpl({required this.apiService});
 
   @override
-  Future<ApiResult<ApiResponseModel<FieldsResponse>>> getNearFields({int? pageNum}) async {
+  Future<ApiResult<ApiResponseModel<FieldsResponse>>> getNearFields({int? pageNum,  double? lat, double? lng}) async {
     try{
-      final response = await apiService.getNearFacilities(page: pageNum);
+      final response = await apiService.getNearFacilities(
+        page: pageNum,
+        lat: lat,
+        lng: lng,
+      );
       return ApiResult.success(response);
     }
     catch (e) {

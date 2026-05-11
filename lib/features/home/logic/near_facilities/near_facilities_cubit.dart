@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:yalla_kora/core/networking/api_result.dart';
 import 'package:yalla_kora/core/networking/error_hander.dart';
+import 'package:yalla_kora/core/service/location_service.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/repo/near_facilities_repo.dart';
 
 import '../../data/near_facilities/model/field_model.dart';
@@ -15,6 +16,8 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
   NearFacilitiesCubit(this._nearFacilitiesRepo) : super(NearFacilitiesState.initial());
 
   int page = 1;
+  double? _lat;
+  double? _lng;
 
   void emitNearFacilitiesStates() async {
     final currentFields = state.maybeWhen(
@@ -26,9 +29,17 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
       emit(NearFacilitiesState.success(currentFields, isLoadingMore: true));
     } else {
       emit(const NearFacilitiesState.loading());
+
+      final position = await LocationService.getCurrentLocation();
+      _lat = position?.latitude;
+      _lng = position?.longitude;
     }
 
-    final response = await _nearFacilitiesRepo.getNearFields(pageNum: page);
+    final response = await _nearFacilitiesRepo.getNearFields(
+        pageNum: page,
+        lat: _lat,
+        lng: _lng
+    );
     response.when(
       success: (apiResponse) {
         final allFields = [...currentFields, ...apiResponse.data.fields];

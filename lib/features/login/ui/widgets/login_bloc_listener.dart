@@ -40,7 +40,7 @@ class LoginBlocListener extends StatelessWidget {
             );
           },
           failure: (message) {
-            //context.pop(); // Close the loading dialog
+            context.pop(); // Close the loading dialog
 
             ModernDialog.showError(
               context: context,
@@ -48,7 +48,7 @@ class LoginBlocListener extends StatelessWidget {
               message: message,
               buttonText: 'إعادة المحاولة',
               onPressed: () {
-                context.pop();
+                //context.pop();
               },
             );
           },

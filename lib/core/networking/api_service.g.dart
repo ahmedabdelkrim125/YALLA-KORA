@@ -107,9 +107,15 @@ class _ApiService implements ApiService {
   @override
   Future<ApiResponseModel<FieldsResponse>> getNearFacilities({
     int? page,
+    double? lat,
+    double? lng,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'lat': lat,
+      r'lng': lng,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
