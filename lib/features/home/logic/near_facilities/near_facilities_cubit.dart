@@ -42,8 +42,11 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
       emit(NearFacilitiesState.success(currentFields, isLoadingMore: true, totalFields: currentTotal, totalPages: currentTotalPages));
     } else {
       emit(const NearFacilitiesState.loading());
+    }
 
+    if (_lat == null || _lng == null) {
       final position = await LocationService.getCurrentLocation();
+
       _lat = position?.latitude;
       _lng = position?.longitude;
     }

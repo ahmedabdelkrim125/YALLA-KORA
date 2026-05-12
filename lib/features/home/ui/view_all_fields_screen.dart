@@ -37,10 +37,6 @@ class ViewAllFieldsScreen extends StatelessWidget {
               success: (_, __, ___, ____, _____, ______, errorHandler) => errorHandler?.apiErrorModel.message,
               orElse: () => null,
             );
-            final totalFields = state.maybeWhen(
-                success: (_, total, __, ___, ____, _____, ______) => total,
-                orElse: () => 0
-            );
             final totalPages = state.maybeWhen(
               success: (_, __, currentPage, totalPages, ___, ____, _____) => totalPages,
               orElse: () => 1,
@@ -49,9 +45,6 @@ class ViewAllFieldsScreen extends StatelessWidget {
               success: (_, __, currentPage, totalPages, ___, ____, _____) => currentPage,
               orElse: () => 1,
             );
-            print('totalFields in screen: $totalFields');
-            print('currFields.length: ${currFields.length}');
-            print('condition: ${currFields.length >= totalFields}');
             return ListView.separated(
               padding: context.responsivePadding(horizontal: 20, top: 20, bottom: 24),
               physics: const BouncingScrollPhysics(),
