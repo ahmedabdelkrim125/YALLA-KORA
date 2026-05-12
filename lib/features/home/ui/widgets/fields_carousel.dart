@@ -14,7 +14,8 @@ import '../../data/near_facilities/model/field_model.dart';
 class FieldsCarousel extends StatelessWidget {
   final List<FieldModel> fields;
   final int total;
-  const FieldsCarousel({super.key, required this.fields, required this.total});
+  final int totalPages;
+  const FieldsCarousel({super.key, required this.fields, required this.total, required this.totalPages});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class FieldsCarousel extends StatelessWidget {
             context.pushNamed(Routes.viewAllFieldsScreen, arguments: {
               'fields': fields,
               'total': total,
+              'totalPages': totalPages,
             }),
         ),
         fields.isEmpty ?

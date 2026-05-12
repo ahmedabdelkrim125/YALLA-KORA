@@ -136,7 +136,8 @@ class AppRouter {
             create: (context) =>
             getIt<NearFacilitiesCubit>()..loadInitialFields(
               initFields: args['fields'] as List<FieldModel>,
-              totalFields: args['total'] as int
+              totalFields: args['total'] as int,
+              totalPages: args['totalPages'] as int,
             ),
             child: ViewAllFieldsScreen(),
           ),

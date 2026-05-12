@@ -22,27 +22,36 @@ class ViewAllFieldsScreen extends StatelessWidget {
         body: BlocBuilder<NearFacilitiesCubit, NearFacilitiesState>(
           builder: (context, state) {
             final currFields = state.maybeWhen(
-              success: (data, _, __, ___, ____) => data,
+              success: (data, _, __, ___, ____, _____, ______) => data,
               orElse: () => <FieldModel>[]
             );
             final isLoadingMore = state.maybeWhen(
-              success: (_, ____, isLoadingMore, __, ___) => isLoadingMore,
+              success: (_, __,___,____, isLoadingMore, _____, ______) => isLoadingMore,
               orElse: () => false,
             );
             final hasError = state.maybeWhen(
-              success: (_, ____, __, hasError, ___) => hasError,
+              success: (_, __, ___, ____, _____, hasError, ______) => hasError,
               orElse: () => false,
             );
             final errorMessage = state.maybeWhen(
-              success: (_, ____, __, ___, errorHandler) =>
-              errorHandler?.apiErrorModel.message,
+              success: (_, __, ___, ____, _____, ______, errorHandler) => errorHandler?.apiErrorModel.message,
               orElse: () => null,
             );
             final totalFields = state.maybeWhen(
-              success: (data, total, __, ___, ____) => total,
+                success: (_, total, __, ___, ____, _____, ______) => total,
                 orElse: () => 0
             );
-
+            final totalPages = state.maybeWhen(
+              success: (_, __, currentPage, totalPages, ___, ____, _____) => totalPages,
+              orElse: () => 1,
+            );
+            final currentPage = state.maybeWhen(
+              success: (_, __, currentPage, totalPages, ___, ____, _____) => currentPage,
+              orElse: () => 1,
+            );
+            print('totalFields in screen: $totalFields');
+            print('currFields.length: ${currFields.length}');
+            print('condition: ${currFields.length >= totalFields}');
             return ListView.separated(
               padding: context.responsivePadding(horizontal: 20, top: 20, bottom: 24),
               physics: const BouncingScrollPhysics(),
@@ -50,7 +59,7 @@ class ViewAllFieldsScreen extends StatelessWidget {
               separatorBuilder: (context, i) => SizedBox(height: 14.h(context),),
               itemBuilder: (context, i) {
                 if (i == currFields.length) {
-                  if (currFields.length >= totalFields) return const SizedBox.shrink();
+                  if (currentPage >= totalPages) return const SizedBox.shrink();
                   return LoadMoreFooter(
                       isLoading: isLoadingMore,
                       isError: hasError,

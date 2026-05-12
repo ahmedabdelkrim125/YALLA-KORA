@@ -7,6 +7,8 @@ abstract class NearFacilitiesState with _$NearFacilitiesState {
   const factory NearFacilitiesState.success(
     List<FieldModel> data, {
     @Default(0) int totalFields,
+    @Default(1) int currentPage,
+    @Default(1) int totalPages,  // ✅ جديد
     @Default(false) bool isLoadingMore,  // في loading؟
     @Default(false) bool hasError,       // في error؟
     ErrorHandler? errorHandler,          // رسالة الـ error

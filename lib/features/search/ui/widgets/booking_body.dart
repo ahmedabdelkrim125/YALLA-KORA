@@ -34,7 +34,7 @@ class BookingBody extends StatelessWidget {
               'total': dummyFields.length,
             })
           ),
-          FieldsCarousel(fields: dummyFields, total: dummyFields.length,),
+          FieldsCarousel(fields: dummyFields, total: dummyFields.length, totalPages: 1,),
 
           verticalSpace(context, height: 32),
 
@@ -47,7 +47,7 @@ class BookingBody extends StatelessWidget {
             })
           ),
           verticalSpace(context, height: 16),
-          FieldsCarousel(fields: dummyFields, total: dummyFields.length,),
+          FieldsCarousel(fields: dummyFields, total: dummyFields.length, totalPages: 1,),
 
           verticalSpace(context, height: 40),
         ],
