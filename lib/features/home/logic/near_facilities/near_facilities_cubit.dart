@@ -31,7 +31,7 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
 
     final currentTotalPages = state.maybeWhen(
       success: (data, total, currentPage, totalPages, isLoadingMore, hasError, errorHandler) => totalPages,
-      orElse: () => 0,
+      orElse: () => 1,
     );
 
     // to check if i reached the end of pagination or not, if page > totalPages, stop emitting more states

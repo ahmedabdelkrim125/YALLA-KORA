@@ -32,6 +32,7 @@ class BookingBody extends StatelessWidget {
             onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: {
               'fields': dummyFields,
               'total': dummyFields.length,
+              'totalPages': 1,
             })
           ),
           FieldsCarousel(fields: dummyFields, total: dummyFields.length, totalPages: 1,),
@@ -44,6 +45,7 @@ class BookingBody extends StatelessWidget {
             onViewAllTap: () => context.pushNamed(Routes.viewAllFieldsScreen, arguments: {
               'fields': dummyFields,
               'total': dummyFields.length,
+              'totalPages': 1,
             })
           ),
           verticalSpace(context, height: 16),
