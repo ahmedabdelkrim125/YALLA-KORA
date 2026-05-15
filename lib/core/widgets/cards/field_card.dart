@@ -9,6 +9,8 @@ import 'package:yalla_kora/features/home/ui/widgets/primary_button.dart';
 
 import '../../../features/home/data/near_facilities/model/field_model.dart';
 import '../../constants/app_images.dart';
+import '../../helper/extensions.dart';
+import '../../routing/routes.dart';
 
 class FieldCard extends StatelessWidget {
   final FieldModel field;
@@ -33,13 +35,13 @@ class FieldCard extends StatelessWidget {
                 : Assets.facility6,
             badge: field.type.label,
           ),
-          isHorizontal ? Expanded(child: _buildContent()) : _buildContent(),
+          isHorizontal ? Expanded(child: _buildContent(context, field)) : _buildContent(context, field),
         ],
       ),
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context, FieldModel fields) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Padding(
@@ -92,7 +94,9 @@ class FieldCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            const PrimaryButton(label: 'احجز الآن'),
+            PrimaryButton(label: 'احجز الآن', onTap: (){
+              context.pushNamed(Routes.facilityDetails, arguments: fields);
+            }),
           ],
         ),
       ),

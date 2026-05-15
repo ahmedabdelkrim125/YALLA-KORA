@@ -17,7 +17,12 @@ class AvailableTimesSection extends StatelessWidget {
     return Padding(
       padding: context.responsivePadding(horizontal: 16),
       child: Container(
-        padding: context.responsivePadding(top: 12, left: 12, right: 12, bottom: 20),
+        padding: context.responsivePadding(
+          top: 12,
+          left: 12,
+          right: 12,
+          bottom: 20,
+        ),
         decoration: BoxDecoration(
           color: AppColors.card2,
           borderRadius: BorderRadius.circular(16.r(context)),
@@ -30,7 +35,12 @@ class AvailableTimesSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('الأوقات المتاحة', style: TextStyles.boldWhite14),
-                Text('6 أوقات متاحة', style: TextStyles.regularWhite12.copyWith(color: AppColors.grey)),
+                Text(
+                  '6 أوقات متاحة',
+                  style: TextStyles.regularWhite12.copyWith(
+                    color: AppColors.grey,
+                  ),
+                ),
               ],
             ),
             verticalSpace(context, height: 12),
@@ -54,7 +64,10 @@ class TimeSlotsGrid extends StatelessWidget {
       child: Wrap(
         spacing: 19,
         runSpacing: 12,
-        children: List.generate(slots.length, (i)=>TimeSlotChip(slot: slots[i])),
+        children: List.generate(
+          slots.length,
+          (i) => TimeSlotChip(slot: slots[i]),
+        ),
       ),
     );
   }
@@ -68,20 +81,13 @@ class TimeSlotChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90.w(context), height: 50.h(context),
+      width: 90.w(context),
+      height: 50.h(context),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14.r(context)),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 0.8,
-        ),
+        border: Border.all(color: Colors.white.withOpacity(0.1), width: 0.8),
       ),
-      child: Center(
-        child: Text(
-          slot.time,
-          style: TextStyles.boldWhite14,
-        ),
-      ),
+      child: Center(child: Text(slot.time, style: TextStyles.boldWhite14)),
     );
   }
 }

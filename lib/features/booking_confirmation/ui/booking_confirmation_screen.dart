@@ -33,15 +33,15 @@ class BookingConfirmationScreen extends StatelessWidget {
                   matchType: 'خماسي (5 ضد 5)',
                 ),
                 verticalSpace(context, height: 24),
-                const TitleHeader(title: 'طريقة الدفع',),
+                const TitleHeader(title: 'طريقة الدفع'),
                 verticalSpace(context, height: 12),
                 PaymentMethodSection(),
                 verticalSpace(context, height: 24),
-                const TitleHeader(title: 'عندك كود خصم؟',),
+                const TitleHeader(title: 'عندك كود خصم؟'),
                 verticalSpace(context, height: 16),
                 DiscountCodeSection(),
                 verticalSpace(context, height: 24),
-                PriceSummarySection(bookingPrice: 300, serviceFee: 10,),
+                PriceSummarySection(bookingPrice: 300, serviceFee: 10),
                 verticalSpace(context, height: 16),
                 ConfirmBookingButton(),
                 verticalSpace(context, height: 16),
@@ -53,5 +53,3 @@ class BookingConfirmationScreen extends StatelessWidget {
     );
   }
 }
-
-

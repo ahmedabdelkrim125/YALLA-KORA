@@ -48,10 +48,7 @@ class _PriceRow extends StatelessWidget {
           label,
           style: TextStyles.mediumWhite14.copyWith(color: AppColors.muted),
         ),
-        Text(
-          '$amount ج',
-          style: TextStyles.boldWhite14,
-        ),
+        Text('$amount ج', style: TextStyles.boldWhite14),
       ],
     );
   }
@@ -70,9 +67,7 @@ class _TotalRow extends StatelessWidget {
         Text('الإجمالي', style: TextStyles.boldWhite18),
         Text(
           '$total ج',
-          style: TextStyles.boldWhite20.copyWith(
-            color: AppColors.primaryGreen,
-          ),
+          style: TextStyles.boldWhite20.copyWith(color: AppColors.primaryGreen),
         ),
       ],
     );

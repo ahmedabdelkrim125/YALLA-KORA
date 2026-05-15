@@ -8,17 +8,23 @@ class AppColors {
   static const Color fieldBorder = Color(0xFFFFFFFF);
   static const Color lightText = Color(0xFFF4F5F0);
   static const Color lightGray = Color(0xFFCBCBCB);
+  static const Color lightGrayText = Color(0xFFD1D5DC);
   static const Color slateGray = Color(0xFF6A7282);
+  static const Color slateGray50 = Color(0x7F6A7282);
   static const Color orangeColor = Color(0xFFFEA100);
   static const Color ratingOrange = Color(0xFFFEA000);
   static const Color leftStripe = Color(0xFFFEC700);
   static const Color timeColor = Color(0xFFFDC700);
+  static const Color primaryYellow = Color(0xFFFEC600);
   static const Color darkGreen = Color(0xFF008041);
+  static const Color grassGreen = Color(0xFF00D261);
+  static const Color lightGreenIcon = Color(0xFF00E676);
   static const Color cardBg = Color(0xFF1E1E1E);
   static const Color card2 = Color(0xFF191A2F);
   static const Color cardBg2 = Color(0xFF2D3053);
   static const Color yellow = Color(0xFFFDC700);
   static const Color muted = Color(0xFF99A1AF);
+  static const Color muted50 = Color(0x7F99A1AF);
   static const Color red = Color(0xFFE74C3C);
   static const Color red2 = Color(0xFFFF3B30);
 
@@ -26,9 +32,12 @@ class AppColors {
   static const Color gray2 = Color(0xFFB8C2D4);
 
   static const Color cancelRed = Color(0xFFFB2C36);
+  static const Color cancelRed20 = Color(0x33FB2C36);
   static const Color darkText = Color(0xFF060F06);
+  static const Color almostBlack = Color(0xFF0A0A0A);
   static const Color grey88 = Color(0xFF888888);
   static const Color greyBg = Color(0x266D6D6D);
   static const Color greenBg = Color(0x2600FE81);
   static const Color darkGrey = Color(0xff4A5565);
+  static const Color darkAvatarBg = Color(0xFF2A2A2A);
 }

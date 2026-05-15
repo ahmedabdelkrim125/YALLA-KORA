@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
-import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/facility_address_section.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/facility_features_section.dart';
 
@@ -49,6 +47,3 @@ class FacilityDetailsTab extends StatelessWidget {
     );
   }
 }
-
-
-

@@ -6,11 +6,7 @@ import 'package:yalla_kora/features/facility-details/ui/widgets/booking_section.
 import 'package:yalla_kora/features/facility-details/ui/widgets/calender_strip.dart';
 
 class AvailableBookings extends StatelessWidget {
-  const AvailableBookings({
-    super.key,
-    required this.days,
-    required this.slots,
-  });
+  const AvailableBookings({super.key, required this.days, required this.slots});
 
   final List<DayModel> days;
   final List<TimeSlotModel> slots;
@@ -22,10 +18,7 @@ class AvailableBookings extends StatelessWidget {
         children: [
           // ── Month header + calendar ──
           verticalSpace(context, height: 20),
-          CalendarStrip(
-            month: 'فبراير 2026',
-            days: days,
-          ),
+          CalendarStrip(month: 'فبراير 2026', days: days),
 
           // ── Available times ──
           verticalSpace(context, height: 20),

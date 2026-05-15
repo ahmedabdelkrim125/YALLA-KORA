@@ -62,7 +62,8 @@ class PaymentOption extends StatelessWidget {
   final String selected;
   final ValueChanged<String> onTap;
 
-  const PaymentOption({super.key,
+  const PaymentOption({
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
@@ -82,8 +83,8 @@ class PaymentOption extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14.r(context)),
           color: isSelected
-            ? AppColors.primaryGreen.withOpacity(0.08)
-            : AppColors.card2,
+              ? AppColors.primaryGreen.withOpacity(0.08)
+              : AppColors.card2,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,

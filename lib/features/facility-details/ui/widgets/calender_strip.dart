@@ -1,4 +1,3 @@
-
 // ══════════════════════════════════════════════════════
 //  CALENDAR STRIP
 // ══════════════════════════════════════════════════════
@@ -10,8 +9,8 @@ import 'package:yalla_kora/features/facility-details/ui/widgets/day_cell.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/month_header.dart';
 
 class CalendarStrip extends StatelessWidget {
-  final String          month;
-  final List<DayModel>  days;
+  final String month;
+  final List<DayModel> days;
   const CalendarStrip({super.key, required this.month, required this.days});
 
   @override

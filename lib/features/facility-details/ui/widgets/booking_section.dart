@@ -10,7 +10,6 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
 
-
 class BookingBottomBar extends StatelessWidget {
   final int price;
   const BookingBottomBar({super.key, required this.price});
@@ -23,8 +22,10 @@ class BookingBottomBar extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: AppButton(title: 'حجز الملعب',
-                onPressed: () => context.pushNamed(Routes.bookingConfirmation)),
+            child: AppButton(
+              title: 'حجز الملعب',
+              onPressed: () => context.pushNamed(Routes.bookingConfirmation),
+            ),
           ),
           horizontalSpace(context, width: 8),
           Column(
@@ -35,13 +36,12 @@ class BookingBottomBar extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   children: [
-                    TextSpan(
-                      text: '$price ج ',
-                      style: TextStyles.boldWhite20,
-                    ),
+                    TextSpan(text: '$price ج ', style: TextStyles.boldWhite20),
                     TextSpan(
                       text: '/ الساعة',
-                      style: TextStyles.mediumWhite12.copyWith(color: AppColors.muted),
+                      style: TextStyles.mediumWhite12.copyWith(
+                        color: AppColors.muted,
+                      ),
                     ),
                   ],
                 ),
