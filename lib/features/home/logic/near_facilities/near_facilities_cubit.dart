@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:yalla_kora/core/di/dependency_injection.dart';
 import 'package:yalla_kora/core/networking/api_result.dart';
 import 'package:yalla_kora/core/networking/error_hander.dart';
 import 'package:yalla_kora/core/service/location_service.dart';
@@ -45,7 +46,7 @@ class NearFacilitiesCubit extends Cubit<NearFacilitiesState> {
     }
 
     if (_lat == null || _lng == null) {
-      final position = await LocationService.getCurrentLocation();
+      final position = await getIt<LocationService>().getCurrentLocation();
 
       _lat = position?.latitude;
       _lng = position?.longitude;

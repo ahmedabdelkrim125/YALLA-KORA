@@ -8,16 +8,20 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/features/facility-details/ui/widgets/field_map_location.dart';
 
 class FacilityAddressSection extends StatelessWidget {
   const FacilityAddressSection({
     super.key,
     required this.address,
     required this.city,
+    required this.lat,
+    required this.lng,
   });
 
   final String address;
   final String city;
+  final double lat, lng;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,8 @@ class FacilityAddressSection extends StatelessWidget {
           // ── Map card ──
           SectionTitle(label: 'العنوان', trailLabel: 'الخريطة'),
           verticalSpace(context, height: 12),
-          FacilityMapWidget(),
+          //FacilityMapWidget(),
+          FieldMapLocation(lat: lat, lng: lng,),
           verticalSpace(context, height: 8),
           AddressSection(address: address, city: city),
         ],

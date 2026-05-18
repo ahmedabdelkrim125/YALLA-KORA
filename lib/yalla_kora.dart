@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
@@ -24,6 +25,11 @@ class YallaKora extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 backgroundColor: AppColors.darkBackground,
                 elevation: 0,
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarColor: Colors.transparent,
+                  statusBarIconBrightness: Brightness.light, // ← Android
+                  statusBarBrightness: Brightness.dark,       // ← iOS
+                ),
               ),
             ),
             debugShowCheckedModeBanner: false,

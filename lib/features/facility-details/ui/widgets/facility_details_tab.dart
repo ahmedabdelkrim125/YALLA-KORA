@@ -4,22 +4,6 @@ import 'package:yalla_kora/features/facility-details/ui/widgets/facility_address
 import 'package:yalla_kora/features/facility-details/ui/widgets/facility_features_section.dart';
 
 import '../../../home/data/near_facilities/model/field_model.dart';
-
-// ══════════════════════════════════════════════════════
-//  MODELS
-// ══════════════════════════════════════════════════════
-class FacilityFeature {
-  final String label;
-  final String icon;
-  final Color iconColor;
-
-  const FacilityFeature({
-    required this.label,
-    required this.icon,
-    required this.iconColor,
-  });
-}
-
 // ══════════════════════════════════════════════════════
 //  DETAILS TAB  (root widget — drop into TabBarView)
 // ══════════════════════════════════════════════════════
@@ -40,7 +24,12 @@ class FacilityDetailsTab extends StatelessWidget {
           FacilityFeaturesSection(features: field.features),
           verticalSpace(context, height: 34),
           // ── Address + Map ──
-          FacilityAddressSection(address: field.location.address, city: field.location.name),
+          FacilityAddressSection(
+            address: field.location.address,
+            city: field.location.name,
+            lat: field.location.lat,
+            lng: field.location.lng,
+          ),
           verticalSpace(context, height: 60),
         ],
       ),
