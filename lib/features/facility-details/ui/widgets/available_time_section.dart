@@ -6,10 +6,10 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
+import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
 
 class AvailableTimesSection extends StatelessWidget {
-  final List<TimeSlotModel> slots;
+  final List<Slot> slots;
   const AvailableTimesSection({super.key, required this.slots});
 
   @override
@@ -36,7 +36,7 @@ class AvailableTimesSection extends StatelessWidget {
               children: [
                 Text('الأوقات المتاحة', style: TextStyles.boldWhite14),
                 Text(
-                  '6 أوقات متاحة',
+                  '6 أوقات متاحة', // todo: replace with dynamic count
                   style: TextStyles.regularWhite12.copyWith(
                     color: AppColors.grey,
                   ),
@@ -55,7 +55,7 @@ class AvailableTimesSection extends StatelessWidget {
 
 // ── Time slots grid ───────────────────────────────────
 class TimeSlotsGrid extends StatelessWidget {
-  final List<TimeSlotModel> slots;
+  final List<Slot> slots;
   const TimeSlotsGrid({super.key, required this.slots});
 
   @override
@@ -75,7 +75,7 @@ class TimeSlotsGrid extends StatelessWidget {
 
 // ── Time slot chip ────────────────────────────────────
 class TimeSlotChip extends StatelessWidget {
-  final TimeSlotModel slot;
+  final Slot slot;
   const TimeSlotChip({super.key, required this.slot});
 
   @override

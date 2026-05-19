@@ -2,19 +2,22 @@
 //  TAB BAR
 // ══════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:yalla_kora/core/di/dependency_injection.dart';
+import 'package:yalla_kora/core/helper/helper_functions/calendar_helper.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
-import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
+import 'package:yalla_kora/features/facility-details/logic/available_time_cubit.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/available_booking_section.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/facility_details_tab.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.dart';
 
 class FieldTabBar extends StatelessWidget {
-  const FieldTabBar({super.key, required this.days, required this.slots, required this.field});
+  const FieldTabBar({super.key, required this.field});
 
   final FieldModel field;
-  final List<DayModel> days;
-  final List<TimeSlotModel> slots;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -39,7 +42,15 @@ class FieldTabBar extends StatelessWidget {
             child: TabBarView(
               children: [
                 FacilityDetailsTab(field: field),
-                AvailableBookings(days: days, slots: slots),
+                BlocProvider(
+                  create: (context) => getIt<AvailableTimeCubit>()..emitAvailableTimes(
+                    fieldId: field.id,
+                    date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  ),
+                  child: AvailableBookings(
+                    days: CalendarHelper.generateMonthDays(year: DateTime.now().year, month: DateTime.now().month),
+                  ),
+                ),
               ],
             ),
           ),

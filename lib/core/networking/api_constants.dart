@@ -7,6 +7,7 @@ class ApiConstants {
   static const String verifyOtp = 'auth/verify-otp';
   static const String eventMatches = 'matches/event'; // todo : change this to the correct endpoint
   static const String nearFacilities = 'fields';
+  static const String availableTimes = 'fields/{field_id}/schedule';
 }
 
 class ApiErrors {

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
 import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import '../../features/home/data/near_facilities/model/fields_response.dart';
 import '../../features/signup/data/model/signup_request_body.dart';
@@ -32,5 +33,12 @@ abstract class ApiService {
     @Query("page") int? page,
     @Query("lat") double? lat,
     @Query("lng") double? lng,
+  });
+
+  //Available Times//
+  @GET(ApiConstants.availableTimes)
+  Future<ApiResponseModel<AvailableTimeModel>> getAvailableTimes({
+    @Path("field_id") required String fieldId,
+    @Query("date") required String date,
   });
 }

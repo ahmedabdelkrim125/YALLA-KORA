@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_kora/core/di/dependency_injection.dart';
+import 'package:yalla_kora/core/helper/helper_functions/calendar_helper.dart';
 import 'yalla_kora.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await CalendarHelper.init();
   await ScreenUtil.ensureScreenSize();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

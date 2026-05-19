@@ -4,7 +4,7 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/features/facility-details/ui/facility_details.dart';
+import 'package:yalla_kora/features/facility-details/data/model/day_model.dart';
 
 class DayCell extends StatelessWidget {
   final DayModel day;
@@ -22,7 +22,7 @@ class DayCell extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(day.name, style: TextStyles.mediumWhite12),
+          Text(day.dayName, style: TextStyles.mediumWhite12),
           verticalSpace(context, height: 4),
           Container(
             padding: context.responsivePadding(horizontal: 4, vertical: 2),
@@ -31,7 +31,7 @@ class DayCell extends StatelessWidget {
               color: AppColors.cardBg2,
             ),
             child: Text(
-              day.number.toString().padLeft(2, '0'),
+              day.dayNumber,
               style: TextStyles.semiBoldWhite18,
             ),
           ),
