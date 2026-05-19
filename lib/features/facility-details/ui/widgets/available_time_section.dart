@@ -62,8 +62,8 @@ class TimeSlotsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Wrap(
-        spacing: 19,
-        runSpacing: 12,
+        spacing: 19.w(context),
+        runSpacing: 12.h(context),
         children: List.generate(
           slots.length,
           (i) => TimeSlotChip(slot: slots[i]),

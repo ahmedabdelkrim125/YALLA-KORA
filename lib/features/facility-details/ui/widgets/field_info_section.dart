@@ -25,7 +25,7 @@ class FieldInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.h(context)),
+      padding: EdgeInsets.symmetric(horizontal: 20.w(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

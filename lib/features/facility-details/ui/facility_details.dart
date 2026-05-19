@@ -42,12 +42,3 @@ class FacilityDetails extends StatelessWidget {
     );
   }
 }
-
-// ══════════════════════════════════════════════════════
-//  MODELS
-// ══════════════════════════════════════════════════════
-class TimeSlotModel {
-  final String time;
-  final bool   isSelected;
-  const TimeSlotModel({required this.time, this.isSelected = false});
-}

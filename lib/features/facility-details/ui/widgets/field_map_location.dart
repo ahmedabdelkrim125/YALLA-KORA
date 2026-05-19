@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 
 class FieldMapLocation extends StatefulWidget {
   const FieldMapLocation({super.key, required this.lat, required this.lng});
@@ -27,7 +28,7 @@ class _FieldMapLocationState extends State<FieldMapLocation> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 150.h(context),
       width: double.infinity,
       child: FlutterMap(
         mapController: _mapController,
