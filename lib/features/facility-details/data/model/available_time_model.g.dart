@@ -8,14 +8,14 @@ part of 'available_time_model.dart';
 
 AvailableTimeModel _$AvailableTimeModelFromJson(Map<String, dynamic> json) =>
     AvailableTimeModel(
-      day: json['day'] as String,
+      date: json['date'] as String,
       slots: (json['slots'] as List<dynamic>)
           .map((e) => Slot.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$AvailableTimeModelToJson(AvailableTimeModel instance) =>
-    <String, dynamic>{'day': instance.day, 'slots': instance.slots};
+    <String, dynamic>{'date': instance.date, 'slots': instance.slots};
 
 Slot _$SlotFromJson(Map<String, dynamic> json) =>
     Slot(time: json['time'] as String, status: json['status'] as String);

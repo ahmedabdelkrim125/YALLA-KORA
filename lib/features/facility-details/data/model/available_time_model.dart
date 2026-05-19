@@ -4,11 +4,11 @@ part 'available_time_model.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class AvailableTimeModel {
-  final String day;
+  final String date;
   final List<Slot> slots;
 
   AvailableTimeModel({
-    required this.day,
+    required this.date,
     required this.slots,
   });
   factory AvailableTimeModel.fromJson(Map<String, dynamic> json) => _$AvailableTimeModelFromJson(json);

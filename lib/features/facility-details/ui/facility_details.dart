@@ -12,10 +12,10 @@ class FacilityDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Column(
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        body: Column(
           children: [
             FieldHeroImage(),
             verticalSpace(context, height: 20),

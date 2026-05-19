@@ -16,7 +16,7 @@ class CalendarStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.h(context)),
+      padding: EdgeInsets.symmetric(horizontal: 16.w(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

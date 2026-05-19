@@ -21,7 +21,7 @@ class AvailableTimeCubit extends Cubit<AvailableTimeState> {
     final response = await availableTimeRepo.getAvailableTimes(fieldId: this.fieldId, date: date);
     response.when(
       success: (data) => emit(AvailableTimeState.success(data.data)),
-      failure: (error) => emit(AvailableTimeState.failure(ErrorHandler.handle(error))),
+      failure: (error) => emit(AvailableTimeState.failure(error)),
     );
   }
 }
