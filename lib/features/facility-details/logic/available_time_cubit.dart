@@ -14,6 +14,7 @@ class AvailableTimeCubit extends Cubit<AvailableTimeState> {
   final AvailableTimeRepo availableTimeRepo;
 
   String fieldId = '';
+
   void emitAvailableTimes({required String fieldId, required String date}) async {
     if (fieldId.isNotEmpty) this.fieldId = fieldId;
 
@@ -38,5 +39,10 @@ class AvailableTimeCubit extends Cubit<AvailableTimeState> {
         slots: updatedSlots
     );
     emit(AvailableTimeState.success(updateData));
+  }
+
+  Slot? get selectedSlot{
+    if(state is! AvailableTimeSuccess) return null;
+    return (state as AvailableTimeSuccess).data.slots.firstWhere((s) => s.isSelected);
   }
 }

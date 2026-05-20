@@ -51,7 +51,7 @@ class FieldTabBar extends StatelessWidget {
                         date: calendarCubit.state.selectedDateFormatted
                       );
                     },
-                    child: AvailableBookings(),
+                    child: AvailableBookings(field: field,),
                   ),
                 ),
               ],

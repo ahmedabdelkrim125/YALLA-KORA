@@ -93,4 +93,9 @@ class CalendarCubit extends Cubit<CalendarState> {
     final now = DateTime.now();
     return !(state.currentYear == now.year && state.currentMonth == now.month);
   }
+
+  String get selectedTimeRange{
+    final date = state.days.firstWhere((day) => day.isSelected);
+    return '${date.dayName}, ${date.dayNumber} $monthYearLabel';
+  }
 }

@@ -6,12 +6,14 @@ import 'package:yalla_kora/features/facility-details/logic/calendar_cubit/calend
 import 'package:yalla_kora/features/facility-details/ui/widgets/available_time_section.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/booking_section.dart';
 import 'package:yalla_kora/features/facility-details/ui/widgets/calender_strip.dart';
+import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.dart';
 
 import '../../../../core/widgets/error_widget.dart';
 
 class AvailableBookings extends StatelessWidget {
-  const AvailableBookings({super.key});
+  const AvailableBookings({super.key, required this.field});
 
+  final FieldModel field;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,7 +55,12 @@ class AvailableBookings extends StatelessWidget {
           verticalSpace(context, height: 24),
 
           // ── Sticky booking bar ──
-          BookingBottomBar(price: 300),
+          BookingBottomBar(
+            facilityName: field.name,
+            price: field.pricePerHour,
+            date: context.read<CalendarCubit>().selectedTimeRange,
+            matchType: '${field.type.label} (${field.type.id})',
+          ),
           verticalSpace(context, height: 60),
         ],
       ),

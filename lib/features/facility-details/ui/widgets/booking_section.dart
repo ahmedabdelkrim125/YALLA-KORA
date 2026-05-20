@@ -2,21 +2,31 @@
 //  BOOKING BOTTOM BAR
 // ══════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/helper/extensions.dart';
+import 'package:yalla_kora/core/helper/helper_functions/build_snack_bar.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
+import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
+import 'package:yalla_kora/features/facility-details/logic/available_time_cubit.dart';
 
 class BookingBottomBar extends StatelessWidget {
   final int price;
-  const BookingBottomBar({super.key, required this.price});
+  final String date, matchType, facilityName;
+  const BookingBottomBar({super.key, required this.price, required this.date, required this.matchType, required this.facilityName});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    Slot? slot;
+    return BlocListener<AvailableTimeCubit, AvailableTimeState>(
+      listener: (context, state) {
+        slot = context.read<AvailableTimeCubit>().selectedSlot;
+      },
+      child: Padding(
       padding: context.responsivePadding(horizontal: 16.w(context)),
       child: Row(
         children: [
@@ -24,7 +34,19 @@ class BookingBottomBar extends StatelessWidget {
             flex: 3,
             child: AppButton(
               title: 'حجز الملعب',
-              onPressed: () => context.pushNamed(Routes.bookingConfirmation),
+              onPressed: () {
+                if(slot == null){
+                  buildSnackBar(context: context, text: 'اختار معاد الخجز');
+                  return;
+                }
+                context.pushNamed(Routes.bookingConfirmation, arguments:{
+                'bookingPrice': price,
+                'date': date,
+                'timeRange': '${slot!.time} (ساعة)',
+                'matchType': matchType,
+                'facilityName': facilityName,
+              });
+              },
             ),
           ),
           horizontalSpace(context, width: 8),
@@ -52,6 +74,7 @@ class BookingBottomBar extends StatelessWidget {
           // Book button
         ],
       ),
-    );
+    ),
+);
   }
 }
