@@ -5,6 +5,7 @@ import 'package:yalla_kora/core/networking/dio_factory.dart';
 import 'package:yalla_kora/core/service/location_service.dart';
 import 'package:yalla_kora/features/facility-details/data/repo/available_time_repo.dart';
 import 'package:yalla_kora/features/facility-details/data/repo/available_time_repo_impl.dart';
+import 'package:yalla_kora/features/facility-details/logic/calendar_cubit/calendar_cubit.dart';
 import 'package:yalla_kora/features/home/data/event_matches/repo/event_matches_repo.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/repo/near_facilities_repo.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/repo/near_facilities_repo_impl.dart';
@@ -55,4 +56,7 @@ Future<void> setupGetIt() async {
     ()=> AvailableTimeRepoImpl(apiService: getIt<ApiService>())
   );
   getIt.registerFactory<AvailableTimeCubit>(() => AvailableTimeCubit(availableTimeRepo: getIt<AvailableTimeRepo>()));
+
+  // Calendar cubit
+  getIt.registerFactory<CalendarCubit>(()=> CalendarCubit());
 }

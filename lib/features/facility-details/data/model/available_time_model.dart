@@ -18,10 +18,11 @@ class AvailableTimeModel {
 class Slot{
   final String time;
   final String status;
+  bool isSelected;
 
   Slot({
     required this.time,
-    required this.status,
+    required this.status, this.isSelected = false,
   });
   factory Slot.fromJson(Map<String, dynamic> json) => _$SlotFromJson(json);
 }
