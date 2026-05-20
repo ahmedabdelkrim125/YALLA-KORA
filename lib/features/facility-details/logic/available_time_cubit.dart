@@ -24,4 +24,19 @@ class AvailableTimeCubit extends Cubit<AvailableTimeState> {
       failure: (error) => emit(AvailableTimeState.failure(error)),
     );
   }
+
+  void toggleSlot(Slot slot) {
+    final currentState = state;
+    if(currentState is! AvailableTimeSuccess) return;
+    final updatedSlots = currentState.data.slots.map((s){
+      s.isSelected = s.time == slot.time;
+      return s;
+    }).toList();
+    
+    final updateData = AvailableTimeModel(
+        date: currentState.data.date,
+        slots: updatedSlots
+    );
+    emit(AvailableTimeState.success(updateData));
+  }
 }

@@ -2,11 +2,13 @@
 //  AVAILABLE TIMES SECTION
 // ══════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
+import 'package:yalla_kora/features/facility-details/logic/available_time_cubit.dart';
 
 class AvailableTimesSection extends StatelessWidget {
   final List<Slot> slots;
@@ -80,14 +82,18 @@ class TimeSlotChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 90.w(context),
-      height: 50.h(context),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14.r(context)),
-        border: Border.all(color: Colors.white.withOpacity(0.1), width: 0.8),
+    final isSelected = slot.isSelected;
+    return GestureDetector(
+      onTap: ()=> context.read<AvailableTimeCubit>().toggleSlot(slot),
+      child: Container(
+        width: 90.w(context),
+        height: 50.h(context),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14.r(context)),
+          border: Border.all(color: isSelected? AppColors.primaryGreen : Colors.white.withOpacity(0.1), width: 0.8),
+        ),
+        child: Center(child: Text(slot.time, style: TextStyles.boldWhite14)),
       ),
-      child: Center(child: Text(slot.time, style: TextStyles.boldWhite14)),
     );
   }
 }
