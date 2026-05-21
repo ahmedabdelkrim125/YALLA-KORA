@@ -95,7 +95,7 @@ class CalendarCubit extends Cubit<CalendarState> {
   }
 
   String get selectedTimeRange{
-    final date = state.days.firstWhere((day) => day.isSelected);
+    final date = state.selectedDay;
     return '${date.dayName}, ${date.dayNumber} $monthYearLabel';
   }
 }

@@ -5,6 +5,8 @@ import 'package:yalla_kora/features/facility-details/ui/widgets/field_info_secti
 import 'package:yalla_kora/features/facility-details/ui/widgets/field_tab_bar.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.dart';
 
+import '../../../core/constants/app_images.dart';
+
 class FacilityDetails extends StatelessWidget {
   const FacilityDetails({super.key, required this.field});
 
@@ -17,7 +19,9 @@ class FacilityDetails extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            FieldHeroImage(),
+            FieldHeroImage(imagePath: field.images.isNotEmpty
+                ? field.images[0]
+                : Assets.facility6,),
             verticalSpace(context, height: 20),
 
             FieldInfoSection(

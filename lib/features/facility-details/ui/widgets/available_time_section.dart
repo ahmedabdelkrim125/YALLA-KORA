@@ -38,7 +38,7 @@ class AvailableTimesSection extends StatelessWidget {
               children: [
                 Text('الأوقات المتاحة', style: TextStyles.boldWhite14),
                 Text(
-                  '6 أوقات متاحة', // todo: replace with dynamic count
+                  '${slots.length} أوقات متاحة',
                   style: TextStyles.regularWhite12.copyWith(
                     color: AppColors.grey,
                   ),

@@ -11,7 +11,6 @@ import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
-import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
 import 'package:yalla_kora/features/facility-details/logic/available_time_cubit.dart';
 
 class BookingBottomBar extends StatelessWidget {
@@ -21,13 +20,8 @@ class BookingBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Slot? slot;
-    return BlocListener<AvailableTimeCubit, AvailableTimeState>(
-      listener: (context, state) {
-        slot = context.read<AvailableTimeCubit>().selectedSlot;
-      },
-      child: Padding(
-      padding: context.responsivePadding(horizontal: 16.w(context)),
+    return Padding(
+      padding: context.responsivePadding(horizontal: 16),
       child: Row(
         children: [
           Expanded(
@@ -35,14 +29,16 @@ class BookingBottomBar extends StatelessWidget {
             child: AppButton(
               title: 'حجز الملعب',
               onPressed: () {
+                final slot = context.read<AvailableTimeCubit>().selectedSlot;
                 if(slot == null){
                   buildSnackBar(context: context, text: 'اختار معاد الخجز');
                   return;
                 }
+
                 context.pushNamed(Routes.bookingConfirmation, arguments:{
                 'bookingPrice': price,
                 'date': date,
-                'timeRange': '${slot!.time} (ساعة)',
+                'timeRange': '${slot.time} (ساعة)',
                 'matchType': matchType,
                 'facilityName': facilityName,
               });
@@ -74,7 +70,6 @@ class BookingBottomBar extends StatelessWidget {
           // Book button
         ],
       ),
-    ),
-);
+    );
   }
 }

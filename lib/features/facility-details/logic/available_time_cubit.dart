@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:yalla_kora/features/facility-details/data/repo/available_time_repo.dart';
-
+import 'package:collection/collection.dart';
 import '../../../core/networking/api_result.dart';
 import '../../../core/networking/error_hander.dart';
 import '../data/model/available_time_model.dart';
@@ -43,6 +43,6 @@ class AvailableTimeCubit extends Cubit<AvailableTimeState> {
 
   Slot? get selectedSlot{
     if(state is! AvailableTimeSuccess) return null;
-    return (state as AvailableTimeSuccess).data.slots.firstWhere((s) => s.isSelected);
+    return (state as AvailableTimeSuccess).data.slots.firstWhereOrNull((s) => s.isSelected);
   }
 }
