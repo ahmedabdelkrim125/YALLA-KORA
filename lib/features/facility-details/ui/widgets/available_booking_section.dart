@@ -21,7 +21,7 @@ class AvailableBookings extends StatelessWidget {
         listenWhen: (pre, curr) => pre.selectedDateFormatted != curr.selectedDateFormatted,
         listener: (context, calState) {
           context.read<AvailableTimeCubit>().emitAvailableTimes(
-            fieldId: '',
+            fieldId: field.id,
             date: calState.selectedDateFormatted
           );
         },
@@ -44,7 +44,7 @@ class AvailableBookings extends StatelessWidget {
                 failure: (error) => CustomErrorWidget(
                   message: error.apiErrorModel.message,
                   onRetry: () => context.read<AvailableTimeCubit>().emitAvailableTimes(
-                    fieldId: '',
+                    fieldId: field.id,
                     date: context.read<CalendarCubit>().state.selectedDateFormatted,
                   ),
                 ),

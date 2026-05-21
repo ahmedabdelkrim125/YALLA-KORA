@@ -30,10 +30,10 @@ class AvailableTimeCubit extends Cubit<AvailableTimeState> {
     final currentState = state;
     if(currentState is! AvailableTimeSuccess) return;
     final updatedSlots = currentState.data.slots.map((s){
-      s.isSelected = s.time == slot.time;
-      return s;
+      return s.copyWith(
+        isSelected: s.time == slot.time,
+      );
     }).toList();
-    
     final updateData = AvailableTimeModel(
         date: currentState.data.date,
         slots: updatedSlots

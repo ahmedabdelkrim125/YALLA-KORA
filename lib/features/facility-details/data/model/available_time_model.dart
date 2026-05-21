@@ -1,3 +1,4 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'available_time_model.g.dart';
@@ -15,14 +16,29 @@ class AvailableTimeModel {
 }
 
 @JsonSerializable(genericArgumentFactories: true)
-class Slot{
+class Slot {
   final String time;
   final String status;
-  bool isSelected;
+  final bool isSelected;
 
   Slot({
     required this.time,
-    required this.status, this.isSelected = false,
+    required this.status,
+    this.isSelected = false,
   });
-  factory Slot.fromJson(Map<String, dynamic> json) => _$SlotFromJson(json);
+
+  Slot copyWith({
+    String? time,
+    String? status,
+    bool? isSelected,
+  }) {
+    return Slot(
+      time: time ?? this.time,
+      status: status ?? this.status,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
+
+  factory Slot.fromJson(Map<String, dynamic> json) =>
+      _$SlotFromJson(json);
 }

@@ -17,10 +17,14 @@ AvailableTimeModel _$AvailableTimeModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AvailableTimeModelToJson(AvailableTimeModel instance) =>
     <String, dynamic>{'date': instance.date, 'slots': instance.slots};
 
-Slot _$SlotFromJson(Map<String, dynamic> json) =>
-    Slot(time: json['time'] as String, status: json['status'] as String);
+Slot _$SlotFromJson(Map<String, dynamic> json) => Slot(
+  time: json['time'] as String,
+  status: json['status'] as String,
+  isSelected: json['isSelected'] as bool? ?? false,
+);
 
 Map<String, dynamic> _$SlotToJson(Slot instance) => <String, dynamic>{
   'time': instance.time,
   'status': instance.status,
+  'isSelected': instance.isSelected,
 };
