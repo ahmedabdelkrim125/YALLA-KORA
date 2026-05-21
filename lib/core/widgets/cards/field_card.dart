@@ -2,14 +2,18 @@
 //  FIELD CARD
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
-import 'package:yalla_kora/core/models/football-field-model/football_field_model.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/features/home/ui/widgets/field_image.dart';
 import 'package:yalla_kora/features/home/ui/widgets/primary_button.dart';
 
+import '../../../features/home/data/near_facilities/model/field_model.dart';
+import '../../constants/app_images.dart';
+import '../../helper/extensions.dart';
+import '../../routing/routes.dart';
+
 class FieldCard extends StatelessWidget {
-  final FootballFieldModel field;
+  final FieldModel field;
   final bool isHorizontal;
   const FieldCard({super.key, required this.field, this.isHorizontal = false});
 
@@ -25,15 +29,19 @@ class FieldCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FieldImage(imagePath: field.image, badge: field.badge),
-          isHorizontal
-            ? Expanded(child: _buildContent()) : _buildContent(),
+          FieldImage(
+            imagePath: field.images.isNotEmpty
+                ? field.images[0]
+                : Assets.facility6,
+            badge: field.type.label,
+          ),
+          isHorizontal ? Expanded(child: _buildContent(context, field)) : _buildContent(context, field),
         ],
       ),
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context, FieldModel fields) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Padding(
@@ -56,7 +64,7 @@ class FieldCard extends StatelessWidget {
                     Text(field.name, style: TextStyles.boldWhite12),
                     const SizedBox(height: 16),
                     Text(
-                      '📍 ${field.location}',
+                      '📍 ${field.location.name}',
                       style: TextStyles.boldWhite10.copyWith(
                         color: AppColors.darkGreen,
                       ),
@@ -65,18 +73,18 @@ class FieldCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 3),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      field.price,
+                      field.pricePerHour.toString(),
                       style: TextStyles.semiBoldWhite10.copyWith(
                         color: AppColors.orangeColor,
                       ),
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      field.availability,
+                      'متاح: 9م ، 11م', // todo : add availability
                       style: TextStyles.mediumWhite8.copyWith(
                         color: AppColors.orangeColor,
                       ),
@@ -86,7 +94,9 @@ class FieldCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            const PrimaryButton(label: 'احجز الآن'),
+            PrimaryButton(label: 'احجز الآن', onTap: (){
+              context.pushNamed(Routes.facilityDetails, arguments: fields);
+            }),
           ],
         ),
       ),

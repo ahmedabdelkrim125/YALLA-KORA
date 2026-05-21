@@ -23,14 +23,8 @@ class _BookingSuccessAnimationState extends State<BookingSuccessAnimation>
       vsync: this,
       duration: const Duration(milliseconds: 800),
     );
-    _scaleAnim = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.elasticOut,
-    );
-    _glowAnim = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    );
+    _scaleAnim = CurvedAnimation(parent: _controller, curve: Curves.elasticOut);
+    _glowAnim = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
     _controller.forward();
   }
 
@@ -55,12 +49,16 @@ class _BookingSuccessAnimationState extends State<BookingSuccessAnimation>
             color: AppColors.primaryGreen,
             boxShadow: [
               BoxShadow(
-                color: AppColors.primaryGreen.withOpacity(0.20 * _glowAnim.value),
+                color: AppColors.primaryGreen.withOpacity(
+                  0.20 * _glowAnim.value,
+                ),
                 blurRadius: 40,
                 spreadRadius: 8,
               ),
               BoxShadow(
-                color: AppColors.primaryGreen.withOpacity(0.20 * _glowAnim.value),
+                color: AppColors.primaryGreen.withOpacity(
+                  0.20 * _glowAnim.value,
+                ),
                 blurRadius: 70,
                 spreadRadius: 20,
               ),

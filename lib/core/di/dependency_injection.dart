@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yalla_kora/core/networking/api_service.dart';
 import 'package:yalla_kora/core/networking/dio_factory.dart';
+import 'package:yalla_kora/core/service/location_service.dart';
+import 'package:yalla_kora/features/facility-details/data/repo/available_time_repo.dart';
+import 'package:yalla_kora/features/facility-details/data/repo/available_time_repo_impl.dart';
+import 'package:yalla_kora/features/facility-details/logic/calendar_cubit/calendar_cubit.dart';
 import 'package:yalla_kora/features/home/data/event_matches/repo/event_matches_repo.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/repo/near_facilities_repo.dart';
 import 'package:yalla_kora/features/home/data/near_facilities/repo/near_facilities_repo_impl.dart';
@@ -13,6 +17,7 @@ import 'package:yalla_kora/features/signup/data/repo/signup_repo.dart';
 import 'package:yalla_kora/features/signup/data/repo/signup_repo_impl.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 
+import '../../features/facility-details/logic/available_time_cubit.dart';
 import '../../features/home/data/event_matches/repo/event_matches_repo_impl.dart';
 import '../../features/login/data/repo/login_repo_impl.dart';
 
@@ -43,4 +48,15 @@ Future<void> setupGetIt() async {
     ()=> NearFacilitiesRepoImpl(apiService: getIt<ApiService>())
   );
   getIt.registerFactory<NearFacilitiesCubit>(() => NearFacilitiesCubit(getIt()));
+
+  getIt.registerSingleton<LocationService>(LocationService());
+
+  // available times
+  getIt.registerLazySingleton<AvailableTimeRepo>(
+    ()=> AvailableTimeRepoImpl(apiService: getIt<ApiService>())
+  );
+  getIt.registerFactory<AvailableTimeCubit>(() => AvailableTimeCubit(availableTimeRepo: getIt<AvailableTimeRepo>()));
+
+  // Calendar cubit
+  getIt.registerFactory<CalendarCubit>(()=> CalendarCubit());
 }

@@ -28,13 +28,9 @@ class _DiscountCodeSectionState extends State<DiscountCodeSection> {
       children: [
         Row(
           children: [
-            Expanded(
-              child: DiscountTextField(controller: _controller),
-            ),
+            Expanded(child: DiscountTextField(controller: _controller)),
             horizontalSpace(context, width: 16),
-            ApplyButton(
-              onTap: () {},
-            ),
+            ApplyButton(onTap: () {}),
           ],
         ),
       ],
@@ -74,12 +70,17 @@ class DiscountTextField extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder buildOutlineInputBorder(BuildContext context, {bool focused = false}) {
+  OutlineInputBorder buildOutlineInputBorder(
+    BuildContext context, {
+    bool focused = false,
+  }) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(14.r(context)),
       borderSide: BorderSide(
-        color: focused? AppColors.primaryGreen : Colors.white.withOpacity(0.12),
-        width: focused? 1.2 : 0.8,
+        color: focused
+            ? AppColors.primaryGreen
+            : Colors.white.withOpacity(0.12),
+        width: focused ? 1.2 : 0.8,
       ),
     );
   }
@@ -108,9 +109,7 @@ class ApplyButton extends StatelessWidget {
         ),
         child: Text(
           'تطبيق',
-          style: TextStyles.boldWhite14.copyWith(
-            color: AppColors.primaryGreen,
-          ),
+          style: TextStyles.boldWhite14.copyWith(color: AppColors.primaryGreen),
         ),
       ),
     );

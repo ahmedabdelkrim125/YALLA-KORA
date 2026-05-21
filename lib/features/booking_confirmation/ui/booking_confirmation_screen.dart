@@ -10,7 +10,13 @@ import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_conf
 import '../../../core/helper/responsive_extensions.dart';
 
 class BookingConfirmationScreen extends StatelessWidget {
-  const BookingConfirmationScreen({super.key});
+  const BookingConfirmationScreen({super.key, required this.bookingPrice, required this.date, required this.timeRange, required this.matchType, required this.facilityName});
+
+  final int bookingPrice;
+  final String date;
+  final String timeRange;
+  final String matchType;
+  final String facilityName;
 
   @override
   Widget build(BuildContext context) {
@@ -26,24 +32,24 @@ class BookingConfirmationScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 verticalSpace(context, height: 8),
-                const BookingInfoSection(
-                  facilityName: 'ملعب الهدف الرياضي',
-                  date: 'الاثنين، 3 ديسمبر 2025',
-                  timeRange: '05:00 م - 06:00 م (ساعة)',
-                  matchType: 'خماسي (5 ضد 5)',
+                BookingInfoSection(
+                  facilityName: facilityName,
+                  date: date,
+                  timeRange: timeRange,
+                  matchType: matchType,
                 ),
                 verticalSpace(context, height: 24),
-                const TitleHeader(title: 'طريقة الدفع',),
+                const TitleHeader(title: 'طريقة الدفع'),
                 verticalSpace(context, height: 12),
                 PaymentMethodSection(),
                 verticalSpace(context, height: 24),
-                const TitleHeader(title: 'عندك كود خصم؟',),
+                const TitleHeader(title: 'عندك كود خصم؟'),
                 verticalSpace(context, height: 16),
                 DiscountCodeSection(),
                 verticalSpace(context, height: 24),
-                PriceSummarySection(bookingPrice: 300, serviceFee: 10,),
+                PriceSummarySection(bookingPrice: bookingPrice, serviceFee: 10),
                 verticalSpace(context, height: 16),
-                ConfirmBookingButton(),
+                ConfirmBookingButton(totalPrice: '${bookingPrice + 10}',),
                 verticalSpace(context, height: 16),
               ],
             ),
@@ -53,5 +59,3 @@ class BookingConfirmationScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -8,16 +8,20 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/features/facility-details/ui/widgets/field_map_location.dart';
 
 class FacilityAddressSection extends StatelessWidget {
   const FacilityAddressSection({
     super.key,
     required this.address,
     required this.city,
+    required this.lat,
+    required this.lng,
   });
 
   final String address;
   final String city;
+  final double lat, lng;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,10 @@ class FacilityAddressSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Map card ──
-          SectionTitle(label: 'العنوان', trailLabel: 'الخريطة',),
+          SectionTitle(label: 'العنوان', trailLabel: 'الخريطة'),
           verticalSpace(context, height: 12),
-          FacilityMapWidget(),
+          //FacilityMapWidget(),
+          FieldMapLocation(lat: lat, lng: lng,),
           verticalSpace(context, height: 8),
           AddressSection(address: address, city: city),
         ],
@@ -39,11 +44,7 @@ class FacilityAddressSection extends StatelessWidget {
 }
 
 class AddressSection extends StatelessWidget {
-  const AddressSection({
-    super.key,
-    required this.address,
-    required this.city,
-  });
+  const AddressSection({super.key, required this.address, required this.city});
 
   final String address;
   final String city;
@@ -55,10 +56,7 @@ class AddressSection extends StatelessWidget {
       children: [
         SvgPicture.asset(Assets.locationGreen),
         horizontalSpace(context, width: 2),
-        Text(
-          '$address - $city',
-          style: TextStyles.regularWhite14,
-        ),
+        Text('$address - $city', style: TextStyles.regularWhite14),
       ],
     );
   }
@@ -68,14 +66,13 @@ class AddressSection extends StatelessWidget {
 //  MAP WIDGET  (static placeholder — swap with google_maps_flutter)
 // ══════════════════════════════════════════════════════
 class FacilityMapWidget extends StatelessWidget {
-  const FacilityMapWidget({super.key,});
-
+  const FacilityMapWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12.r(context)),
-      child: Image.asset(Assets.mapImage, fit: BoxFit.cover,),
+      child: Image.asset(Assets.mapImage, fit: BoxFit.cover),
     );
   }
 }
@@ -84,7 +81,11 @@ class FacilityMapWidget extends StatelessWidget {
 //  SHARED — SECTION TITLE
 // ══════════════════════════════════════════════════════
 class SectionTitle extends StatelessWidget {
-  const SectionTitle({super.key, required this.label, required this.trailLabel});
+  const SectionTitle({
+    super.key,
+    required this.label,
+    required this.trailLabel,
+  });
 
   final String label;
   final String trailLabel;
@@ -98,7 +99,12 @@ class SectionTitle extends StatelessWidget {
         children: [
           Text(label, style: TextStyles.boldWhite16),
           Spacer(),
-          Text(trailLabel, style: TextStyles.regularWhite12.copyWith(color: AppColors.primaryGreen)),
+          Text(
+            trailLabel,
+            style: TextStyles.regularWhite12.copyWith(
+              color: AppColors.primaryGreen,
+            ),
+          ),
         ],
       ),
     );

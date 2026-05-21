@@ -7,7 +7,17 @@ import '../../../../core/theme/app_colors.dart' show AppColors;
 
 class CalendarMonthHeader extends StatelessWidget {
   final String month;
-  const CalendarMonthHeader({super.key, required this.month});
+  final bool canGoPrevious;
+  final VoidCallback onNext;
+  final VoidCallback onPrevious;
+
+  const CalendarMonthHeader({
+    super.key,
+    required this.month,
+    required this.canGoPrevious,
+    required this.onNext,
+    required this.onPrevious
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +25,21 @@ class CalendarMonthHeader extends StatelessWidget {
       children: [
         Text(month, style: TextStyles.boldWhite18),
         const Spacer(),
-        const CalendarNavArrow(icon: Icons.chevron_left_rounded, color: AppColors.muted,),
+        GestureDetector(
+          onTap: onPrevious,
+          child: CalendarNavArrow(
+            icon: Icons.chevron_left_rounded,
+            color: canGoPrevious? Colors.white : AppColors.muted,
+          ),
+        ),
         horizontalSpace(context, width: 8),
-        const CalendarNavArrow(icon: Icons.chevron_right_rounded, color: Colors.white,),
+        GestureDetector(
+          onTap: onNext,
+          child: const CalendarNavArrow(
+            icon: Icons.chevron_right_rounded,
+            color: Colors.white,
+          ),
+        ),
       ],
     );
   }

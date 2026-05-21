@@ -25,10 +25,13 @@ class SuccessBookingScreen extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                padding: context.responsivePadding(horizontal: 20, vertical: 24,),
+                padding: context.responsivePadding(
+                  horizontal: 20,
+                  vertical: 24,
+                ),
                 child: Column(
                   children: [
-                    SizedBox(height: kToolbarHeight,),
+                    SizedBox(height: kToolbarHeight),
                     Center(child: const BookingSuccessAnimation()),
                     verticalSpace(context, height: 24),
                     Text(
@@ -45,7 +48,7 @@ class SuccessBookingScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     verticalSpace(context, height: 32),
-                    BookingIdCard(bookingId: '#BO-2547',),
+                    BookingIdCard(bookingId: '#BO-2547'),
                     verticalSpace(context, height: 24),
                     const BookingInfoSection(
                       facilityName: 'ملعب الهدف الرياضي',
@@ -54,12 +57,9 @@ class SuccessBookingScreen extends StatelessWidget {
                       matchType: 'خماسي (5 ضد 5)',
                     ),
                     verticalSpace(context, height: 16),
-                    PriceSummarySection(bookingPrice: 300, serviceFee: 10,),
+                    PriceSummarySection(bookingPrice: 300, serviceFee: 10),
                     verticalSpace(context, height: 12),
-                    SuccessActionButtons(
-                      onDownload: () {  },
-                      onShare: () {  },
-                    ),
+                    SuccessActionButtons(onDownload: () {}, onShare: () {}),
                     verticalSpace(context, height: 24),
                     AppButton(
                       title: 'العودة للرئيسية',
@@ -70,7 +70,7 @@ class SuccessBookingScreen extends StatelessWidget {
                         );
                       },
                     ),
-                  ]
+                  ],
                 ),
               ),
             ),

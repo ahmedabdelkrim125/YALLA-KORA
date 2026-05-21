@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/helper/extensions.dart';
+import '../../../../core/theme/text_styles.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   const CustomAppBar({
@@ -10,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(text, style: TextStyle(color: Colors.white, fontSize: 24)),
+      title: Text(text, style: TextStyles.boldWhite24),
       centerTitle: true,
       leading: GestureDetector(
         onTap: () => context.pop(),

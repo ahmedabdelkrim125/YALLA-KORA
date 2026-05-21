@@ -30,11 +30,7 @@ class BookingInfoSection extends StatelessWidget {
         children: [
           TitleHeader(title: facilityName),
           CustomDivider(),
-          BookingInfoRow(
-            icon: Assets.calendar,
-            label: 'التاريخ:',
-            value: date,
-          ),
+          BookingInfoRow(icon: Assets.calendar, label: 'التاريخ:', value: date),
           verticalSpace(context, height: 10),
           BookingInfoRow(
             icon: Assets.timeGrey,
@@ -71,11 +67,8 @@ class BookingInfoRow extends StatelessWidget {
       spacing: 8.w(context),
       children: [
         SvgPicture.asset(icon),
-        Text(label, style: TextStyles.regularMuted14) ,
-        Text(
-          value,
-          style: TextStyles.boldWhite14,
-        ),
+        Text(label, style: TextStyles.regularMuted14),
+        Text(value, style: TextStyles.boldWhite14),
       ],
     );
   }

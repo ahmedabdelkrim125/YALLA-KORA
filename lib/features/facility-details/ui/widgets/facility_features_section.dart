@@ -2,17 +2,17 @@
 //  FACILITY FEATURES SECTION
 // ══════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/features/facility-details/ui/widgets/facility_details_tab.dart';
+
+import '../../../home/data/near_facilities/model/field_model.dart';
 
 class FacilityFeaturesSection extends StatelessWidget {
   const FacilityFeaturesSection({super.key, required this.features});
 
-  final List<FacilityFeature> features;
+  final List<Feature> features;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class FacilityFeaturesSection extends StatelessWidget {
 class FeatureChip extends StatelessWidget {
   const FeatureChip({super.key, required this.feature});
 
-  final FacilityFeature feature;
+  final Feature feature;
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +62,11 @@ class FeatureChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            feature.label,
+            feature.name,
             style: TextStyles.mediumWhite12.copyWith(color: AppColors.grey),
           ),
-          horizontalSpace(context, width: 4),
-          SvgPicture.asset(feature.icon,),
+          // horizontalSpace(context, width: 4),
+          // SvgPicture.asset(feature.icon,),
         ],
       ),
     );
