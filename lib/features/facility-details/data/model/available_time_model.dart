@@ -19,6 +19,7 @@ class AvailableTimeModel {
 class Slot {
   final String time;
   final String status;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isSelected;
 
   Slot({

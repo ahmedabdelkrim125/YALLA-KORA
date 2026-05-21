@@ -10,4 +10,13 @@ class DayModel {
     required this.dayNumber,
     this.isSelected = false,
   });
+
+  DayModel copyWith({bool? isSelected}){
+    return DayModel(
+      date: date,
+      dayName: dayName,
+      dayNumber: dayNumber,
+      isSelected: isSelected ?? this.isSelected
+    );
+  }
 }

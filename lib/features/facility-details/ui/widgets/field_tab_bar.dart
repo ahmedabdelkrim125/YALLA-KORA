@@ -41,18 +41,16 @@ class FieldTabBar extends StatelessWidget {
             child: TabBarView(
               children: [
                 FacilityDetailsTab(field: field),
-                BlocProvider(
-                  create: (context) => getIt<CalendarCubit>(),
-                  child: BlocProvider(
-                    create: (context) {
-                      final calendarCubit = context.read<CalendarCubit>();
-                      return getIt<AvailableTimeCubit>()..emitAvailableTimes(
+                MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (context) => getIt<CalendarCubit>(),),
+                    BlocProvider(
+                      create: (context) => getIt<AvailableTimeCubit>()..emitAvailableTimes(
                         fieldId: field.id,
-                        date: calendarCubit.state.selectedDateFormatted
-                      );
-                    },
-                    child: AvailableBookings(field: field,),
-                  ),
+                        date: context.read<CalendarCubit>().state.selectedDateFormatted
+                      ),
+                    ),
+                  ], child: AvailableBookings(field: field,),
                 ),
               ],
             ),

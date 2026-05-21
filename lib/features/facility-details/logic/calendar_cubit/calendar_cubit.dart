@@ -24,8 +24,7 @@ class CalendarCubit extends Cubit<CalendarState> {
           day.date.year == now.year,
     );
 
-    final selectedDay = days[todayIndex != -1 ? todayIndex : 0];
-    selectedDay.isSelected = true;
+    final selectedDay = days[todayIndex != -1 ? todayIndex : 0].copyWith(isSelected: true);
 
     return CalendarState(
       days: days,
@@ -38,8 +37,7 @@ class CalendarCubit extends Cubit<CalendarState> {
 
   void selectDay(DayModel day) {
     final updatedDays = state.days.map((d) {
-      d.isSelected = d.date == day.date;
-      return d;
+      return d.copyWith(isSelected: d.date == day.date);
     }).toList();
 
     emit(state.copyWith(
@@ -74,8 +72,7 @@ class CalendarCubit extends Cubit<CalendarState> {
   void _changeMonth({required int month, required int year}){
     final days = CalendarHelper.generateMonthDays(year: year, month: month);
 
-    final selectedDay = days.first;
-    selectedDay.isSelected = true;
+    final selectedDay = days.first.copyWith(isSelected: true);
 
     emit(state.copyWith(
       days: days,

@@ -26,45 +26,48 @@ class AvailableBookings extends StatelessWidget {
           );
         },
         child: Column(
-        children: [
-          // ── Month header + calendar ──
-          verticalSpace(context, height: 20),
-          CalendarStrip(),
+          children: [
+            // ── Month header + calendar ──
+            verticalSpace(context, height: 20),
+            CalendarStrip(),
 
-          // ── Available times ──
-          verticalSpace(context, height: 20),
-          BlocBuilder<AvailableTimeCubit, AvailableTimeState>(
-            builder: (context, state) {
-              return state.when(
-                initial: () => const SizedBox.shrink(),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                success:  (data) => AvailableTimesSection(
-                  slots: data.slots.where((s) => s.status == 'available').toList(),
-                ),
-                failure: (error) => CustomErrorWidget(
-                  message: error.apiErrorModel.message,
-                  onRetry: () => context.read<AvailableTimeCubit>().emitAvailableTimes(
-                    fieldId: field.id,
-                    date: context.read<CalendarCubit>().state.selectedDateFormatted,
+            // ── Available times ──
+            verticalSpace(context, height: 20),
+            BlocBuilder<AvailableTimeCubit, AvailableTimeState>(
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const SizedBox.shrink(),
+                  loading: () => const Center(child: CircularProgressIndicator()),
+                  success:  (data) => Column(
+                    children: [
+                      AvailableTimesSection(
+                        slots: data.slots.where((s) => s.status == 'available').toList(),
+                      ),
+
+                      // ── Sticky booking bar ──
+                      verticalSpace(context, height: 24),
+                      BookingBottomBar(
+                        facilityName: field.name,
+                        price: field.pricePerHour,
+                        date: context.read<CalendarCubit>().selectedTimeRange,
+                        matchType: '${field.type.label} (${field.type.id})',
+                      ),
+                      verticalSpace(context, height: 60),
+                    ],
                   ),
-                ),
-              );
-            },
-          ),
-
-          verticalSpace(context, height: 24),
-
-          // ── Sticky booking bar ──
-          BookingBottomBar(
-            facilityName: field.name,
-            price: field.pricePerHour,
-            date: context.read<CalendarCubit>().selectedTimeRange,
-            matchType: '${field.type.label} (${field.type.id})',
-          ),
-          verticalSpace(context, height: 60),
-        ],
+                  failure: (error) => CustomErrorWidget(
+                    message: error.apiErrorModel.message,
+                    onRetry: () => context.read<AvailableTimeCubit>().emitAvailableTimes(
+                      fieldId: field.id,
+                      date: context.read<CalendarCubit>().state.selectedDateFormatted,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
-),
     );
   }
 }
