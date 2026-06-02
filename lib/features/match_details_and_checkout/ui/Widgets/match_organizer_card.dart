@@ -5,8 +5,8 @@ import '../../../../core/theme/text_styles.dart';
 import '../../../../core/helper/spacing.dart';
 
 class MatchOrganizerCard extends StatelessWidget {
-  const MatchOrganizerCard({super.key});
-
+  const MatchOrganizerCard({super.key, required this.organizerName});
+  final String organizerName;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -27,7 +27,7 @@ class MatchOrganizerCard extends StatelessWidget {
           children: [
             _buildAvatar(context),
             horizontalSpace(context, width: 12),
-            _buildOrganizerInfo(context),
+            _buildOrganizerInfo(context, organizerName),
             const Spacer(),
             _buildRatingBox(context),
           ],
@@ -67,7 +67,7 @@ class MatchOrganizerCard extends StatelessWidget {
     );
   }
 
-  Widget _buildOrganizerInfo(BuildContext context) {
+  Widget _buildOrganizerInfo(BuildContext context, name) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,7 @@ class MatchOrganizerCard extends StatelessWidget {
         ),
         verticalSpace(context, height: 2),
         Text(
-          'كابتن/ أحمد محمود',
+          'كابتن/ $name',
           style: TextStyles.boldWhite16.copyWith(height: 1.50),
         ),
       ],

@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/features/home/ui/widgets/players_badge.dart';
 
 class MatchInfoCard extends StatelessWidget {
-  const MatchInfoCard({super.key});
+  const MatchInfoCard({super.key, required this.fieldNameType, required this.fieldLocation, required this.playersNeeded, required this.pricePerPlayer});
+
+  final String fieldNameType;
+  final String fieldLocation;
+  final int playersNeeded;
+  final String pricePerPlayer;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,7 @@ class MatchInfoCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('ملعب الهدف - خماسي', style: TextStyles.boldWhite16),
+                Text(fieldNameType, style: TextStyles.boldWhite16),
                 SizedBox(height: 8.h(context)),
                 Row(
                   mainAxisSize: MainAxisSize.min,
@@ -51,47 +57,17 @@ class MatchInfoCard extends StatelessWidget {
                       size: 14.r(context),
                     ),
                     SizedBox(width: 4.w(context)),
-                    Text('المعادي', style: TextStyles.regularMuted12),
+                    Text(fieldLocation, style: TextStyles.regularMuted12),
                   ],
                 ),
                 SizedBox(height: 8.h(context)),
-                Wrap(
-                  spacing: 8.w(context),
-                  runSpacing: 8.h(context),
-                  children: [
-                    _buildTag(context, 'نجيل صناعي', Icons.grass),
-                    _buildTag(context, 'كرة قدم', Icons.sports_soccer),
-                  ],
-                ),
               ],
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                padding: context.responsivePadding(horizontal: 8, vertical: 6),
-                decoration: BoxDecoration(
-                  color: AppColors.cancelRed.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(8.r(context)),
-                  border: Border.all(
-                    width: 0.80.w(context),
-                    color: AppColors.cancelRed.withOpacity(0.2),
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.people_outline,
-                      color: AppColors.cancelRed,
-                      size: 12.r(context),
-                    ),
-                    SizedBox(width: 4.w(context)),
-                    Text('ناقص 2 لعيبة', style: TextStyles.mediumCancelRed10),
-                  ],
-                ),
-              ),
+              PlayersBadge(count: playersNeeded),
               SizedBox(height: 8.h(context)),
               Container(
                 padding: context.responsivePadding(horizontal: 8, vertical: 6),
@@ -103,32 +79,10 @@ class MatchInfoCard extends StatelessWidget {
                     color: Colors.white.withOpacity(0.10),
                   ),
                 ),
-                child: Text('حصة الفرد: 30 ج', style: TextStyles.mediumMuted10),
+                child: Text('حصة الفرد: $pricePerPlayer ج', style: TextStyles.mediumMuted10),
               ),
             ],
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTag(BuildContext context, String text, IconData icon) {
-    return Container(
-      padding: context.responsivePadding(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: AppColors.card2,
-        borderRadius: BorderRadius.circular(8.r(context)),
-        border: Border.all(
-          width: 0.80.w(context),
-          color: AppColors.slateGray.withOpacity(0.5),
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: AppColors.primaryGreen, size: 14.r(context)),
-          SizedBox(width: 4.w(context)),
-          Text(text, style: TextStyles.mediumGrey12),
         ],
       ),
     );

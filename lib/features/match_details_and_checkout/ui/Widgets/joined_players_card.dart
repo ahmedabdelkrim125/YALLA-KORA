@@ -3,10 +3,11 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 
 class JoinedPlayersCard extends StatelessWidget {
-  const JoinedPlayersCard({super.key});
-
+  const JoinedPlayersCard({super.key, required this.player});
+  final List<Player> player;
   final List<String> playerImages = const [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mohamed_Salah_2018.jpg/400px-Mohamed_Salah_2018.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/400px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
@@ -53,7 +54,7 @@ class JoinedPlayersCard extends StatelessWidget {
                     style: TextStyles.boldWhite18.copyWith(height: 1.50),
                   ),
                   TextSpan(
-                    text: '($filledCount/$totalSlots)',
+                    text: '(${player.length}/$totalSlots)',
                     style: TextStyles.regularPrimaryYellow15,
                   ),
                 ],
