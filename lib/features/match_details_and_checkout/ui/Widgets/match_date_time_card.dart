@@ -4,10 +4,13 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 
 import '../../../../core/helper/spacing.dart';
+import '../../../../core/utils/date_time_formatter.dart';
 
 class MatchDateTimeCard extends StatelessWidget {
-  const MatchDateTimeCard({super.key});
+  const MatchDateTimeCard({super.key, required this.time, required this.date});
 
+  final String time;
+  final String date;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -30,7 +33,7 @@ class MatchDateTimeCard extends StatelessWidget {
           children: [
             Text(
               'التوقيت و التاريخ',
-              style: TextStyles.boldWhite18.copyWith(height: 1.50),
+              style: TextStyles.boldWhite18,
             ),
             verticalSpace(context, height: 16),
             Row(
@@ -40,7 +43,7 @@ class MatchDateTimeCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      Icons.calendar_today_rounded,
+                      Icons.calendar_month_sharp,
                       color: AppColors.lightGreenIcon,
                       size: 24.r(context),
                     ),
@@ -49,14 +52,12 @@ class MatchDateTimeCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'الجمعة',
-                          style: TextStyles.boldWhite15.copyWith(height: 1.80),
+                          DateTimeFormatter.dayFromDate(date),
+                          style: TextStyles.boldWhite15,
                         ),
                         Text(
-                          '15 مارس 2026',
-                          style: TextStyles.mediumMuted14.copyWith(
-                            height: 1.93,
-                          ),
+                          DateTimeFormatter.dateToArabic(date),
+                          style: TextStyles.mediumMuted14,
                         ),
                       ],
                     ),
@@ -75,13 +76,12 @@ class MatchDateTimeCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '8:00 مساءً',
-                          style: TextStyles.boldWhite15.copyWith(height: 1.80),
+                          DateTimeFormatter.timeToArabic12Hour(time),
+                          style: TextStyles.boldWhite15,
                         ),
                         Text(
                           '60 دقيقة',
                           style: TextStyles.mediumMuted14.copyWith(
-                            height: 1.93,
                           ),
                         ),
                       ],

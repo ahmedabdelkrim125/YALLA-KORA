@@ -128,12 +128,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<MatchModel> data)?  success,TResult Function( ErrorHandler error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<MatchModel> data,  int totalMatches,  int currentPage,  int totalPages,  bool isLoadingMore,  bool hasError,  ErrorHandler? errorHandler)?  success,TResult Function( ErrorHandler error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case EventMatchesLoading() when loading != null:
 return loading();case EventMatchesSuccess() when success != null:
-return success(_that.data);case EventMatchesError() when failure != null:
+return success(_that.data,_that.totalMatches,_that.currentPage,_that.totalPages,_that.isLoadingMore,_that.hasError,_that.errorHandler);case EventMatchesError() when failure != null:
 return failure(_that.error);case _:
   return orElse();
 
@@ -152,12 +152,12 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<MatchModel> data)  success,required TResult Function( ErrorHandler error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<MatchModel> data,  int totalMatches,  int currentPage,  int totalPages,  bool isLoadingMore,  bool hasError,  ErrorHandler? errorHandler)  success,required TResult Function( ErrorHandler error)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case EventMatchesLoading():
 return loading();case EventMatchesSuccess():
-return success(_that.data);case EventMatchesError():
+return success(_that.data,_that.totalMatches,_that.currentPage,_that.totalPages,_that.isLoadingMore,_that.hasError,_that.errorHandler);case EventMatchesError():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
@@ -175,12 +175,12 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<MatchModel> data)?  success,TResult? Function( ErrorHandler error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<MatchModel> data,  int totalMatches,  int currentPage,  int totalPages,  bool isLoadingMore,  bool hasError,  ErrorHandler? errorHandler)?  success,TResult? Function( ErrorHandler error)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case EventMatchesLoading() when loading != null:
 return loading();case EventMatchesSuccess() when success != null:
-return success(_that.data);case EventMatchesError() when failure != null:
+return success(_that.data,_that.totalMatches,_that.currentPage,_that.totalPages,_that.isLoadingMore,_that.hasError,_that.errorHandler);case EventMatchesError() when failure != null:
 return failure(_that.error);case _:
   return null;
 
@@ -257,7 +257,7 @@ String toString() {
 
 
 class EventMatchesSuccess implements EventMatchesState {
-  const EventMatchesSuccess(final  List<MatchModel> data): _data = data;
+  const EventMatchesSuccess(final  List<MatchModel> data, {this.totalMatches = 0, this.currentPage = 1, this.totalPages = 1, this.isLoadingMore = false, this.hasError = false, this.errorHandler}): _data = data;
   
 
  final  List<MatchModel> _data;
@@ -267,6 +267,12 @@ class EventMatchesSuccess implements EventMatchesState {
   return EqualUnmodifiableListView(_data);
 }
 
+@JsonKey() final  int totalMatches;
+@JsonKey() final  int currentPage;
+@JsonKey() final  int totalPages;
+@JsonKey() final  bool isLoadingMore;
+@JsonKey() final  bool hasError;
+ final  ErrorHandler? errorHandler;
 
 /// Create a copy of EventMatchesState
 /// with the given fields replaced by the non-null parameter values.
@@ -278,16 +284,16 @@ $EventMatchesSuccessCopyWith<EventMatchesSuccess> get copyWith => _$EventMatches
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventMatchesSuccess&&const DeepCollectionEquality().equals(other._data, _data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventMatchesSuccess&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.totalMatches, totalMatches) || other.totalMatches == totalMatches)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.isLoadingMore, isLoadingMore) || other.isLoadingMore == isLoadingMore)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),totalMatches,currentPage,totalPages,isLoadingMore,hasError,errorHandler);
 
 @override
 String toString() {
-  return 'EventMatchesState.success(data: $data)';
+  return 'EventMatchesState.success(data: $data, totalMatches: $totalMatches, currentPage: $currentPage, totalPages: $totalPages, isLoadingMore: $isLoadingMore, hasError: $hasError, errorHandler: $errorHandler)';
 }
 
 
@@ -298,7 +304,7 @@ abstract mixin class $EventMatchesSuccessCopyWith<$Res> implements $EventMatches
   factory $EventMatchesSuccessCopyWith(EventMatchesSuccess value, $Res Function(EventMatchesSuccess) _then) = _$EventMatchesSuccessCopyWithImpl;
 @useResult
 $Res call({
- List<MatchModel> data
+ List<MatchModel> data, int totalMatches, int currentPage, int totalPages, bool isLoadingMore, bool hasError, ErrorHandler? errorHandler
 });
 
 
@@ -315,10 +321,16 @@ class _$EventMatchesSuccessCopyWithImpl<$Res>
 
 /// Create a copy of EventMatchesState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? data = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? data = null,Object? totalMatches = null,Object? currentPage = null,Object? totalPages = null,Object? isLoadingMore = null,Object? hasError = null,Object? errorHandler = freezed,}) {
   return _then(EventMatchesSuccess(
 null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<MatchModel>,
+as List<MatchModel>,totalMatches: null == totalMatches ? _self.totalMatches : totalMatches // ignore: cast_nullable_to_non_nullable
+as int,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+as int,totalPages: null == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
+as int,isLoadingMore: null == isLoadingMore ? _self.isLoadingMore : isLoadingMore // ignore: cast_nullable_to_non_nullable
+as bool,hasError: null == hasError ? _self.hasError : hasError // ignore: cast_nullable_to_non_nullable
+as bool,errorHandler: freezed == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
+as ErrorHandler?,
   ));
 }
 

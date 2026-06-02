@@ -41,7 +41,7 @@ class PlayersBadge extends StatelessWidget {
           SvgPicture.asset(icon),
           const SizedBox(width: 4),
           Text(
-            'لاعبين $count تحتاج',
+            'ناقص $count لاعيبه',
             style: TextStyles.mediumWhite10.copyWith(color: dotColor),
           ),
         ],

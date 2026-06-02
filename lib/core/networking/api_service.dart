@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
-import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/matches_response.dart';
 import '../../features/home/data/near_facilities/model/fields_response.dart';
 import '../../features/signup/data/model/signup_request_body.dart';
 import 'api_constants.dart';
@@ -25,7 +25,7 @@ abstract class ApiService {
 
   //Event Matches//
   @GET(ApiConstants.eventMatches)
-  Future<List<MatchModel>> getEventMatches();
+  Future<ApiResponseModel<MatchesResponse>> getEventMatches({@Query("page") int? page});
 
   //Near Facilities//
   @GET(ApiConstants.nearFacilities)

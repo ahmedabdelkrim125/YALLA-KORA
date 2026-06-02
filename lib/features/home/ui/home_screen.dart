@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yalla_kora/core/constants/app_images.dart';
-import 'package:yalla_kora/core/helper/extensions.dart';
-import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/features/home/ui/widgets/event_matches_section_bloc_builder.dart';
-import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
-import '../../../core/constants/dummy_data.dart';
 import '../../../core/theme/app_colors.dart' show AppColors;
 import '../../../core/widgets/user_header/user_header.dart';
 import 'widgets/near_facilities_section_bloc_builder.dart';
@@ -35,11 +30,6 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       NearFacilitiesSection(),
-                      SectionHeader(
-                        title: 'كمل التقسيمة',
-                        iconPath: Assets.handshakeIcon,
-                        onViewAllTap: () => context.pushNamed(Routes.viewAllMatchesScreen, arguments: dummyMatches),
-                      ),
                       EventMatchesSection(),
                       SizedBox(height: navBarBottomPadding),
                     ],

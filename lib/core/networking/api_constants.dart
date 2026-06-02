@@ -1,11 +1,11 @@
 class ApiConstants {
   // static const String baseURL = 'http://10.0.2.2:3000/api/';
   static const String baseURL =
-      'https://yallakora.up.railway.app/api/';
+      'https://yalla-kora.up.railway.app/api/';
   static const String login = 'auth/login';
   static const String register = 'auth/register';
   static const String verifyOtp = 'auth/verify-otp';
-  static const String eventMatches = 'matches/event'; // todo : change this to the correct endpoint
+  static const String eventMatches = 'matches';
   static const String nearFacilities = 'fields';
   static const String availableTimes = 'fields/{field_id}/schedule';
 }

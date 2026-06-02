@@ -88,9 +88,14 @@ class AppRouter {
           ),
         );
       case Routes.viewAllMatchesScreen:
+        final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (_) => ViewAllMatchesScreen(
-            matches: settings.arguments as List<MatchModel>,
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<EventMatchesCubit>()..loadInitialMatches(
+              initMatches: args['matches'] as List<MatchModel>,
+              totalMatches: args['totalMatches'] as int,
+              totalPages: args['totalPages'] as int
+            ), child: ViewAllMatchesScreen(),
           )
         );
 
@@ -111,7 +116,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SuccessBookingScreen());
 
       case Routes.matchDetailsScreen:
-        return MaterialPageRoute(builder: (_) => const MatchDetailsScreen());
+        final args = settings.arguments as MatchModel;
+        return MaterialPageRoute(builder: (_) => MatchDetailsScreen(match: args,));
       case Routes.checkoutScreen:
         return MaterialPageRoute(builder: (_) => const CheckoutScreen());
 

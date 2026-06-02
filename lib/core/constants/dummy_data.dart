@@ -1,5 +1,5 @@
 import 'package:yalla_kora/core/constants/app_images.dart';
-import '../../features/home/data/event_matches/models/match_model.dart';
+import '../../features/home/data/event_matches/models/match_model.dart' as match;
 import '../../features/home/data/near_facilities/model/field_model.dart';
 
 final dummyFields = [
@@ -120,23 +120,78 @@ final dummyFields = [
   ),
 ];
 
-const dummyMatches = [
-  MatchModel(
-    time: 'اليوم, 9:00 م',
-    venue: 'ملعب الهدف, الشيراتون',
-    playersNeeded: 3,
-    sharePrice: '30 ج',
+final dummyMatches = [
+  match.MatchModel(
+    id: '664f1a2b3c4d5e6f7a8b9c30',
+    creator: match.Creator(
+      id: '664f1a2b3c4d5e6f7a8b9c0d',
+      name: 'Ahmed',
+      avatar: null,
+    ),
+    field: match.Field(
+      id: '664f1a2b3c4d5e6f7a8b9c01',
+      name: 'ملعب الكابيتانو',
+      location: match.Location(
+        name: 'مدينة نصر',
+      ),
+      type: '5x5',
+    ),
+    date: '2026-06-01',
+    time: '21:00',
+    playersNeeded: 10,
+    pricePerPlayer: 30,
+    players:  [
+      match.Player(id: '664f1a2b3c4d5e6f7a8b9c0d', name: 'ahmed', avatar: null),
+    ],
+    status: 'open',
+    spotsLeft: 9,
   ),
-  MatchModel(
-    time: 'اليوم, 9:00 م',
-    venue: 'ملعب الهدف, المعادي',
-    playersNeeded: 2,
-    sharePrice: '30 ج',
+
+  match.MatchModel(
+    id: '664f1a2b3c4d5e6f7a8b9c31',
+    creator: match.Creator(
+      id: '664f1a2b3c4d5e6f7a8b9c0e',
+      name: 'Mohamed',
+      avatar: null,
+    ),
+    field: match.Field(
+      id: '664f1a2b3c4d5e6f7a8b9c02',
+      name: 'ملعب الهدف',
+      location: match.Location(
+        name: 'الشيراتون',
+      ),
+      type: '5x5',
+    ),
+    date: '2026-06-02',
+    time: '20:00',
+    playersNeeded: 8,
+    pricePerPlayer: 40,
+    players: [],
+    status: 'open',
+    spotsLeft: 8,
   ),
-  MatchModel(
-    time: 'اليوم, 9:00 م',
-    venue: 'ملعب الهدف, الشيراتون',
-    playersNeeded: 5,
-    sharePrice: '30 ج',
+
+   match.MatchModel(
+    id: '664f1a2b3c4d5e6f7a8b9c32',
+    creator: match.Creator(
+      id: '664f1a2b3c4d5e6f7a8b9c0f',
+      name: 'Omar',
+      avatar: null,
+    ),
+    field: match.Field(
+      id: '664f1a2b3c4d5e6f7a8b9c03',
+      name: 'ملعب النجوم',
+      location: match.Location(
+        name: 'المعادي',
+      ),
+      type: '7x7',
+    ),
+    date: '2026-06-03',
+    time: '22:00',
+    playersNeeded: 14,
+    pricePerPlayer: 50,
+    players: [],
+    status: 'open',
+    spotsLeft: 5,
   ),
 ];
