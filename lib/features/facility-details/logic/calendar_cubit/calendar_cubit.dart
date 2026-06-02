@@ -10,6 +10,19 @@ part 'calendar_cubit.freezed.dart';
 class CalendarCubit extends Cubit<CalendarState> {
   CalendarCubit() : super(_buildInitialState());
 
+  static int _getTodayIndex(List<DayModel> days) {
+    final now = DateTime.now();
+
+    final index = days.indexWhere(
+          (day) =>
+      day.date.day == now.day &&
+          day.date.month == now.month &&
+          day.date.year == now.year,
+    );
+
+    return index != -1 ? index : 0;
+  }
+
   static CalendarState _buildInitialState() {
     final now = DateTime.now();
     final days = CalendarHelper.generateMonthDays(
@@ -17,21 +30,17 @@ class CalendarCubit extends Cubit<CalendarState> {
         month: now.month
     );
 
-    final todayIndex = days.indexWhere(
-          (day) =>
-      day.date.day == now.day &&
-          day.date.month == now.month &&
-          day.date.year == now.year,
-    );
+    final selectedDayIndex = _getTodayIndex(days);
 
-    final selectedDay = days[todayIndex != -1 ? todayIndex : 0].copyWith(isSelected: true);
+    final updatedDays = List<DayModel>.from(days);
+    updatedDays[selectedDayIndex] = days[selectedDayIndex].copyWith(isSelected: true);
 
     return CalendarState(
-      days: days,
-      selectedDay: selectedDay,
+      days: updatedDays,
+      selectedDay: updatedDays[selectedDayIndex],
       currentMonth: now.month,
       currentYear: now.year,
-      selectedDateFormatted: DateFormat('yyyy-MM-dd').format(selectedDay.date),
+      selectedDateFormatted: DateFormat('yyyy-MM-dd').format(updatedDays[selectedDayIndex].date),
     );
   }
 
@@ -40,10 +49,14 @@ class CalendarCubit extends Cubit<CalendarState> {
       return d.copyWith(isSelected: d.date == day.date);
     }).toList();
 
+    final selectedDay = updatedDays.firstWhere(
+          (d) => d.date == day.date,
+    );
+
     emit(state.copyWith(
       days: updatedDays,
-      selectedDay: day,
-      selectedDateFormatted: DateFormat('yyyy-MM-dd').format(day.date),
+      selectedDay: selectedDay,
+      selectedDateFormatted: DateFormat('yyyy-MM-dd').format(selectedDay.date),
     ));
   }
 
@@ -63,7 +76,7 @@ class CalendarCubit extends Cubit<CalendarState> {
     int month = state.currentMonth - 1;
     int year = state.currentYear;
     if(month < 1){
-      month = 1;
+      month = 12;
       year--;
     }
     _changeMonth(month: month, year: year);
@@ -72,10 +85,19 @@ class CalendarCubit extends Cubit<CalendarState> {
   void _changeMonth({required int month, required int year}){
     final days = CalendarHelper.generateMonthDays(year: year, month: month);
 
-    final selectedDay = days.first.copyWith(isSelected: true);
+    final now = DateTime.now();
+
+    final selectedDayIndex =
+      (month == now.month && year == now.year)
+        ? _getTodayIndex(days)
+        : 0;
+
+    final updatedDays = List<DayModel>.from(days);
+    updatedDays[selectedDayIndex] = updatedDays[selectedDayIndex].copyWith(isSelected: true);
+    final selectedDay = updatedDays[selectedDayIndex];
 
     emit(state.copyWith(
-      days: days,
+      days: updatedDays,
       selectedDay: selectedDay,
       currentMonth: month,
       currentYear: year,
