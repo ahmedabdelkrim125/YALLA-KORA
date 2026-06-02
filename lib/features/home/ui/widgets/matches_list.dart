@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
+import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import 'package:yalla_kora/features/home/ui/widgets/match_row.dart';
@@ -39,7 +40,7 @@ class MatchesList extends StatelessWidget {
           shrinkWrap: true,
           padding: EdgeInsets.symmetric(horizontal: 20),
           physics: NeverScrollableScrollPhysics(),
-          separatorBuilder: (_, _) => SizedBox(height: 16),
+          separatorBuilder: (_, __) => SizedBox(height: 16.h(context)),
           itemBuilder: (context, i) {
             return IntrinsicHeight(
               child: Container(

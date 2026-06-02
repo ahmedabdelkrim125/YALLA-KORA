@@ -26,7 +26,11 @@ class JoinMatchBody extends StatelessWidget {
           SectionHeader(
             title: "كَمّل التقسيمة ",
             iconPath: Assets.handshakeIcon,
-            onViewAllTap: () => context.pushNamed(Routes.viewAllMatchesScreen, arguments: dummyMatches),
+            onViewAllTap: () => context.pushNamed(Routes.viewAllMatchesScreen, arguments: {
+              'matches': dummyMatches,
+              'totalMatches': dummyMatches.length,
+              'totalPages': 1,
+            }),
           ),
 
           const JoinMatchList(),
