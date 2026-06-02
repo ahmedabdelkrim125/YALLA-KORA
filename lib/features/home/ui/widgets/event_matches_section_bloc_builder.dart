@@ -10,6 +10,7 @@ import 'package:yalla_kora/features/home/logic/event_matches/event_matches_cubit
 import 'package:yalla_kora/features/home/ui/widgets/book_button.dart';
 import 'package:yalla_kora/features/home/ui/widgets/section_header.dart';
 import '../../../../core/constants/dummy_data.dart';
+import '../../../../core/helper/responsive_extensions.dart';
 import 'matches_list.dart';
 
 class EventMatchesSection extends StatelessWidget {
@@ -57,7 +58,7 @@ class _MatchesListSkeleton extends StatelessWidget {
             itemCount: matches.length,
             shrinkWrap: true,
             padding: EdgeInsets.symmetric(horizontal: 20),
-            separatorBuilder: (_, _) => SizedBox(height: 16),
+            separatorBuilder: (_, __) => SizedBox(height: 16.h(context)),
             itemBuilder: (context, i) {
               final match = matches[i];
               return IntrinsicHeight(
