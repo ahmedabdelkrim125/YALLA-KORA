@@ -8,8 +8,8 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 
 class PaymentMethodSection extends StatefulWidget {
-  const PaymentMethodSection({super.key});
-
+  const PaymentMethodSection({super.key, this.onMethodChanged});
+  final ValueChanged<String>? onMethodChanged;
   @override
   State<PaymentMethodSection> createState() => _PaymentMethodSectionState();
 }
@@ -29,6 +29,7 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
           selected: _selected,
           onTap: (v) {
             setState(() => _selected = v);
+            widget.onMethodChanged?.call(v);
           },
         ),
         verticalSpace(context, height: 8),
@@ -39,6 +40,7 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
           selected: _selected,
           onTap: (v) {
             setState(() => _selected = v);
+            widget.onMethodChanged?.call(v);
           },
         ),
         verticalSpace(context, height: 8),
@@ -52,6 +54,7 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
               selected: _selected,
               onTap: (v) {
                 setState(() => _selected = v);
+                widget.onMethodChanged?.call(v);
               },
             );
           }

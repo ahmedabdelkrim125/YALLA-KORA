@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/widgets/custom_basic_appbar.dart';
+import 'package:yalla_kora/features/booking_confirmation/logic/booking_cubit.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_confirmation_widgets/booking_info_section.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_confirmation_widgets/confirm_booking_button.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_confirmation_widgets/discount_section.dart';
@@ -11,11 +13,11 @@ import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.
 import '../../../core/helper/responsive_extensions.dart';
 
 class BookingConfirmationScreen extends StatelessWidget {
-  const BookingConfirmationScreen({super.key, required this.field, required this.date, required this.timeRange,});
+  const BookingConfirmationScreen({super.key, required this.field, required this.date, required this.time,});
 
   final FieldModel field;
   final String date;
-  final String timeRange;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +36,17 @@ class BookingConfirmationScreen extends StatelessWidget {
                 BookingInfoSection(
                   facilityName: field.name,
                   date: date,
-                  timeRange: '$timeRange (ساعة)',
+                  timeRange: '$time (ساعة)',
                   matchType: '${field.type.label} (${field.type.id})',
                 ),
                 verticalSpace(context, height: 24),
                 const TitleHeader(title: 'طريقة الدفع'),
                 verticalSpace(context, height: 12),
-                PaymentMethodSection(),
+                PaymentMethodSection(
+                  onMethodChanged: (v) {
+                    context.read<BookingCubit>().selectedPaymentMethod = v;
+                  },
+                ),
                 verticalSpace(context, height: 24),
                 const TitleHeader(title: 'عندك كود خصم؟'),
                 verticalSpace(context, height: 16),
@@ -48,7 +54,12 @@ class BookingConfirmationScreen extends StatelessWidget {
                 verticalSpace(context, height: 24),
                 PriceSummarySection(bookingPrice: field.pricePerHour, serviceFee: 10),
                 verticalSpace(context, height: 16),
-                ConfirmBookingButton(totalPrice: '${field.pricePerHour + 10}',),
+                ConfirmBookingButton(
+                  totalPrice: '${field.pricePerHour + 10}',
+                  field: field,
+                  date: date,
+                  timeFrom: time,
+                ),
                 verticalSpace(context, height: 16),
               ],
             ),

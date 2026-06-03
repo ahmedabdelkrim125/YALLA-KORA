@@ -40,7 +40,7 @@ class BookingBottomBar extends StatelessWidget {
                 context.pushNamed(Routes.bookingConfirmation, arguments:{
                   'field': field,
                   'date': date,
-                  'timeRange': slot.time,
+                  'time': slot.time,
                 });
               },
             ),

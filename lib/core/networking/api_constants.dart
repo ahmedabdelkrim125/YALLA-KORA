@@ -8,6 +8,7 @@ class ApiConstants {
   static const String eventMatches = 'matches';
   static const String nearFacilities = 'fields';
   static const String availableTimes = 'fields/{field_id}/schedule';
+  static const String createBooking = 'bookings';
 }
 
 class ApiErrors {

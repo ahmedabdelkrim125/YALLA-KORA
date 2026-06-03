@@ -14,6 +14,8 @@ import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import 'package:yalla_kora/features/splash/ui/splash_screen.dart';
 import '../../features/OTP/ui/otp_screen.dart';
+import '../../features/booking_confirmation/data/models/booking_response.dart';
+import '../../features/booking_confirmation/logic/booking_cubit.dart';
 import '../../features/home/data/event_matches/models/match_model.dart';
 import '../../features/home/data/near_facilities/model/field_model.dart';
 import '../../features/home/ui/main_screen.dart';
@@ -104,14 +106,18 @@ class AppRouter {
       case Routes.bookingConfirmation:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (_) => BookingConfirmationScreen(
-            field: args['field'] as FieldModel,
-            date: args['date'] as String,
-            timeRange: args['timeRange'] as String,
+          builder: (_) => BlocProvider(
+          create: (context) => getIt<BookingCubit>(),
+            child: BookingConfirmationScreen(
+              field: args['field'] as FieldModel,
+              date: args['date'] as String,
+              time: args['time'] as String,
+            ),
           ),
         );
       case Routes.successBooking:
-        return MaterialPageRoute(builder: (_) => const SuccessBookingScreen());
+        final args = settings.arguments as Booking;
+        return MaterialPageRoute(builder: (_) => SuccessBookingScreen(booking: args,));
 
       case Routes.matchDetailsScreen:
         final args = settings.arguments as MatchModel;
