@@ -47,10 +47,8 @@ class AvailableBookings extends StatelessWidget {
                       // ── Sticky booking bar ──
                       verticalSpace(context, height: 24),
                       BookingBottomBar(
-                        facilityName: field.name,
-                        price: field.pricePerHour,
+                        field: field,
                         date: context.read<CalendarCubit>().selectedTimeRange,
-                        matchType: '${field.type.label} (${field.type.id})',
                       ),
                       verticalSpace(context, height: 60),
                     ],

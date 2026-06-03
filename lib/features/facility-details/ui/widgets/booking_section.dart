@@ -12,11 +12,13 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
 import 'package:yalla_kora/features/facility-details/logic/available_time_cubit.dart';
+import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.dart';
 
 class BookingBottomBar extends StatelessWidget {
-  final int price;
-  final String date, matchType, facilityName;
-  const BookingBottomBar({super.key, required this.price, required this.date, required this.matchType, required this.facilityName});
+  final FieldModel field;
+  final String date;
+
+  const BookingBottomBar({super.key, required this.field, required this.date,});
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,10 @@ class BookingBottomBar extends StatelessWidget {
                 }
 
                 context.pushNamed(Routes.bookingConfirmation, arguments:{
-                'bookingPrice': price,
-                'date': date,
-                'timeRange': '${slot.time} (ساعة)',
-                'matchType': matchType,
-                'facilityName': facilityName,
-              });
+                  'field': field,
+                  'date': date,
+                  'timeRange': slot.time,
+                });
               },
             ),
           ),
@@ -54,7 +54,7 @@ class BookingBottomBar extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   children: [
-                    TextSpan(text: '$price ج ', style: TextStyles.boldWhite20),
+                    TextSpan(text: '${field.pricePerHour} ج ', style: TextStyles.boldWhite20),
                     TextSpan(
                       text: '/ الساعة',
                       style: TextStyles.mediumWhite12.copyWith(

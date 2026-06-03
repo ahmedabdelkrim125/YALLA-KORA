@@ -105,11 +105,9 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => BookingConfirmationScreen(
-            bookingPrice: args['bookingPrice'] as int,
+            field: args['field'] as FieldModel,
             date: args['date'] as String,
             timeRange: args['timeRange'] as String,
-            matchType: args['matchType'] as String,
-            facilityName: args['facilityName'] as String,
           ),
         );
       case Routes.successBooking:

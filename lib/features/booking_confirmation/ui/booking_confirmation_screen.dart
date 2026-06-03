@@ -7,16 +7,15 @@ import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_conf
 import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_confirmation_widgets/payment_method_selection.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_confirmation_widgets/price_summary_section.dart';
 import 'package:yalla_kora/features/booking_confirmation/ui/widgets/booking_confirmation_widgets/title_header.dart';
+import 'package:yalla_kora/features/home/data/near_facilities/model/field_model.dart';
 import '../../../core/helper/responsive_extensions.dart';
 
 class BookingConfirmationScreen extends StatelessWidget {
-  const BookingConfirmationScreen({super.key, required this.bookingPrice, required this.date, required this.timeRange, required this.matchType, required this.facilityName});
+  const BookingConfirmationScreen({super.key, required this.field, required this.date, required this.timeRange,});
 
-  final int bookingPrice;
+  final FieldModel field;
   final String date;
   final String timeRange;
-  final String matchType;
-  final String facilityName;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +32,10 @@ class BookingConfirmationScreen extends StatelessWidget {
               children: [
                 verticalSpace(context, height: 8),
                 BookingInfoSection(
-                  facilityName: facilityName,
+                  facilityName: field.name,
                   date: date,
-                  timeRange: timeRange,
-                  matchType: matchType,
+                  timeRange: '$timeRange (ساعة)',
+                  matchType: '${field.type.label} (${field.type.id})',
                 ),
                 verticalSpace(context, height: 24),
                 const TitleHeader(title: 'طريقة الدفع'),
@@ -47,9 +46,9 @@ class BookingConfirmationScreen extends StatelessWidget {
                 verticalSpace(context, height: 16),
                 DiscountCodeSection(),
                 verticalSpace(context, height: 24),
-                PriceSummarySection(bookingPrice: bookingPrice, serviceFee: 10),
+                PriceSummarySection(bookingPrice: field.pricePerHour, serviceFee: 10),
                 verticalSpace(context, height: 16),
-                ConfirmBookingButton(totalPrice: '${bookingPrice + 10}',),
+                ConfirmBookingButton(totalPrice: '${field.pricePerHour + 10}',),
                 verticalSpace(context, height: 16),
               ],
             ),
