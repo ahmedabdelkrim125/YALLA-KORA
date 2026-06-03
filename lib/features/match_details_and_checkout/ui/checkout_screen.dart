@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/core/utils/date_time_formatter.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import '../../booking_confirmation/ui/widgets/booking_confirmation_widgets/payment_method_selection.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({super.key});
-
+  const CheckoutScreen({super.key, required this.match});
+  final MatchModel match;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +31,7 @@ class CheckoutScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildMatchSummaryCard(context),
+                      _buildMatchSummaryCard(context, match: match),
                       verticalSpace(context, height: 32),
                       Text(
                         'اختر طريقة الدفع',
@@ -40,7 +43,7 @@ class CheckoutScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              _buildBottomCheckoutBar(context),
+              _buildBottomCheckoutBar(context, pricePerPerson: match.pricePerPlayer.toString()),
             ],
           ),
         ),
@@ -80,7 +83,7 @@ class CheckoutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMatchSummaryCard(BuildContext context) {
+  Widget _buildMatchSummaryCard(BuildContext context, {required MatchModel match}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r(context)),
       child: Container(
@@ -114,7 +117,7 @@ class CheckoutScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'كابتن أحمد محمود',
+                                'كابتن ${match.creator.name}',
                                 style: TextStyles.boldWhite16.copyWith(
                                   height: 1.50,
                                 ),
@@ -140,7 +143,7 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             child: ClipOval(
                               child: Image.network(
-                                "https://picsum.photos/50/50",
+                                match.creator.avatar ?? Assets.player3,
                                 fit: BoxFit.cover,
                                 errorBuilder: (_, __, ___) =>
                                     Container(color: AppColors.darkAvatarBg),
@@ -170,7 +173,7 @@ class CheckoutScreen extends StatelessWidget {
                                   ),
                                   horizontalSpace(context, width: 6),
                                   Text(
-                                    '8:00 مساءً',
+                                    DateTimeFormatter.timeToArabic12Hour(match.time),
                                     style: TextStyles.boldWhite15.copyWith(
                                       height: 1.80,
                                     ),
@@ -192,7 +195,7 @@ class CheckoutScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    'الجمعة',
+                                    DateTimeFormatter.dayFromDate(match.date),
                                     style: TextStyles.boldWhite15.copyWith(
                                       height: 1.80,
                                     ),
@@ -207,7 +210,7 @@ class CheckoutScreen extends StatelessWidget {
                               ),
                               verticalSpace(context, height: 4),
                               Text(
-                                '15 مارس 2026',
+                                DateTimeFormatter.dateToArabic(match.date),
                                 style: TextStyles.regularMuted12.copyWith(
                                   height: 1.50,
                                 ),
@@ -227,7 +230,7 @@ class CheckoutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomCheckoutBar(BuildContext context) {
+  Widget _buildBottomCheckoutBar(BuildContext context, {required String pricePerPerson}) {
     return Container(
       width: double.infinity,
       padding: context.responsivePadding(horizontal: 20, vertical: 16),
@@ -239,7 +242,7 @@ class CheckoutScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '30 ج.م',
+                '$pricePerPerson ج.م',
                 style: TextStyles.boldWhite15.copyWith(height: 1.50),
               ),
               Text('حصة الفرد', style: TextStyles.regularSlateGray15),
@@ -251,7 +254,7 @@ class CheckoutScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('30 ج.م', style: TextStyles.boldPrimaryGreen24),
+              Text('$pricePerPerson ج.م', style: TextStyles.boldPrimaryGreen24),
               Text(
                 'الإجمالي',
                 style: TextStyles.boldWhite18.copyWith(height: 1.50),

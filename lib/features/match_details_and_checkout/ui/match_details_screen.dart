@@ -29,6 +29,7 @@ class MatchDetailsScreen extends StatelessWidget {
               MatchInfoCard(
                 fieldNameType: '${match.field.name} - ${match.field.type}',
                 fieldLocation: match.field.location.name,
+                fieldAddress: match.field.location.address,
                 playersNeeded: match.playersNeeded,
                 pricePerPlayer: '${match.pricePerPlayer}',
               ),
@@ -36,17 +37,17 @@ class MatchDetailsScreen extends StatelessWidget {
               MatchDateTimeCard(time: match.time, date: match.date,),
               verticalSpace(context, height: 24),
               JoinedPlayersCard(
-                player: match.players,
+                players: match.players,
                 totalPlayers: totalPlayers,
                 playersJoined: totalPlayers - match.playersNeeded,
               ),
               verticalSpace(context, height: 8),
-              MatchOrganizerCard(organizerName: match.creator.name,),
+              MatchOrganizerCard(organizer: match.creator,),
               verticalSpace(context, height: 21.74),
               CheckoutBottomBar(
                 price: match.pricePerPlayer.toString(),
                 onPressed: () {
-                  context.pushNamed(Routes.checkoutScreen);
+                  context.pushNamed(Routes.checkoutScreen, arguments: match);
                 },
               ),
               verticalSpace(context, height: 20),

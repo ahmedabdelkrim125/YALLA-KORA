@@ -62,10 +62,11 @@ Map<String, dynamic> _$FieldToJson(Field instance) => <String, dynamic>{
 };
 
 Location _$LocationFromJson(Map<String, dynamic> json) =>
-    Location(name: json['name'] as String);
+    Location(name: json['name'] as String, address: json['address'] as String);
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
   'name': instance.name,
+  'address': instance.address,
 };
 
 Player _$PlayerFromJson(Map<String, dynamic> json) => Player(

@@ -133,6 +133,7 @@ final dummyMatches = [
       name: 'ملعب الكابيتانو',
       location: match.Location(
         name: 'مدينة نصر',
+        address: 'القاهرة - النزهة',
       ),
       type: '5x5',
     ),
@@ -159,6 +160,7 @@ final dummyMatches = [
       name: 'ملعب الهدف',
       location: match.Location(
         name: 'الشيراتون',
+        address: 'القاهرة - الشيراتون',
       ),
       type: '5x5',
     ),
@@ -183,6 +185,7 @@ final dummyMatches = [
       name: 'ملعب النجوم',
       location: match.Location(
         name: 'المعادي',
+        address: 'القاهرة - المعادي',
       ),
       type: '7x7',
     ),

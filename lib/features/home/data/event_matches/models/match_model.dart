@@ -89,9 +89,11 @@ class Field {
 class Location {
   @JsonKey(name: "name")
   final String name;
+  @JsonKey(name: "address")
+  final String address;
 
   Location({
-    required this.name,
+    required this.name, required this.address,
   });
 
   factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);

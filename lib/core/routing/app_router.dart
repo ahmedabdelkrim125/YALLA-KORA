@@ -119,7 +119,8 @@ class AppRouter {
         final args = settings.arguments as MatchModel;
         return MaterialPageRoute(builder: (_) => MatchDetailsScreen(match: args,));
       case Routes.checkoutScreen:
-        return MaterialPageRoute(builder: (_) => const CheckoutScreen());
+        final args = settings.arguments as MatchModel;
+        return MaterialPageRoute(builder: (_) => CheckoutScreen(match: args,));
 
       default:
         return MaterialPageRoute(
