@@ -6,7 +6,9 @@ import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 
 class JoinedPlayersCard extends StatelessWidget {
-  const JoinedPlayersCard({super.key, required this.player});
+  const JoinedPlayersCard({super.key, required this.player, required this.totalPlayers, required this.playersJoined});
+  final int totalPlayers;
+  final int playersJoined;
   final List<Player> player;
   final List<String> playerImages = const [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mohamed_Salah_2018.jpg/400px-Mohamed_Salah_2018.jpg",
@@ -17,7 +19,6 @@ class JoinedPlayersCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const int totalSlots = 10;
     final int filledCount = playerImages.length;
     final double avatarSize = 54.w(context);
     final double overlap = 36.w(context);
@@ -54,7 +55,7 @@ class JoinedPlayersCard extends StatelessWidget {
                     style: TextStyles.boldWhite18.copyWith(height: 1.50),
                   ),
                   TextSpan(
-                    text: '(${player.length}/$totalSlots)',
+                    text: '($playersJoined/$totalPlayers)',
                     style: TextStyles.regularPrimaryYellow15,
                   ),
                 ],
