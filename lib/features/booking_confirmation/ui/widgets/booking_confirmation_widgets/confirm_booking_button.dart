@@ -34,9 +34,9 @@ class ConfirmBookingButton extends StatelessWidget {
       child: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {
           state.whenOrNull(
-            success: (response) {
+            success: (response) async{
               context.pushNamedAndRemoveUntil(Routes.mainScreen, predicate: (_) => false,);
-              return context.pushNamed(Routes.successBooking, arguments: response.booking);
+              context.pushNamed(Routes.successBooking, arguments: response.booking);
             },
             failure: (error) {
             ModernDialog.showError(

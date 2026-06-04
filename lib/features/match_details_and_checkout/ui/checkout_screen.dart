@@ -68,7 +68,7 @@ class CheckoutScreen extends StatelessWidget {
             style: TextStyles.boldWhite18.copyWith(height: 1.50),
           ),
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => context.pop(),
             child: Container(
               width: 40.w(context),
               height: 40.h(context),
@@ -272,7 +272,7 @@ class CheckoutScreen extends StatelessWidget {
               state.whenOrNull(
                 success: (response) {
                   context.pushNamedAndRemoveUntil(Routes.mainScreen, predicate: (_) => false,);
-                  return context.pushNamed(Routes.joinMatchSuccessScreen, arguments: response.match);
+                  context.pushNamed(Routes.joinMatchSuccessScreen, arguments: response.match);
                 },
                 failure: (error) {
                   ModernDialog.showError(context: context, message: error.apiErrorModel.message,);

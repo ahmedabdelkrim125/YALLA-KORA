@@ -42,7 +42,7 @@ class MatchDetailsScreen extends StatelessWidget {
               ),
               verticalSpace(context, height: 8),
               MatchOrganizerCard(organizer: match.creator,),
-              verticalSpace(context, height: 21.74),
+              verticalSpace(context, height: 22),
               CheckoutBottomBar(
                 price: match.pricePerPlayer.toString(),
                 onPressed: () {
