@@ -48,7 +48,7 @@ class JoinMatchSuccessScreen extends StatelessWidget {
               // ── Match details card ──
               MatchDetailsCard(
                 match: match,
-                playersJoined: match.playersJoined,
+                playersJoined: match.playersJoined + (match.fieldCapacity - match.playersNeeded),
                 totalPlayers: match.fieldCapacity
               ),
               verticalSpace(context, height: 16),
