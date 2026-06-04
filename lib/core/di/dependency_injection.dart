@@ -16,6 +16,9 @@ import 'package:yalla_kora/features/home/logic/event_matches/event_matches_cubit
 import 'package:yalla_kora/features/home/logic/near_facilities/near_facilities_cubit.dart';
 import 'package:yalla_kora/features/login/data/repo/login_repo.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/data/repo/join_match_repo.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/data/repo/join_match_repo_impl.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/logic/join_match_cubit.dart';
 import 'package:yalla_kora/features/signup/data/repo/signup_repo.dart';
 import 'package:yalla_kora/features/signup/data/repo/signup_repo_impl.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
@@ -69,5 +72,13 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<BookingCubit>(
         () => BookingCubit(bookingRepo: getIt<BookingRepo>()),
+  );
+
+  // Join Match
+  getIt.registerLazySingleton<JoinMatchRepo>(
+        () => JoinMatchRepoImpl(apiService: getIt<ApiService>()),
+  );
+  getIt.registerFactory<JoinMatchCubit>(
+        () => JoinMatchCubit(getIt<JoinMatchRepo>()),
   );
 }

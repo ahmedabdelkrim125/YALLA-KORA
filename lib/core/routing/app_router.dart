@@ -10,6 +10,8 @@ import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/home/ui/view_all_fields_screen.dart';
 import 'package:yalla_kora/features/home/ui/view_all_matches_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/join_match_success_screen.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/logic/join_match_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import 'package:yalla_kora/features/splash/ui/splash_screen.dart';
@@ -20,6 +22,7 @@ import '../../features/home/data/event_matches/models/match_model.dart';
 import '../../features/home/data/near_facilities/model/field_model.dart';
 import '../../features/home/ui/main_screen.dart';
 import '../../features/match_details_and_checkout/ui/checkout_screen.dart';
+import '../../features/match_details_and_checkout/ui/data/models/join_match_response.dart' as j;
 import '../../features/match_details_and_checkout/ui/match_details_screen.dart';
 import '../../features/signup/ui/role_selection_screen.dart';
 import 'routes.dart';
@@ -124,7 +127,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => MatchDetailsScreen(match: args,));
       case Routes.checkoutScreen:
         final args = settings.arguments as MatchModel;
-        return MaterialPageRoute(builder: (_) => CheckoutScreen(match: args,));
+        return MaterialPageRoute(builder: (_) => BlocProvider(
+          create: (context) => getIt<JoinMatchCubit>(),
+          child: CheckoutScreen(match: args,),
+        ));
+      case Routes.joinMatchSuccessScreen:
+        final args = settings.arguments as j.Match;
+        return MaterialPageRoute(builder: (_) => JoinMatchSuccessScreen(match: args,));
 
       default:
         return MaterialPageRoute(

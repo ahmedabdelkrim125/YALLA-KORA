@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
@@ -6,7 +7,11 @@ import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/utils/date_time_formatter.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
+import 'package:yalla_kora/core/widgets/modern_dialog_helper.dart';
 import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/logic/join_match_cubit.dart';
+import '../../../core/helper/extensions.dart';
+import '../../../core/routing/routes.dart';
 import '../../booking_confirmation/ui/widgets/booking_confirmation_widgets/payment_method_selection.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -262,20 +267,39 @@ class CheckoutScreen extends StatelessWidget {
             ],
           ),
           verticalSpace(context, height: 24),
-          AppButton(
-            title: 'انضم للتقسيمة !',
-            width: double.infinity,
-            height: 60.h(context),
-            borderRadius: 16,
-            textStyle: TextStyles.extraBoldBlack18,
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x3300FE81),
-                blurRadius: 20,
-                offset: Offset(0, 0),
-              ),
-            ],
-            onPressed: () {},
+          BlocConsumer<JoinMatchCubit, JoinMatchState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: (response) => context.pushNamedAndRemoveUntil(
+                  Routes.joinMatchSuccessScreen,
+                  arguments: response.match ,
+                  predicate: (route) => route.isFirst,
+                ),
+                failure: (error) {
+                  ModernDialog.showError(context: context, message: error.apiErrorModel.message,);
+                }
+              );
+            },
+            builder: (context, state) {
+              final isLoading = state is JoinMatchLoading;
+              return AppButton(
+                title: isLoading ? 'جاري الانضمام...' : 'انضم للتقسيمة !',
+                width: double.infinity,
+                height: 60.h(context),
+                borderRadius: 16,
+                textStyle: TextStyles.extraBoldBlack18,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x3300FE81),
+                    blurRadius: 20,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+                onPressed: isLoading
+                    ?() {}
+                    :()=> context.read<JoinMatchCubit>().joinMatch(matchId: match.id),
+              );
+            },
           ),
         ],
       ),

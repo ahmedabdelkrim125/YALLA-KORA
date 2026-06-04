@@ -3,7 +3,6 @@ import 'package:yalla_kora/core/helper/extensions.dart';
 import 'package:yalla_kora/core/helper/helper_functions/get_players_count.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
-import 'package:yalla_kora/core/routing/routes.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/core/utils/date_time_formatter.dart';
@@ -67,10 +66,7 @@ class SuccessBookingScreen extends StatelessWidget {
                     AppButton(
                       title: 'العودة للرئيسية',
                       onPressed: () {
-                        context.pushNamedAndRemoveUntil(
-                          Routes.mainScreen,
-                          predicate: (_) => false,
-                        );
+                        context.pop();
                       },
                     ),
                   ],
