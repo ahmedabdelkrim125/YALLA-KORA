@@ -135,7 +135,7 @@ final dummyMatches = [
         name: 'مدينة نصر',
         address: 'القاهرة - النزهة',
       ),
-      type: '5x5',
+      type: '5x5', images: [],
     ),
     date: '2026-06-01',
     time: '21:00',
@@ -145,7 +145,7 @@ final dummyMatches = [
       match.Player(id: '664f1a2b3c4d5e6f7a8b9c0d', name: 'ahmed', avatar: null),
     ],
     status: 'open',
-    spotsLeft: 9,
+    spotsLeft: 9, fieldCapacity: 10, playersJoined: 10,
   ),
 
   match.MatchModel(
@@ -162,7 +162,7 @@ final dummyMatches = [
         name: 'الشيراتون',
         address: 'القاهرة - الشيراتون',
       ),
-      type: '5x5',
+      type: '5x5', images: [],
     ),
     date: '2026-06-02',
     time: '20:00',
@@ -170,7 +170,7 @@ final dummyMatches = [
     pricePerPlayer: 40,
     players: [],
     status: 'open',
-    spotsLeft: 8,
+    spotsLeft: 8, fieldCapacity: 10, playersJoined: 10,
   ),
 
    match.MatchModel(
@@ -187,7 +187,7 @@ final dummyMatches = [
         name: 'المعادي',
         address: 'القاهرة - المعادي',
       ),
-      type: '7x7',
+      type: '7x7', images: [],
     ),
     date: '2026-06-03',
     time: '22:00',
@@ -195,6 +195,6 @@ final dummyMatches = [
     pricePerPlayer: 50,
     players: [],
     status: 'open',
-    spotsLeft: 5,
+    spotsLeft: 5, fieldCapacity: 10, playersJoined: 10,
   ),
 ];

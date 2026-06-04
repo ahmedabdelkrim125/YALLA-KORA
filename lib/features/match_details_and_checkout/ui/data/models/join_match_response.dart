@@ -28,6 +28,9 @@ class Match {
   final String date;
   final String time;
 
+  @JsonKey(name: 'field_capacity')
+  final int fieldCapacity;
+
   @JsonKey(name: 'players_needed')
   final int playersNeeded;
 
@@ -44,6 +47,11 @@ class Match {
   @JsonKey(name: '__v')
   final int v;
 
+  @JsonKey(name: 'spots_left')
+  final int spotsLeft;
+  @JsonKey(name: 'players_joined')
+  final int playersJoined;
+
   Match({
     required this.id,
     required this.creator,
@@ -57,6 +65,8 @@ class Match {
     required this.createdAt,
     required this.updatedAt,
     required this.v,
+    required this.fieldCapacity,
+    required this.spotsLeft, required this.playersJoined,
   });
 
   factory Match.fromJson(Map<String, dynamic> json) =>
@@ -95,10 +105,12 @@ class MatchField {
 
   final MatchLocation location;
 
+  final String type;
+
   MatchField({
     required this.id,
     required this.name,
-    required this.location,
+    required this.location, required this.type,
   });
 
   factory MatchField.fromJson(Map<String, dynamic> json) =>

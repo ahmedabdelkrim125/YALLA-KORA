@@ -270,11 +270,10 @@ class CheckoutScreen extends StatelessWidget {
           BlocConsumer<JoinMatchCubit, JoinMatchState>(
             listener: (context, state) {
               state.whenOrNull(
-                success: (response) => context.pushNamedAndRemoveUntil(
-                  Routes.joinMatchSuccessScreen,
-                  arguments: response.match ,
-                  predicate: (route) => route.isFirst,
-                ),
+                success: (response) {
+                  context.pushNamedAndRemoveUntil(Routes.mainScreen, predicate: (_) => false,);
+                  return context.pushNamed(Routes.joinMatchSuccessScreen, arguments: response.match);
+                },
                 failure: (error) {
                   ModernDialog.showError(context: context, message: error.apiErrorModel.message,);
                 }

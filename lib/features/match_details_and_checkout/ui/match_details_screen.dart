@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yalla_kora/core/helper/helper_functions/get_players_count.dart';
 import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import 'package:yalla_kora/features/match_details_and_checkout/ui/Widgets/checkout_bottom_bar.dart';
 import 'package:yalla_kora/features/match_details_and_checkout/ui/Widgets/joined_players_card.dart';
@@ -17,7 +16,6 @@ class MatchDetailsScreen extends StatelessWidget {
   final MatchModel match;
   @override
   Widget build(BuildContext context) {
-    final totalPlayers = getPlayersCount(match.field.type);
     return Scaffold(
       body: SingleChildScrollView(
         child: Directionality(
@@ -30,7 +28,7 @@ class MatchDetailsScreen extends StatelessWidget {
                 fieldNameType: '${match.field.name} - ${match.field.type}',
                 fieldLocation: match.field.location.name,
                 fieldAddress: match.field.location.address,
-                playersNeeded: match.playersNeeded,
+                playersNeeded: match.spotsLeft,
                 pricePerPlayer: '${match.pricePerPlayer}',
               ),
               verticalSpace(context, height: 16),
@@ -38,8 +36,9 @@ class MatchDetailsScreen extends StatelessWidget {
               verticalSpace(context, height: 24),
               JoinedPlayersCard(
                 players: match.players,
-                totalPlayers: totalPlayers,
-                playersJoined: totalPlayers - match.playersNeeded,
+                totalPlayers: match.fieldCapacity,
+                playersJoined: match.playersJoined,
+                playersNeeded: match.playersNeeded,
               ),
               verticalSpace(context, height: 8),
               MatchOrganizerCard(organizer: match.creator,),

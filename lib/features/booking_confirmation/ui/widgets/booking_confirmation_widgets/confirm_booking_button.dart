@@ -34,11 +34,10 @@ class ConfirmBookingButton extends StatelessWidget {
       child: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {
           state.whenOrNull(
-            success: (response) => context.pushNamedAndRemoveUntil(
-              Routes.successBooking,
-              arguments: response.booking ,
-              predicate: (route) => route.isFirst,
-            ),
+            success: (response) {
+              context.pushNamedAndRemoveUntil(Routes.mainScreen, predicate: (_) => false,);
+              return context.pushNamed(Routes.successBooking, arguments: response.booking);
+            },
             failure: (error) {
             ModernDialog.showError(
               context: context,
@@ -61,7 +60,6 @@ class ConfirmBookingButton extends StatelessWidget {
                   timeTo: _calcTimeTo(timeFrom),
                   playersCount: getPlayersCount(field.type.id),
                   type: field.type.id,
-
                 );
               },
             },

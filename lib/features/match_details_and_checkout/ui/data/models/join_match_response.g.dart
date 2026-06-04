@@ -29,6 +29,9 @@ Match _$MatchFromJson(Map<String, dynamic> json) => Match(
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
   v: (json['__v'] as num).toInt(),
+  fieldCapacity: (json['field_capacity'] as num).toInt(),
+  spotsLeft: (json['spots_left'] as num).toInt(),
+  playersJoined: (json['players_joined'] as num).toInt(),
 );
 
 Map<String, dynamic> _$MatchToJson(Match instance) => <String, dynamic>{
@@ -37,6 +40,7 @@ Map<String, dynamic> _$MatchToJson(Match instance) => <String, dynamic>{
   'field': instance.field,
   'date': instance.date,
   'time': instance.time,
+  'field_capacity': instance.fieldCapacity,
   'players_needed': instance.playersNeeded,
   'price_per_player': instance.pricePerPlayer,
   'players': instance.players,
@@ -44,6 +48,8 @@ Map<String, dynamic> _$MatchToJson(Match instance) => <String, dynamic>{
   'createdAt': instance.createdAt.toIso8601String(),
   'updatedAt': instance.updatedAt.toIso8601String(),
   '__v': instance.v,
+  'spots_left': instance.spotsLeft,
+  'players_joined': instance.playersJoined,
 };
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
@@ -62,6 +68,7 @@ MatchField _$MatchFieldFromJson(Map<String, dynamic> json) => MatchField(
   id: json['_id'] as String,
   name: json['name'] as String,
   location: MatchLocation.fromJson(json['location'] as Map<String, dynamic>),
+  type: json['type'] as String,
 );
 
 Map<String, dynamic> _$MatchFieldToJson(MatchField instance) =>
@@ -69,6 +76,7 @@ Map<String, dynamic> _$MatchFieldToJson(MatchField instance) =>
       '_id': instance.id,
       'name': instance.name,
       'location': instance.location,
+      'type': instance.type,
     };
 
 MatchLocation _$MatchLocationFromJson(Map<String, dynamic> json) =>

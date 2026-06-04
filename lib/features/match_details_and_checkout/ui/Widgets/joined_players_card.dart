@@ -3,22 +3,22 @@ import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
-import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 
 import '../../../../core/constants/app_images.dart';
 
 class JoinedPlayersCard extends StatelessWidget {
-  const JoinedPlayersCard({super.key, required this.players, required this.totalPlayers, required this.playersJoined});
+  const JoinedPlayersCard({super.key, required this.players, required this.totalPlayers, required this.playersJoined, required this.playersNeeded});
   final int totalPlayers;
   final int playersJoined;
-  final List<Player> players;
+  final int playersNeeded;
+  final List<dynamic> players;
 
   @override
   Widget build(BuildContext context) {
     final double avatarSize = 54.w(context);
     final double overlap = 36.w(context);
-    final int visibleEmpty = (playersJoined - players.length).abs();
-    final int visibleCount = players.length;
+    final int visibleEmpty = (totalPlayers - playersNeeded).abs();
+    final int visibleCount = playersJoined;
     final double stackWidth = avatarSize + ((visibleCount + visibleEmpty) - 1) * overlap;
 
     return Directionality(
@@ -50,7 +50,7 @@ class JoinedPlayersCard extends StatelessWidget {
                     style: TextStyles.boldWhite18.copyWith(height: 1.50),
                   ),
                   TextSpan(
-                    text: '($playersJoined/$totalPlayers)',
+                    text: '(${(playersJoined) + (totalPlayers - playersNeeded)}/$totalPlayers)',
                     style: TextStyles.regularPrimaryYellow15,
                   ),
                 ],
