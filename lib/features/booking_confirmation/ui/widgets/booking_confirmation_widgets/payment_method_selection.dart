@@ -3,12 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
+import 'package:yalla_kora/core/service/storage_service.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 
 class PaymentMethodSection extends StatefulWidget {
-  const PaymentMethodSection({super.key});
-
+  const PaymentMethodSection({super.key, this.onMethodChanged});
+  final ValueChanged<String>? onMethodChanged;
   @override
   State<PaymentMethodSection> createState() => _PaymentMethodSectionState();
 }
@@ -28,6 +29,7 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
           selected: _selected,
           onTap: (v) {
             setState(() => _selected = v);
+            widget.onMethodChanged?.call(v);
           },
         ),
         verticalSpace(context, height: 8),
@@ -38,17 +40,24 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
           selected: _selected,
           onTap: (v) {
             setState(() => _selected = v);
+            widget.onMethodChanged?.call(v);
           },
         ),
         verticalSpace(context, height: 8),
-        PaymentOption(
-          icon: Assets.wallet,
-          label: 'محفظة يلا كورة (الرصيد: 150ج)',
-          value: 'wallet',
-          selected: _selected,
-          onTap: (v) {
-            setState(() => _selected = v);
-          },
+        FutureBuilder(
+          future: StorageService.getUserWalletBalance(),
+          builder: (context, asyncSnapshot) {
+            return PaymentOption(
+              icon: Assets.wallet,
+              label: 'محفظة يلا كورة (الرصيد: ${asyncSnapshot.data ?? 0}ج)',
+              value: 'wallet',
+              selected: _selected,
+              onTap: (v) {
+                setState(() => _selected = v);
+                widget.onMethodChanged?.call(v);
+              },
+            );
+          }
         ),
       ],
     );

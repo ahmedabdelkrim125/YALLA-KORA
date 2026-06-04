@@ -55,6 +55,8 @@ class Assets {
   static const String share = 'assets/SVG/Share2.svg';
 
   static const String player = 'assets/images/player.jpg';
+  static const String player2 = 'https://www.footyrenders.com/render/lamine-yamal-11.png';
+  static const String player3 = 'https://www.footyrenders.com/render/julian-alvarez-9.png';
   static const String headphones = 'assets/SVG/Headphones.svg';
   static const String logOut = 'assets/SVG/LogOut.svg';
   static const String trash = 'assets/SVG/Trash2.svg';

@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:yalla_kora/features/booking_confirmation/data/models/booking_request_body.dart';
+import 'package:yalla_kora/features/booking_confirmation/data/models/booking_response.dart';
 import 'package:yalla_kora/features/facility-details/data/model/available_time_model.dart';
 import 'package:yalla_kora/features/home/data/event_matches/models/matches_response.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/data/models/join_match_response.dart';
 import '../../features/home/data/near_facilities/model/fields_response.dart';
 import '../../features/signup/data/model/signup_request_body.dart';
 import 'api_constants.dart';
@@ -41,4 +44,12 @@ abstract class ApiService {
     @Path("field_id") required String fieldId,
     @Query("date") required String date,
   });
+
+  @POST(ApiConstants.createBooking)
+  Future<ApiResponseModel<BookingData>> createBooking({
+     @Body() required BookingRequestBody body,
+  });
+
+  @POST(ApiConstants.joinMatch)
+  Future<ApiResponseModel<JoinMatchResponse>> joinMatch({@Path('match_id') required String matchId});
 }

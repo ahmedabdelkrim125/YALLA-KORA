@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yalla_kora/core/constants/app_images.dart';
 import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/helper/spacing.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
+import 'package:yalla_kora/core/utils/date_time_formatter.dart';
 import 'package:yalla_kora/core/widgets/app_button.dart';
+import 'package:yalla_kora/core/widgets/modern_dialog_helper.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/logic/join_match_cubit.dart';
+import '../../../core/helper/extensions.dart';
+import '../../../core/routing/routes.dart';
 import '../../booking_confirmation/ui/widgets/booking_confirmation_widgets/payment_method_selection.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({super.key});
-
+  const CheckoutScreen({super.key, required this.match});
+  final MatchModel match;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +36,7 @@ class CheckoutScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildMatchSummaryCard(context),
+                      _buildMatchSummaryCard(context, match: match),
                       verticalSpace(context, height: 32),
                       Text(
                         'اختر طريقة الدفع',
@@ -40,7 +48,7 @@ class CheckoutScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              _buildBottomCheckoutBar(context),
+              _buildBottomCheckoutBar(context, pricePerPerson: match.pricePerPlayer.toString()),
             ],
           ),
         ),
@@ -60,7 +68,7 @@ class CheckoutScreen extends StatelessWidget {
             style: TextStyles.boldWhite18.copyWith(height: 1.50),
           ),
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => context.pop(),
             child: Container(
               width: 40.w(context),
               height: 40.h(context),
@@ -80,7 +88,7 @@ class CheckoutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMatchSummaryCard(BuildContext context) {
+  Widget _buildMatchSummaryCard(BuildContext context, {required MatchModel match}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r(context)),
       child: Container(
@@ -114,7 +122,7 @@ class CheckoutScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'كابتن أحمد محمود',
+                                'كابتن ${match.creator.name}',
                                 style: TextStyles.boldWhite16.copyWith(
                                   height: 1.50,
                                 ),
@@ -140,7 +148,7 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             child: ClipOval(
                               child: Image.network(
-                                "https://picsum.photos/50/50",
+                                match.creator.avatar ?? Assets.player3,
                                 fit: BoxFit.cover,
                                 errorBuilder: (_, __, ___) =>
                                     Container(color: AppColors.darkAvatarBg),
@@ -170,7 +178,7 @@ class CheckoutScreen extends StatelessWidget {
                                   ),
                                   horizontalSpace(context, width: 6),
                                   Text(
-                                    '8:00 مساءً',
+                                    DateTimeFormatter.timeToArabic12Hour(match.time),
                                     style: TextStyles.boldWhite15.copyWith(
                                       height: 1.80,
                                     ),
@@ -192,7 +200,7 @@ class CheckoutScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    'الجمعة',
+                                    DateTimeFormatter.dayFromDate(match.date),
                                     style: TextStyles.boldWhite15.copyWith(
                                       height: 1.80,
                                     ),
@@ -207,7 +215,7 @@ class CheckoutScreen extends StatelessWidget {
                               ),
                               verticalSpace(context, height: 4),
                               Text(
-                                '15 مارس 2026',
+                                DateTimeFormatter.dateToArabic(match.date),
                                 style: TextStyles.regularMuted12.copyWith(
                                   height: 1.50,
                                 ),
@@ -227,7 +235,7 @@ class CheckoutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomCheckoutBar(BuildContext context) {
+  Widget _buildBottomCheckoutBar(BuildContext context, {required String pricePerPerson}) {
     return Container(
       width: double.infinity,
       padding: context.responsivePadding(horizontal: 20, vertical: 16),
@@ -239,7 +247,7 @@ class CheckoutScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '30 ج.م',
+                '$pricePerPerson ج.م',
                 style: TextStyles.boldWhite15.copyWith(height: 1.50),
               ),
               Text('حصة الفرد', style: TextStyles.regularSlateGray15),
@@ -251,7 +259,7 @@ class CheckoutScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('30 ج.م', style: TextStyles.boldPrimaryGreen24),
+              Text('$pricePerPerson ج.م', style: TextStyles.boldPrimaryGreen24),
               Text(
                 'الإجمالي',
                 style: TextStyles.boldWhite18.copyWith(height: 1.50),
@@ -259,20 +267,38 @@ class CheckoutScreen extends StatelessWidget {
             ],
           ),
           verticalSpace(context, height: 24),
-          AppButton(
-            title: 'انضم للتقسيمة !',
-            width: double.infinity,
-            height: 60.h(context),
-            borderRadius: 16,
-            textStyle: TextStyles.extraBoldBlack18,
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x3300FE81),
-                blurRadius: 20,
-                offset: Offset(0, 0),
-              ),
-            ],
-            onPressed: () {},
+          BlocConsumer<JoinMatchCubit, JoinMatchState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: (response) {
+                  context.pushNamedAndRemoveUntil(Routes.mainScreen, predicate: (_) => false,);
+                  context.pushNamed(Routes.joinMatchSuccessScreen, arguments: response.match);
+                },
+                failure: (error) {
+                  ModernDialog.showError(context: context, message: error.apiErrorModel.message,);
+                }
+              );
+            },
+            builder: (context, state) {
+              final isLoading = state is JoinMatchLoading;
+              return AppButton(
+                title: isLoading ? 'جاري الانضمام...' : 'انضم للتقسيمة !',
+                width: double.infinity,
+                height: 60.h(context),
+                borderRadius: 16,
+                textStyle: TextStyles.extraBoldBlack18,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x3300FE81),
+                    blurRadius: 20,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+                onPressed: isLoading
+                    ?() {}
+                    :()=> context.read<JoinMatchCubit>().joinMatch(matchId: match.id),
+              );
+            },
           ),
         ],
       ),

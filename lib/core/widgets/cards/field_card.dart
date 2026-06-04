@@ -2,6 +2,7 @@
 //  FIELD CARD
 // ─────────────────────────────────────────
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/core/helper/responsive_extensions.dart';
 import 'package:yalla_kora/core/theme/app_colors.dart';
 import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/features/home/ui/widgets/field_image.dart';
@@ -20,7 +21,7 @@ class FieldCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: isHorizontal ? 213 : double.infinity,
+      width: isHorizontal ? 213.w(context) : double.infinity,
       decoration: BoxDecoration(
         color: AppColors.card2,
         borderRadius: BorderRadius.circular(12),
@@ -45,12 +46,7 @@ class FieldCard extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: 6,
-          left: 12,
-          right: 12,
-          bottom: 12,
-        ),
+        padding: context.responsivePadding(top: 6, left: 12, right: 12, bottom: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

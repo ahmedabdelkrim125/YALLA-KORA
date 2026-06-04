@@ -8,6 +8,10 @@ class DateTimeFormatter {
     return DateFormat('h:mm a', 'ar').format(parsedTime);
   }
 
+  static String dateFromArabicDate(String time) {
+    final arabicFormatter = DateFormat('EEEE, d MMMM y', 'ar').parse(time);
+    return DateFormat('yyyy-MM-dd').format(arabicFormatter);
+  }
   static String dateToArabic(String date) {
     final parsedDate = DateTime.parse(date);
 

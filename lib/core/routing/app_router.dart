@@ -10,14 +10,19 @@ import 'package:yalla_kora/features/home/ui/home_screen.dart';
 import 'package:yalla_kora/features/home/ui/view_all_fields_screen.dart';
 import 'package:yalla_kora/features/home/ui/view_all_matches_screen.dart';
 import 'package:yalla_kora/features/login/logic/login_cubit.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/join_match_success_screen.dart';
+import 'package:yalla_kora/features/match_details_and_checkout/ui/logic/join_match_cubit.dart';
 import 'package:yalla_kora/features/onboarding/ui/on_boarding_screen.dart';
 import 'package:yalla_kora/features/signup/logic/signup_cubit.dart';
 import 'package:yalla_kora/features/splash/ui/splash_screen.dart';
 import '../../features/OTP/ui/otp_screen.dart';
+import '../../features/booking_confirmation/data/models/booking_response.dart';
+import '../../features/booking_confirmation/logic/booking_cubit.dart';
 import '../../features/home/data/event_matches/models/match_model.dart';
 import '../../features/home/data/near_facilities/model/field_model.dart';
 import '../../features/home/ui/main_screen.dart';
 import '../../features/match_details_and_checkout/ui/checkout_screen.dart';
+import '../../features/match_details_and_checkout/ui/data/models/join_match_response.dart' as j;
 import '../../features/match_details_and_checkout/ui/match_details_screen.dart';
 import '../../features/signup/ui/role_selection_screen.dart';
 import 'routes.dart';
@@ -104,22 +109,31 @@ class AppRouter {
       case Routes.bookingConfirmation:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (_) => BookingConfirmationScreen(
-            bookingPrice: args['bookingPrice'] as int,
-            date: args['date'] as String,
-            timeRange: args['timeRange'] as String,
-            matchType: args['matchType'] as String,
-            facilityName: args['facilityName'] as String,
+          builder: (_) => BlocProvider(
+          create: (context) => getIt<BookingCubit>(),
+            child: BookingConfirmationScreen(
+              field: args['field'] as FieldModel,
+              date: args['date'] as String,
+              time: args['time'] as String,
+            ),
           ),
         );
       case Routes.successBooking:
-        return MaterialPageRoute(builder: (_) => const SuccessBookingScreen());
+        final args = settings.arguments as Booking;
+        return MaterialPageRoute(builder: (_) => SuccessBookingScreen(booking: args,));
 
       case Routes.matchDetailsScreen:
         final args = settings.arguments as MatchModel;
         return MaterialPageRoute(builder: (_) => MatchDetailsScreen(match: args,));
       case Routes.checkoutScreen:
-        return MaterialPageRoute(builder: (_) => const CheckoutScreen());
+        final args = settings.arguments as MatchModel;
+        return MaterialPageRoute(builder: (_) => BlocProvider(
+          create: (context) => getIt<JoinMatchCubit>(),
+          child: CheckoutScreen(match: args,),
+        ));
+      case Routes.joinMatchSuccessScreen:
+        final args = settings.arguments as j.Match;
+        return MaterialPageRoute(builder: (_) => JoinMatchSuccessScreen(match: args,));
 
       default:
         return MaterialPageRoute(

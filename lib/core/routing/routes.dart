@@ -14,4 +14,5 @@ class Routes {
   static const String successBooking = '/successBooking';
   static const String matchDetailsScreen = '/matchDetailsScreen';
   static const String checkoutScreen = '/checkoutScreen';
+  static const String joinMatchSuccessScreen = '/joinMatchSuccessScreen';
 }

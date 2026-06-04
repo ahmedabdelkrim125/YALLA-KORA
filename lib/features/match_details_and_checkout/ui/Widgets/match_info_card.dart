@@ -5,10 +5,11 @@ import 'package:yalla_kora/core/theme/text_styles.dart';
 import 'package:yalla_kora/features/home/ui/widgets/players_badge.dart';
 
 class MatchInfoCard extends StatelessWidget {
-  const MatchInfoCard({super.key, required this.fieldNameType, required this.fieldLocation, required this.playersNeeded, required this.pricePerPlayer});
+  const MatchInfoCard({super.key, required this.fieldNameType, required this.fieldLocation, required this.playersNeeded, required this.pricePerPlayer, required this.fieldAddress});
 
   final String fieldNameType;
   final String fieldLocation;
+  final String fieldAddress;
   final int playersNeeded;
   final String pricePerPlayer;
 
@@ -58,6 +59,8 @@ class MatchInfoCard extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w(context)),
                     Text(fieldLocation, style: TextStyles.regularMuted12),
+                    Text(' - ', style: TextStyles.regularMuted12),
+                    Text(fieldAddress, style: TextStyles.regularMuted8),
                   ],
                 ),
                 SizedBox(height: 8.h(context)),

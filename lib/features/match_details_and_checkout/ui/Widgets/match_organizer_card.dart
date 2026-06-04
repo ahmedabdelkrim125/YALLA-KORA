@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:yalla_kora/core/constants/app_images.dart';
+import 'package:yalla_kora/features/home/data/event_matches/models/match_model.dart';
 import '../../../../core/helper/responsive_extensions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/text_styles.dart';
 import '../../../../core/helper/spacing.dart';
 
 class MatchOrganizerCard extends StatelessWidget {
-  const MatchOrganizerCard({super.key, required this.organizerName});
-  final String organizerName;
+  const MatchOrganizerCard({super.key, required this.organizer});
+  final Creator organizer;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -25,11 +27,11 @@ class MatchOrganizerCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            _buildAvatar(context),
+            _buildAvatar(context, avatarUrl: organizer.avatar),
             horizontalSpace(context, width: 12),
-            _buildOrganizerInfo(context, organizerName),
+            _buildOrganizerInfo(context, organizer.name),
             const Spacer(),
-            _buildRatingBox(context),
+            //_buildRatingBox(context),
           ],
         ),
       ),
@@ -85,7 +87,7 @@ class MatchOrganizerCard extends StatelessWidget {
     );
   }
 
-  Widget _buildAvatar(BuildContext context) {
+  Widget _buildAvatar(BuildContext context, {required avatarUrl}) {
     return Container(
       width: 50.w(context),
       height: 50.h(context),
@@ -99,7 +101,7 @@ class MatchOrganizerCard extends StatelessWidget {
       ),
       child: ClipOval(
         child: Image.network(
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mohamed_Salah_2018.jpg/400px-Mohamed_Salah_2018.jpg',
+          avatarUrl ?? Assets.player3,
           fit: BoxFit.cover,
           errorBuilder: (_, __, ___) =>
               Container(color: AppColors.darkAvatarBg),

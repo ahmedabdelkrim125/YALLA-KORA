@@ -62,6 +62,7 @@ class StorageService {
   }
 
   static Future<String?> getUserName() => _storage.read(key: _userNameKey);
+  static Future<String?> getUserWalletBalance() => _storage.read(key: _userWalletBalanceKey);
 
   // Clear all on logout
   static Future<void> clearAll() => _storage.deleteAll();

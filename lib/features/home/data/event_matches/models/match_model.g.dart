@@ -19,6 +19,8 @@ MatchModel _$MatchModelFromJson(Map<String, dynamic> json) => MatchModel(
       .toList(),
   status: json['status'] as String,
   spotsLeft: (json['spots_left'] as num).toInt(),
+  fieldCapacity: (json['field_capacity'] as num).toInt(),
+  playersJoined: (json['players_joined'] as num).toInt(),
 );
 
 Map<String, dynamic> _$MatchModelToJson(MatchModel instance) =>
@@ -28,10 +30,12 @@ Map<String, dynamic> _$MatchModelToJson(MatchModel instance) =>
       'field': instance.field,
       'date': instance.date,
       'time': instance.time,
+      'field_capacity': instance.fieldCapacity,
       'players_needed': instance.playersNeeded,
       'price_per_player': instance.pricePerPlayer,
       'players': instance.players,
       'status': instance.status,
+      'players_joined': instance.playersJoined,
       'spots_left': instance.spotsLeft,
     };
 
@@ -52,6 +56,7 @@ Field _$FieldFromJson(Map<String, dynamic> json) => Field(
   name: json['name'] as String,
   location: Location.fromJson(json['location'] as Map<String, dynamic>),
   type: json['type'] as String,
+  images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$FieldToJson(Field instance) => <String, dynamic>{
@@ -59,13 +64,15 @@ Map<String, dynamic> _$FieldToJson(Field instance) => <String, dynamic>{
   'name': instance.name,
   'location': instance.location,
   'type': instance.type,
+  'images': instance.images,
 };
 
 Location _$LocationFromJson(Map<String, dynamic> json) =>
-    Location(name: json['name'] as String);
+    Location(name: json['name'] as String, address: json['address'] as String);
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
   'name': instance.name,
+  'address': instance.address,
 };
 
 Player _$PlayerFromJson(Map<String, dynamic> json) => Player(

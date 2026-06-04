@@ -13,6 +13,8 @@ class MatchModel {
   final String date;
   @JsonKey(name: "time")
   final String time;
+  @JsonKey(name: 'field_capacity')
+  final int fieldCapacity;
   @JsonKey(name: "players_needed")
   final int playersNeeded;
   @JsonKey(name: "price_per_player")
@@ -21,6 +23,8 @@ class MatchModel {
   final List<Player> players;
   @JsonKey(name: "status")
   final String status;
+  @JsonKey(name: "players_joined")
+  final int playersJoined;
   @JsonKey(name: "spots_left")
   final int spotsLeft;
 
@@ -35,6 +39,8 @@ class MatchModel {
     required this.players,
     required this.status,
     required this.spotsLeft,
+    required this.fieldCapacity,
+    required this.playersJoined,
   });
 
   factory MatchModel.fromJson(Map<String, dynamic> json) => _$MatchModelFromJson(json);
@@ -72,12 +78,13 @@ class Field {
   final Location location;
   @JsonKey(name: "type")
   final String type;
+  final List<String> images;
 
   Field({
     required this.id,
     required this.name,
     required this.location,
-    required this.type,
+    required this.type, required this.images,
   });
 
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
@@ -89,9 +96,11 @@ class Field {
 class Location {
   @JsonKey(name: "name")
   final String name;
+  @JsonKey(name: "address")
+  final String address;
 
   Location({
-    required this.name,
+    required this.name, required this.address,
   });
 
   factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);

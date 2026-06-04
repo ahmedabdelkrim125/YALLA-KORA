@@ -39,7 +39,7 @@ class MatchRow extends StatelessWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    PlayersBadge(count: match.playersNeeded),
+                    PlayersBadge(count: match.spotsLeft),
                     const SizedBox(width: 8),
                     Text(
                       'حصة الفرد ${match.pricePerPlayer} ج',
