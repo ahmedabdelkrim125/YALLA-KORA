@@ -8,7 +8,7 @@ class AppColors {
   static const Color fieldBorder = Color(0xFFFFFFFF);
   static const Color lightText = Color(0xFFF4F5F0);
   static const Color lightGray = Color(0xFFCBCBCB);
-  static const Color lightGrayText = Color(0xFFD1D5DC); 
+  static const Color lightGrayText = Color(0xFFD1D5DC);
   static const Color slateGray = Color(0xFF6A7282);
   static const Color slateGray50 = Color(0x7F6A7282);
   static const Color orangeColor = Color(0xFFFEA100);
